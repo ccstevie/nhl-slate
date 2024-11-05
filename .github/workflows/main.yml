@@ -1,0 +1,45 @@
+name: Update Hockey Slate
+on:
+  schedule:
+    - cron: '1 7 * * *'  # Runs daily at 7:01 AM UTC (3:01 AM EST)
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10.5'
+
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Install Python dependencies
+        run: |
+          pip install pandas
+          pip install selenium
+          pip install chromedriver-autoinstaller
+          pip install pyvirtualdisplay
+
+      - name: Start Xvfb and run the scraping script
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 &
+          export DISPLAY=:99
+          python your_script.py
+
+      - name: Commit and push updated CSV file
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/result.csv
+          git commit -m "Update hockey stats"
+          git push
