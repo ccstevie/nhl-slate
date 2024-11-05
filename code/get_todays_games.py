@@ -1,3 +1,4 @@
+import chromedriver_autoinstaller
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -5,6 +6,9 @@ import requests
 import pandas as pd
 from datetime import date, timedelta
 from functools import reduce
+
+# Automatically install and set up chromedriver
+chromedriver_autoinstaller.install()  # This will download and add chromedriver to PATH if not already installed
 
 def getGames():
     url = 'https://www.rotowire.com/hockey/nhl-lineups.php'
