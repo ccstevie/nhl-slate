@@ -1,34 +1,34 @@
-name: Update Hockey Slate
+name: Daily Scraping
 on:
   schedule:
-    - cron: '1 7 * * *'  # Runs daily at 7:01 AM UTC (3:01 AM EST)
+    - cron: '0 9 * * *'
   workflow_dispatch:
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.10.5'
-      - name: Removing previous chrome instances on runner
-        run: sudo apt purge google-chrome-stable
-      - name: Install dependencies
-        run: |
-          pip uninstall -y numpy pandas
-          pip install numpy==1.23.5
-          pip install pandas==1.5.3
-          pip install -r requirements.txt
-          pip install selenium chromedriver-autoinstaller pyvirtualdisplay
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10.5'
+    - name: Removing previous chrome instances on runner
+      run: sudo apt purge google-chrome-stable
+    - name: Install dependencies
+      run: |
+        pip uninstall -y numpy pandas
+        pip install numpy==1.23.5  # Specify a stable version of numpy
+        pip install pandas==1.5.3  # Specify a compatible pandas version
+        pip install -r requirements.txt
+        pip install selenium chromedriver-autoinstaller pyvirtualdisplay
     - name: Install xvfb
       run: sudo apt-get install -y xvfb
-    - name: Start Xvfb and run the scraping script
+    - name: Start xvfb and run scraping script
       run: |
         Xvfb :99 -screen 0 1920x1080x24 &
         export DISPLAY=:99
-        python code/get_todays_games.py
+        python code/nba.py
     - name: Commit and push updated CSV file
       run: |
         git config --global user.name 'github-actions[bot]'
