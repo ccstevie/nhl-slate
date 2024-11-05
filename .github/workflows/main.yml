@@ -28,7 +28,7 @@ jobs:
       run: |
         Xvfb :99 -screen 0 1920x1080x24 &
         export DISPLAY=:99
-        python code/nba.py
+        python code/get_todays_games.py
     - name: Commit and push updated CSV file
       run: |
         git config --global user.name 'github-actions[bot]'
