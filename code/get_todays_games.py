@@ -92,7 +92,7 @@ for away, home in matchups:
     matchup_df = pd.concat([away_df, home_df], ignore_index=True)
     res = pd.concat([res, matchup_df], ignore_index=True)
 
-f = open("result.csv", 'w')
+f = open("../public/result.csv", 'w')
 
 for col in res.columns.values:
     f.write(col + ",")
