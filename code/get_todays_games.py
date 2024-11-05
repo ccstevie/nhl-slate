@@ -6,9 +6,9 @@ import requests
 import pandas as pd
 from datetime import date, timedelta
 from functools import reduce
+import os
 
-# Automatically install and set up chromedriver
-chromedriver_autoinstaller.install()  # This will download and add chromedriver to PATH if not already installed
+chromedriver_autoinstaller.install()
 
 def getGames():
     url = 'https://www.rotowire.com/hockey/nhl-lineups.php'
@@ -77,7 +77,6 @@ sh.reset_index(inplace=True)
 sh = sh.rename(columns = {"index":"SH%"})
 sh = sh[["Team", "SH%"]]
 
-# merge all DataFrames into one
 dfs = [cf, gf, xgf, hdcf, sh]
 final_df = reduce(lambda  left,right: pd.merge(left,right,on=['Team'],
                                             how='outer'), dfs)
@@ -92,21 +91,21 @@ for away, home in matchups:
     matchup_df = pd.concat([away_df, home_df], ignore_index=True)
     res = pd.concat([res, matchup_df], ignore_index=True)
 
-f = open("../public/result.csv", 'w')
 
-for col in res.columns.values:
-    f.write(col + ",")
+output_dir = os.path.join(os.path.dirname(__file__), "..", "public")
+output_file = os.path.join(output_dir, "result.csv")
 
-f.write("\n")
-
-i = 0
-for col in res.values:
-    for row in col:
-        f.write(str(row) + ",")
-    if i % 2 == 0:
-        f.write("\n")
-    else:
-        f.write("\n\n")
-    i += 1
-
-f.close()
+with open(output_file, 'w') as f:
+    for col in res.columns.values:
+        f.write(col + ",")
+    f.write("\n")
+    
+    i = 0
+    for col in res.values:
+        for row in col:
+            f.write(str(row) + ",")
+        if i % 2 == 0:
+            f.write("\n")
+        else:
+            f.write("\n\n")
+        i += 1
