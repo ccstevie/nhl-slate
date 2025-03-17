@@ -42,7 +42,7 @@ today = date.today()
 start = today - timedelta(days=30)
 
 url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20242025&thruseason=20242025&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
-req = requests.get(url)
+req = requests.get(url, verify=False)
 req.status_code
 
 df = pd.read_html(url, header=0, index_col = 0, na_values=["-"])[0]
