@@ -7,6 +7,7 @@ import pandas as pd
 from datetime import date, timedelta
 from functools import reduce
 import os
+import urllib3
 
 chromedriver_autoinstaller.install()
 
@@ -41,6 +42,7 @@ def getGames():
 today = date.today()
 start = today - timedelta(days=30)
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20242025&thruseason=20242025&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
 req = requests.get(url, verify=False)
 req.status_code
