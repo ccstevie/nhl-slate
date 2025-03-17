@@ -24,6 +24,13 @@ jobs:
         pip install selenium chromedriver-autoinstaller pyvirtualdisplay
     - name: Install xvfb
       run: sudo apt-get install -y xvfb
+    - name: Update CA Certificates (Fix SSL Error)
+      run: |
+        sudo apt-get update
+        sudo apt-get install --reinstall ca-certificates
+        sudo update-ca-certificates
+    - name: Set Environment Variables (Disable SSL Verification)
+      run: echo "PYTHONWARNINGS=ignore:Unverified HTTPS request" >> $GITHUB_ENV
     - name: Start xvfb and run scraping script
       run: |
         Xvfb :99 -screen 0 1920x1080x24 &
