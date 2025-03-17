@@ -44,10 +44,11 @@ start = today - timedelta(days=30)
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20242025&thruseason=20242025&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
+# Fetch the HTML content with SSL verification disabled
 req = requests.get(url, verify=False)
-req.status_code
 
-df = pd.read_html(url, header=0, index_col = 0, na_values=["-"])[0]
+# Parse the table from the HTML response instead of making a new request
+df = pd.read_html(req.text, header=0, index_col=0, na_values=["-"])[0]
 
 cf = df.sort_values(by="CF%", ascending=False, ignore_index=True)
 cf.index += 1
