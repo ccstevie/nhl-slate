@@ -27,7 +27,7 @@ def getGames():
     lineups = driver.find_element(By.CLASS_NAME, 'lineups').find_elements(By.CLASS_NAME, 'is-nhl')
 
     for lineup in lineups[:-1]:
-        teams = lineup.find_element(By.CLASS_NAME, 'lineup__teams').find_elements(By.TAG_NAME, 'a')
+        teams = lineup.find_element(By.CLASS_NAME, 'lineup__matchup').find_elements(By.TAG_NAME, 'a')
         if len(teams) >= 2:
             awayTeam = teams[0].text.split(' (')[0]
             homeTeam = teams[1].text.split(' (')[0]
