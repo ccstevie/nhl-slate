@@ -12,25 +12,59 @@ import time
 chromedriver_autoinstaller.install()
 
 def getGames():
-    url = 'https://www.rotowire.com/hockey/nhl-lineups.php'
+    url = "https://www.rotowire.com/hockey/nhl-lineups.php"
+
     options = ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--start-maximized')
+    options.add_argument("--headless=new")     # modern headless mode
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--start-maximized")
+
+    # extra safety: ensure Chrome binary is found
+    # prevents hangs when Chrome isn't installed
+    from shutil import which
+    chrome_path = which("google-chrome") or which("google-chrome-stable")
+    if chrome_path:
+        options.binary_location = chrome_path
+
     driver = webdriver.Chrome(options=options)
 
-    driver.get(url)
-    time.sleep(3)
+    # prevent infinite hangs
+    driver.set_page_load_timeout(20)
+    driver.set_script_timeout(20)
+
+    try:
+        driver.get(url)
+    except Exception as e:
+        print("ERROR: page load failed:", e)
+        driver.quit()
+        raise
+
+    # Wait for the actual content instead of hoping it's there
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    try:
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "lineups"))
+        )
+    except Exception:
+        print("ERROR: lineup container never appeared")
+        driver.quit()
+        raise
 
     matchups = []
-    lineups = driver.find_element(By.CLASS_NAME, 'lineups').find_elements(By.CLASS_NAME, 'is-nhl')
+    lineups = driver.find_element(By.CLASS_NAME, "lineups") \
+                    .find_elements(By.CLASS_NAME, "is-nhl")
 
+    # Last element is "No games today" section — skip it
     for lineup in lineups[:-1]:
-        teams = lineup.find_element(By.CLASS_NAME, 'lineup__matchup').find_elements(By.TAG_NAME, 'a')
+        teams = lineup.find_element(By.CLASS_NAME, "lineup__matchup") \
+                       .find_elements(By.TAG_NAME, "a")
+
         if len(teams) >= 2:
-            awayTeam = teams[0].text.split(' (')[0]
-            homeTeam = teams[1].text.split(' (')[0]
+            awayTeam = teams[0].text.split(" (")[0]
+            homeTeam = teams[1].text.split(" (")[0]
             matchups.append((awayTeam, homeTeam))
 
     driver.quit()
