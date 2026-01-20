@@ -207,8 +207,8 @@ def main():
     # Build result dataframe with matchups and stats
     res = pd.DataFrame()
     for away, home, away_goalie, home_goalie in matchups:
-        away_df = final_df[final_df["Team"].str.contains(away)]
-        home_df = final_df[final_df["Team"].str.contains(home)]
+        away_df = final_df[final_df["Team"].str.contains(away, case=False, na=False)]
+        home_df = final_df[final_df["Team"].str.contains(home, case=False, na=False)]
         
         away_rank = goalie_ranks.get(away_goalie)
         home_rank = goalie_ranks.get(home_goalie)
@@ -221,16 +221,8 @@ def main():
     # Write results to CSV
     output_dir = os.path.join(os.path.dirname(__file__), "..", "public")
     output_file = os.path.join(output_dir, "result.csv")
-
-    with open(output_file, 'w') as f:
-        # Write header
-        f.write(",".join(res.columns.values) + "\n")
-        
-        # Write rows with blank line between matchup pairs
-        for i, row in enumerate(res.values):
-            f.write(",".join(str(val) for val in row) + "\n")
-            if (i + 1) % 2 == 0:  # After every 2nd row (home team of each matchup)
-                f.write("\n")
+    
+    res.to_csv(output_file, index=False)
 
 if __name__ == "__main__":
     main()
