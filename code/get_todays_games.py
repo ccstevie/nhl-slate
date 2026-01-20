@@ -204,17 +204,9 @@ def main():
     matchups = get_games()
     goalie_ranks = load_or_fetch_goalie_ranks()
 
-    print("\n=== MATCHUPS ===")
-    for i, matchup in enumerate(matchups):
-        print(f"Matchup {i+1}: {matchup}")
-    
-    print("\n=== FINAL_DF ===")
-    print(final_df)
-    print(f"Shape: {final_df.shape}")
-
     # Build result dataframe with matchups and stats
     res = pd.DataFrame()
-    for away, home, away_goalie, home_goalie in matchups:
+    for i, (away, home, away_goalie, home_goalie) in enumerate(matchups):
         away_df = final_df[final_df["Team"].str.contains(away, case=False, na=False)]
         home_df = final_df[final_df["Team"].str.contains(home, case=False, na=False)]
         
@@ -225,10 +217,11 @@ def main():
         
         matchup_df = pd.concat([away_df, home_df], ignore_index=True)
         res = pd.concat([res, matchup_df], ignore_index=True)
-
-    print("\n=== RESULT ===")
-    print(res)
-    print(f"Shape: {res.shape}")
+        
+        # Add blank row between matchups (but not after the last one)
+        if i < len(matchups) - 1:
+            blank_row = pd.DataFrame([{col: None for col in res.columns}])
+            res = pd.concat([res, blank_row], ignore_index=True)
 
     # Write results to CSV
     output_dir = os.path.join(os.path.dirname(__file__), "..", "public")
