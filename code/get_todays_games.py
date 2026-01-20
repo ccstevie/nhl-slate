@@ -205,32 +205,32 @@ def main():
     goalie_ranks = load_or_fetch_goalie_ranks()
 
     # Build result dataframe with matchups and stats
-    rows = []
-    for i, (away, home, away_goalie, home_goalie) in enumerate(matchups):
-        away_df = final_df[final_df["Team"].str.contains(away, case=False, na=False)]
-        home_df = final_df[final_df["Team"].str.contains(home, case=False, na=False)]
+    res = pd.DataFrame()
+    for away, home, away_goalie, home_goalie in matchups:
+        away_df = final_df[final_df["Team"].str.contains(away)]
+        home_df = final_df[final_df["Team"].str.contains(home)]
         
         away_rank = goalie_ranks.get(away_goalie)
         home_rank = goalie_ranks.get(home_goalie)
         away_df = away_df.assign(Goalie=away_goalie, Goalie_GSAx_Rank=away_rank)
         home_df = home_df.assign(Goalie=home_goalie, Goalie_GSAx_Rank=home_rank)
         
-        # Collect rows as dictionaries
-        rows.extend(away_df.to_dict('records'))
-        rows.extend(home_df.to_dict('records'))
-        
-        # Add blank row between matchups (but not after the last one)
-        if i < len(matchups) - 1:
-            blank_row = {col: None for col in rows[-1].keys()}
-            rows.append(blank_row)
+        matchup_df = pd.concat([away_df, home_df], ignore_index=True)
+        res = pd.concat([res, matchup_df], ignore_index=True)
 
-    # Create DataFrame once and write to CSV
-    res = pd.DataFrame(rows)
-    
+    # Write results to CSV
     output_dir = os.path.join(os.path.dirname(__file__), "..", "public")
     output_file = os.path.join(output_dir, "result.csv")
-    
-    res.to_csv(output_file, index=False)
+
+    with open(output_file, 'w') as f:
+        # Write header
+        f.write(",".join(res.columns.values) + "\n")
+        
+        # Write rows with blank line between matchup pairs
+        for i, row in enumerate(res.values):
+            f.write(",".join(str(val) for val in row) + "\n")
+            if (i + 1) % 2 == 0:  # After every 2nd row (home team of each matchup)
+                f.write("\n")
 
 if __name__ == "__main__":
     main()
