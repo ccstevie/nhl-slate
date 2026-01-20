@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "installCommand": "npm install",
+  "env": {
+    "PYTHON_INSTALLED": "1"
+  }
+}
