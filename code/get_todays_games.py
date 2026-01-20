@@ -154,6 +154,20 @@ def load_or_fetch_goalie_ranks():
     return ranks
 
 
+def find_goalie_rank(goalie_name, goalie_ranks):
+    """Find goalie rank using fuzzy matching for last name."""
+    # First try exact match
+    if goalie_name in goalie_ranks:
+        return goalie_ranks[goalie_name]
+    
+    # If no exact match, try to find by last name (contains search)
+    for ranked_goalie, rank in goalie_ranks.items():
+        if goalie_name.lower() in ranked_goalie.lower():
+            return rank
+    
+    # No match found
+    return None
+
 def main():
     """Fetch hockey stats and write to CSV file."""
     today = date.today()
@@ -209,8 +223,8 @@ def main():
         away_df = final_df[final_df["Team"].str.contains(away, case=False, na=False)]
         home_df = final_df[final_df["Team"].str.contains(home, case=False, na=False)]
         
-        away_rank = goalie_ranks.get(away_goalie)
-        home_rank = goalie_ranks.get(home_goalie)
+        away_rank = find_goalie_rank(away_goalie, goalie_ranks)
+        home_rank = find_goalie_rank(home_goalie, goalie_ranks)
         away_df = away_df.assign(Goalie=away_goalie, Goalie_Rank=away_rank)
         home_df = home_df.assign(Goalie=home_goalie, Goalie_Rank=home_rank)
         
