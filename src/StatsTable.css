@@ -28,13 +28,42 @@ table {
     color: white;
     text-transform: uppercase;
     font-size: 0.9em;
+    font-weight: bold;
   }
   
-  tr:hover {
-    background-color: #f1f1f1;
+  tbody tr {
+    transition: background-color 0.2s ease;
   }
   
-  tr:nth-child(even) {
-    background-color: #f7f7f7;
+  tbody tr:hover {
+    background-color: #e8f5e9;
+  }
+  
+  /* Style odd rows (1st, 3rd, 5th pairs) */
+  tbody tr:nth-child(4n+1),
+  tbody tr:nth-child(4n+2) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Style even rows (2nd, 4th, 6th pairs) with slight background */
+  tbody tr:nth-child(4n+3),
+  tbody tr:nth-child(4n+4) {
+    background-color: #ffffff;
+  }
+  
+  /* Add bottom border to separate matchup pairs */
+  tbody tr:nth-child(4n+2) {
+    border-bottom: 3px solid #4CAF50;
+  }
+  
+  /* Enhanced hover effect */
+  tbody tr:nth-child(4n+1):hover,
+  tbody tr:nth-child(4n+2):hover {
+    background-color: #e3f2fd;
+  }
+  
+  tbody tr:nth-child(4n+3):hover,
+  tbody tr:nth-child(4n+4):hover {
+    background-color: #e3f2fd;
   }
   
