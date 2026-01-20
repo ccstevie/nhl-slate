@@ -221,7 +221,7 @@ def main():
         
         # Add blank row between matchups (but not after the last one)
         if i < len(matchups) - 1:
-            blank_row = {col: None for col in away_df.columns}
+            blank_row = {col: None for col in rows[-1].keys()}
             rows.append(blank_row)
 
     # Create DataFrame once and write to CSV
