@@ -26,7 +26,7 @@ function StatsTable() {
         </thead>
         <tbody>
           {data.map((row, index) => (
-            <tr key={index}>
+            <tr key={index} className={index % 2 === 1 ? 'matchup-end' : 'matchup-start'}>
               {Object.values(row).map((val, i) => (
                 <td key={i}>{val}</td>
               ))}
