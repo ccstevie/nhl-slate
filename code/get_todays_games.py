@@ -205,7 +205,7 @@ def main():
     goalie_ranks = load_or_fetch_goalie_ranks()
 
     # Build result dataframe with matchups and stats
-    res = pd.DataFrame()
+    rows = []
     for i, (away, home, away_goalie, home_goalie) in enumerate(matchups):
         away_df = final_df[final_df["Team"].str.contains(away, case=False, na=False)]
         home_df = final_df[final_df["Team"].str.contains(home, case=False, na=False)]
@@ -215,18 +215,21 @@ def main():
         away_df = away_df.assign(Goalie=away_goalie, Goalie_GSAx_Rank=away_rank)
         home_df = home_df.assign(Goalie=home_goalie, Goalie_GSAx_Rank=home_rank)
         
-        matchup_df = pd.concat([away_df, home_df], ignore_index=True)
-        res = pd.concat([res, matchup_df], ignore_index=True)
+        # Collect rows as dictionaries
+        rows.extend(away_df.to_dict('records'))
+        rows.extend(home_df.to_dict('records'))
         
         # Add blank row between matchups (but not after the last one)
         if i < len(matchups) - 1:
-            blank_row = pd.DataFrame([{col: pd.NA for col in res.columns}])
-            res = pd.concat([res, blank_row], ignore_index=True).reset_index(drop=True)
+            blank_row = {col: None for col in away_df.columns}
+            rows.append(blank_row)
 
-    # Write results to CSV
+    # Create DataFrame once and write to CSV
+    res = pd.DataFrame(rows)
+    
     output_dir = os.path.join(os.path.dirname(__file__), "..", "public")
     output_file = os.path.join(output_dir, "result.csv")
-
+    
     res.to_csv(output_file, index=False)
 
 if __name__ == "__main__":
