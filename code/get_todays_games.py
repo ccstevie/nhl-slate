@@ -65,6 +65,7 @@ def get_games():
         away_goalie = goalies[0].text.strip()
         home_goalie = goalies[1].text.strip()
         teams = lineup.find_element(By.CLASS_NAME, 'lineup__teams').find_elements(By.TAG_NAME, 'a')
+        teams = lineup.find_element(By.CLASS_NAME, 'lineup__matchup').find_elements(By.TAG_NAME, 'a')
         if len(teams) >= 2:
             away_team = teams[0].text.split(' (')[0]
             home_team = teams[1].text.split(' (')[0]
@@ -119,22 +120,20 @@ def get_goalie_gsax_ranks_last_20():
     data = []
     for tr in rows:
         tds = tr.find_all("td")
-        if len(tds) < 4:  # ensure there are enough columns
+        if len(tds) < 7:  # ensure there are enough columns
             continue
 
         try:
             rank = int(tds[0].get_text(strip=True))
-            goalie = tds[2].get_text(strip=True)  # 3rd td is goalie name
-            gsa = float(tds[3].get_text(strip=True))  # 4th td is GSAx
-        except ValueError:
+            goalie = tds[2].get_text(strip=True)
+            gsa = float(tds[6].get_text(strip=True))
+        except:
             continue
 
         data.append({"Rank": rank, "Goalie": goalie, "GSAx": gsa})
 
     # Convert to DataFrame and re-rank by GSAx
     df = pd.DataFrame(data)
-    df = df.sort_values("GSAx", ascending=False).reset_index(drop=True)
-    df["Rank"] = df.index + 1
 
     # Return as dictionary
     return dict(zip(df["Goalie"], df["Rank"]))
