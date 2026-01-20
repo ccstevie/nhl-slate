@@ -134,22 +134,22 @@ def get_goalie_gsax_ranks_last_20():
     # Convert to DataFrame and re-rank by GSAx
     df = pd.DataFrame(data)
     df = df.sort_values("GSAx", ascending=False).reset_index(drop=True)
-    df["GSAx_Rank"] = df.index + 1
+    df["Rank"] = df.index + 1
 
     # Return as dictionary
-    return dict(zip(df["Goalie"], df["GSAx_Rank"]))
+    return dict(zip(df["Goalie"], df["Rank"]))
 
 def load_or_fetch_goalie_ranks():
     cache_file = "goalie_gsax_20.csv"
 
     if os.path.exists(cache_file):
         df = pd.read_csv(cache_file)
-        return dict(zip(df["Goalie"], df["GSAx_Rank"]))
+        return dict(zip(df["Goalie"], df["Rank"]))
 
     ranks = get_goalie_gsax_ranks_last_20()
 
     pd.DataFrame(
-        [{"Goalie": k, "GSAx_Rank": v} for k, v in ranks.items()]
+        [{"Goalie": k, "Rank": v} for k, v in ranks.items()]
     ).to_csv(cache_file, index=False)
 
     return ranks
@@ -212,8 +212,8 @@ def main():
         
         away_rank = goalie_ranks.get(away_goalie)
         home_rank = goalie_ranks.get(home_goalie)
-        away_df = away_df.assign(Goalie=away_goalie, Goalie_GSAx_Rank=away_rank)
-        home_df = home_df.assign(Goalie=home_goalie, Goalie_GSAx_Rank=home_rank)
+        away_df = away_df.assign(Goalie=away_goalie, Goalie_Rank=away_rank)
+        home_df = home_df.assign(Goalie=home_goalie, Goalie_Rank=home_rank)
         
         matchup_df = pd.concat([away_df, home_df], ignore_index=True)
         res = pd.concat([res, matchup_df], ignore_index=True)
