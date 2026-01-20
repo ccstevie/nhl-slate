@@ -204,11 +204,19 @@ def main():
     matchups = get_games()
     goalie_ranks = load_or_fetch_goalie_ranks()
 
+    print("\n=== MATCHUPS ===")
+    for i, matchup in enumerate(matchups):
+        print(f"Matchup {i+1}: {matchup}")
+    
+    print("\n=== FINAL_DF ===")
+    print(final_df)
+    print(f"Shape: {final_df.shape}")
+
     # Build result dataframe with matchups and stats
     res = pd.DataFrame()
     for away, home, away_goalie, home_goalie in matchups:
-        away_df = final_df[final_df["Team"].str.contains(away)]
-        home_df = final_df[final_df["Team"].str.contains(home)]
+        away_df = final_df[final_df["Team"].str.contains(away, case=False, na=False)]
+        home_df = final_df[final_df["Team"].str.contains(home, case=False, na=False)]
         
         away_rank = goalie_ranks.get(away_goalie)
         home_rank = goalie_ranks.get(home_goalie)
@@ -218,25 +226,15 @@ def main():
         matchup_df = pd.concat([away_df, home_df], ignore_index=True)
         res = pd.concat([res, matchup_df], ignore_index=True)
 
+    print("\n=== RESULT ===")
+    print(res)
+    print(f"Shape: {res.shape}")
+
     # Write results to CSV
     output_dir = os.path.join(os.path.dirname(__file__), "..", "public")
     output_file = os.path.join(output_dir, "result.csv")
 
-    with open(output_file, 'w') as f:
-        for col in res.columns.values:
-            f.write(col + ",")
-        f.write("\n")
-        
-        i = 0
-        for col in res.values:
-            for row in col:
-                f.write(str(row) + ",")
-            if i % 2 == 0:
-                f.write("\n")
-            else:
-                f.write("\n\n")
-            i += 1
-
+    res.to_csv(output_file, index=False)
 
 if __name__ == "__main__":
     main()
