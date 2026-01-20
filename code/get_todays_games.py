@@ -220,8 +220,8 @@ def main():
         
         # Add blank row between matchups (but not after the last one)
         if i < len(matchups) - 1:
-            blank_row = pd.DataFrame([{col: None for col in res.columns}])
-            res = pd.concat([res, blank_row], ignore_index=True)
+            blank_row = pd.DataFrame([{col: pd.NA for col in res.columns}])
+            res = pd.concat([res, blank_row], ignore_index=True).reset_index(drop=True)
 
     # Write results to CSV
     output_dir = os.path.join(os.path.dirname(__file__), "..", "public")
