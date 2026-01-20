@@ -62,8 +62,8 @@ def get_games():
 
     for lineup in lineups[:-1]:
         goalies = lineup.find_elements(By.CLASS_NAME, "lineup__player-highlight-name")
-        away_goalie = goalies[0].text.strip()
-        home_goalie = goalies[1].text.strip()
+        away_goalie = goalies[0].text.strip().split()[-1]
+        home_goalie = goalies[1].text.strip().split()[-1]
         teams = lineup.find_element(By.CLASS_NAME, 'lineup__teams').find_elements(By.TAG_NAME, 'a')
         teams = lineup.find_element(By.CLASS_NAME, 'lineup__matchup').find_elements(By.TAG_NAME, 'a')
         if len(teams) >= 2:
@@ -125,7 +125,7 @@ def get_goalie_gsax_ranks_last_20():
 
         try:
             rank = int(tds[0].get_text(strip=True))
-            goalie = tds[2].get_text(strip=True)
+            goalie = tds[2].get_text(strip=True).split()[-1]
             gsa = float(tds[6].get_text(strip=True))
         except:
             continue
@@ -152,21 +152,6 @@ def load_or_fetch_goalie_ranks():
     ).to_csv(cache_file, index=False)
 
     return ranks
-
-
-def find_goalie_rank(goalie_name, goalie_ranks):
-    """Find goalie rank using fuzzy matching for last name."""
-    # First try exact match
-    if goalie_name in goalie_ranks:
-        return goalie_ranks[goalie_name]
-    
-    # If no exact match, try to find by last name (contains search)
-    for ranked_goalie, rank in goalie_ranks.items():
-        if goalie_name.lower() in ranked_goalie.lower():
-            return rank
-    
-    # No match found
-    return None
 
 def main():
     """Fetch hockey stats and write to CSV file."""
@@ -223,8 +208,8 @@ def main():
         away_df = final_df[final_df["Team"].str.contains(away, case=False, na=False)]
         home_df = final_df[final_df["Team"].str.contains(home, case=False, na=False)]
         
-        away_rank = find_goalie_rank(away_goalie, goalie_ranks)
-        home_rank = find_goalie_rank(home_goalie, goalie_ranks)
+        away_rank = goalie_ranks.get(away_goalie)
+        home_rank = goalie_ranks.get(home_goalie)
         away_df = away_df.assign(Goalie=away_goalie, Goalie_Rank=away_rank)
         home_df = home_df.assign(Goalie=home_goalie, Goalie_Rank=home_rank)
         
