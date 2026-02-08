@@ -153,6 +153,48 @@ def load_or_fetch_goalie_ranks():
 
     return ranks
 
+def normalize_team(name):
+    return (
+        name.lower()
+        .replace(".", "")
+        .replace("é", "e")
+        .replace(" ", "")
+    )
+
+def get_team_streaks():
+    url = "https://www.nextteamup.com/nhl"
+    headers = {
+        "User-Agent": "Mozilla/5.0"  # avoid basic bot blocks
+    }
+
+    resp = requests.get(url, headers=headers, timeout=15)
+    resp.raise_for_status()
+
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    streaks = {}
+
+    # Grab all table rows (skip header automatically)
+    rows = soup.select("table tbody tr")
+
+    for row in rows:
+        tds = row.find_all("td")
+        if len(tds) < 3:
+            continue
+
+        team = tds[1].get_text(strip=True)
+        streak = tds[2].get_text(strip=True)
+
+        # Convert "+7" / "-3" → int
+        try:
+            streak = int(streak)
+        except ValueError:
+            continue
+
+        streaks[team] = streak
+
+    return streaks
+
 def main():
     """Fetch hockey stats and write to CSV file."""
     today = date.today()
@@ -202,6 +244,14 @@ def main():
     matchups = get_games()
     goalie_ranks = load_or_fetch_goalie_ranks()
 
+    team_streaks = get_team_streaks()
+
+    # Normalize streak dictionary
+    normalized_streaks = {
+        normalize_team(team): streak
+        for team, streak in team_streaks.items()
+    }
+
     # Build result dataframe with matchups and stats
     res = pd.DataFrame()
     for away, home, away_goalie, home_goalie in matchups:
@@ -210,8 +260,21 @@ def main():
         
         away_rank = goalie_ranks.get(away_goalie)
         home_rank = goalie_ranks.get(home_goalie)
-        away_df = away_df.assign(Goalie=away_goalie, Goalie_Rank=away_rank)
-        home_df = home_df.assign(Goalie=home_goalie, Goalie_Rank=home_rank)
+        away_df = away_df.assign(
+            Goalie=away_goalie,
+            Goalie_Rank=away_rank,
+            Streak=away_df["Team"].apply(
+                lambda t: normalized_streaks.get(normalize_team(t))
+            )
+        )
+
+        home_df = home_df.assign(
+            Goalie=home_goalie,
+            Goalie_Rank=home_rank,
+            Streak=home_df["Team"].apply(
+                lambda t: normalized_streaks.get(normalize_team(t))
+            )
+        )
         
         matchup_df = pd.concat([away_df, home_df], ignore_index=True)
         res = pd.concat([res, matchup_df], ignore_index=True)
