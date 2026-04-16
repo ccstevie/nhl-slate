@@ -202,7 +202,7 @@ def main():
 
     # Fetch team statistics from Natural Stat Trick
     url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20252026&thruseason=20252026&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
-    req = requests.get(url, verify=False)
+    req = requests.get(url)
     df = pd.read_html(req.text, header=0, index_col=0, na_values=["-"])[0]
 
     # Create ranked dataframes for each stat
