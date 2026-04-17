@@ -17,7 +17,7 @@ chromedriver_autoinstaller.install()
 def _setup_chrome_options():
     """Set up standardized Chrome options for all Selenium operations."""
     options = ChromeOptions()
-    options.add_argument("--headless=new")
+    # options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--start-maximized")
