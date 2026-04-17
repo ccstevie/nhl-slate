@@ -202,8 +202,31 @@ def main():
 
     # Fetch team statistics from Natural Stat Trick
     url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20252026&thruseason=20252026&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
-    req = requests.get(url, verify=False)
-    df = pd.read_html(req.text, header=0, index_col=0, na_values=["-"])[0]
+    
+    options = _setup_chrome_options()
+    driver = webdriver.Chrome(options=options)
+    
+    driver.set_page_load_timeout(20)
+    driver.set_script_timeout(20)
+    
+    try:
+        driver.get(url)
+    
+        # Wait until a table appears (after Cloudflare check)
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.TAG_NAME, "table"))
+        )
+    
+        # Extra buffer for safety (Cloudflare can be slow)
+        import time
+        time.sleep(3)
+    
+        html = driver.page_source
+    
+    finally:
+        driver.quit()
+    
+    df = pd.read_html(html, flavor="lxml", header=0, index_col=0, na_values=["-"])[0]
 
     # Create ranked dataframes for each stat
     cf = df.sort_values(by="CF%", ascending=False, ignore_index=True)
