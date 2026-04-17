@@ -17,7 +17,7 @@ chromedriver_autoinstaller.install()
 def _setup_chrome_options():
     """Set up standardized Chrome options for all Selenium operations."""
     options = ChromeOptions()
-    # options.add_argument("--headless=new")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--start-maximized")
@@ -206,22 +206,28 @@ def main():
     options = _setup_chrome_options()
     driver = webdriver.Chrome(options=options)
     
-    driver.set_page_load_timeout(20)
-    driver.set_script_timeout(20)
+    driver.set_page_load_timeout(30)
+    driver.set_script_timeout(30)
     
     try:
         driver.get(url)
     
-        # Wait until a table appears (after Cloudflare check)
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.TAG_NAME, "table"))
-        )
-    
-        # Extra buffer for safety (Cloudflare can be slow)
         import time
-        time.sleep(3)
     
-        html = driver.page_source
+        html = ""
+        for i in range(5):  # try up to 5 times
+            time.sleep(5)
+            html = driver.page_source
+    
+            if "<table" in html:
+                print(f"Table found on attempt {i+1}")
+                break
+            else:
+                print(f"Attempt {i+1}: still blocked")
+    
+        else:
+            print(html[:1000])  # DEBUG
+            raise Exception("Failed to bypass Cloudflare — no table found")
     
     finally:
         driver.quit()
