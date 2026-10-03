@@ -201,7 +201,7 @@ def main():
     start = today - timedelta(days=30)
 
     # Fetch team statistics from Natural Stat Trick
-    url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20252026&thruseason=20252026&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
+    url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20262027&thruseason=20262027&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
     
     options = _setup_chrome_options()
     driver = webdriver.Chrome(options=options)
