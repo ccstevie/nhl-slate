@@ -11,6 +11,7 @@ from functools import reduce
 import os
 from shutil import which
 from bs4 import BeautifulSoup
+from io import StringIO
 
 chromedriver_autoinstaller.install()
 
@@ -201,38 +202,60 @@ def main():
     start = today - timedelta(days=30)
 
     # Fetch team statistics from Natural Stat Trick
-    url = f"https://www.naturalstattrick.com/teamtable.php?fromseason=20262027&thruseason=20262027&stype=2&sit=5v5&score=all&rate=n&team=all&loc=B&gpf=410&fd={start}&td={today}"
-    
-    options = _setup_chrome_options()
-    driver = webdriver.Chrome(options=options)
-    
-    driver.set_page_load_timeout(30)
-    driver.set_script_timeout(30)
-    
-    try:
-        driver.get(url)
-    
-        import time
-    
-        html = ""
-        for i in range(5):  # try up to 5 times
-            time.sleep(5)
-            html = driver.page_source
-    
-            if "<table" in html:
-                print(f"Table found on attempt {i+1}")
-                break
-            else:
-                print(f"Attempt {i+1}: still blocked")
-    
-        else:
-            print(html[:1000])  # DEBUG
-            raise Exception("Failed to bypass Cloudflare — no table found")
-    
-    finally:
-        driver.quit()
-    
-    df = pd.read_html(html, flavor="lxml", header=0, index_col=0, na_values=["-"])[0]
+    key = os.environ.get("NST_API_KEY")
+
+    if not key:
+        raise ValueError(
+            "NST_API_KEY is missing. Configure it in your local environment "
+            "or GitHub Actions Secrets."
+        )
+
+    today = date.today()
+    start = today - timedelta(days=30)
+
+    url = "https://data.naturalstattrick.com/teamtable.php"
+
+    params = {
+        "fromseason": "20262027",
+        "thruseason": "20262027",
+        "stype": "2",
+        "sit": "5v5",
+        "score": "all",
+        "rate": "n",
+        "team": "all",
+        "loc": "B",
+        "gpf": "410",
+        "fd": str(start),
+        "td": str(today),
+    }
+
+    print(f"Fetching NST team stats from {start} to {today}...")
+
+    response = requests.get(
+        url,
+        params=params,
+        headers={"nst-key": key},
+        timeout=30,
+    )
+    response.raise_for_status()
+
+    html = response.text
+
+    if "<table" not in html.lower():
+        raise RuntimeError(
+            "NST response did not contain an HTML table. "
+            "Check the access key, endpoint, and response."
+        )
+
+    df = pd.read_html(
+        StringIO(html),
+        flavor="lxml",
+        header=0,
+        index_col=0,
+        na_values=["-"],
+    )[0]
+
+    print("NST table loaded successfully:", df.shape)
 
     # Create ranked dataframes for each stat
     cf = df.sort_values(by="CF%", ascending=False, ignore_index=True)
