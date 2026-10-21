@@ -2,7 +2,7 @@ name: Daily Scraping
 
 on:
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '0 7 * * *'
   workflow_dispatch:
 
 permissions:
