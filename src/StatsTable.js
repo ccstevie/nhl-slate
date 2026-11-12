@@ -57,6 +57,58 @@ const metrics = [
   },
 ];
 
+const teamAbbreviations = {
+  "Anaheim Ducks": "ANA",
+  "Boston Bruins": "BOS",
+  "Buffalo Sabres": "BUF",
+  "Calgary Flames": "CGY",
+  "Carolina Hurricanes": "CAR",
+  "Chicago Blackhawks": "CHI",
+  "Colorado Avalanche": "COL",
+  "Columbus Blue Jackets": "CBJ",
+  "Dallas Stars": "DAL",
+  "Detroit Red Wings": "DET",
+  "Edmonton Oilers": "EDM",
+  "Florida Panthers": "FLA",
+  "Los Angeles Kings": "LAK",
+  "Minnesota Wild": "MIN",
+  "Montreal Canadiens": "MTL",
+  "Nashville Predators": "NSH",
+  "New Jersey Devils": "NJD",
+  "New York Islanders": "NYI",
+  "New York Rangers": "NYR",
+  "Ottawa Senators": "OTT",
+  "Philadelphia Flyers": "PHI",
+  "Pittsburgh Penguins": "PIT",
+  "San Jose Sharks": "SJS",
+  "Seattle Kraken": "SEA",
+  "St. Louis Blues": "STL",
+  "Tampa Bay Lightning": "TBL",
+  "Toronto Maple Leafs": "TOR",
+  "Utah Mammoth": "UTA",
+  "Vancouver Canucks": "VAN",
+  "Vegas Golden Knights": "VGK",
+  "Washington Capitals": "WSH",
+  "Winnipeg Jets": "WPG",
+};
+
+function TeamLogo({ team }) {
+  const abbreviation = teamAbbreviations[team];
+
+  if (!abbreviation) return null;
+
+  return (
+    <img
+      className="team-logo"
+      src={`https://assets.nhle.com/logos/nhl/svg/${abbreviation}_dark.svg`}
+      alt={`${team} logo`}
+      onError={(e) => {
+        e.currentTarget.style.display = 'none';
+      }}
+    />
+  );
+}
+
 function getRank(team, column) {
   const value = Number(team[column]);
   return Number.isFinite(value) && value > 0 ? value : null;
@@ -185,7 +237,10 @@ function StatsTable() {
               <div className="matchup-summary">
                 <div className="team-summary">
                   <span className="team-side">AWAY</span>
-                  <h3>{away.Team}</h3>
+                  <div className="team-name-row">
+                    <TeamLogo team={away.Team} />
+                    <h3>{away.Team}</h3>
+                  </div>
                   <span className="goalie">
                     Goalie: {away.Goalie || 'Unknown'}
                   </span>
@@ -200,7 +255,10 @@ function StatsTable() {
 
                 <div className="team-summary home-team">
                   <span className="team-side">HOME</span>
-                  <h3>{home.Team}</h3>
+                  <div className="team-name-row">
+                    <TeamLogo team={home.Team} />
+                    <h3>{home.Team}</h3>
+                  </div>
                   <span className="goalie">
                     Goalie: {home.Goalie || 'Unknown'}
                   </span>

@@ -414,3 +414,16 @@ body {
     padding: 4px;
   }
 }
+
+.team-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
