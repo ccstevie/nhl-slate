@@ -221,7 +221,7 @@ def main():
         "stype": "2",
         "sit": "5v5",
         "score": "all",
-        "rate": "n",
+        "rate": "y",
         "team": "all",
         "loc": "B",
         "gpf": "410",
@@ -257,52 +257,40 @@ def main():
 
     print("NST table loaded successfully:", df.shape)
 
-    # Create ranked dataframes for each stat
-    cf = df.sort_values(by="CF%", ascending=False, ignore_index=True)
-    cf.index += 1
-    cf.reset_index(inplace=True)
-    cf = cf.rename(columns={"index": "CF%"})
-    cf = cf[["Team", "CF%"]]
+    # Extract the statistics we want from NST
+    columns = [
+        "Team",
+        "CF/60",
+        "CA/60",
+        "xGF/60",
+        "xGA/60",
+        "CF%",
+        "GF%",
+        "xGF%",
+        "HDCF%",
+        "SH%"
+    ]
 
-    gf = df.sort_values(by="GF%", ascending=False, ignore_index=True)
-    gf.index += 1
-    gf.reset_index(inplace=True)
-    gf = gf.rename(columns={"index": "GF%"})
-    gf = gf[["Team", "GF%"]]
+    final_df = df[columns].copy()
 
-    xgf = df.sort_values(by="xGF%", ascending=False, ignore_index=True)
-    xgf.index += 1
-    xgf.reset_index(inplace=True)
-    xgf = xgf.rename(columns={"index": "xGF%"})
-    xgf = xgf[["Team", "xGF%"]]
+    # Create rankings for each percentage statistic
+    rank_columns = ["CF%", "GF%", "xGF%", "HDCF%", "SH%"]
 
-    hdcf = df.sort_values(by="HDCF%", ascending=False, ignore_index=True)
-    hdcf.index += 1
-    hdcf.reset_index(inplace=True)
-    hdcf = hdcf.rename(columns={"index": "HDCF%"})
-    hdcf = hdcf[["Team", "HDCF%"]]
+    for col in rank_columns:
 
-    sh = df.sort_values(by="SH%", ascending=False, ignore_index=True)
-    sh.index += 1
-    sh.reset_index(inplace=True)
-    sh = sh.rename(columns={"index": "SH%"})
-    sh = sh[["Team", "SH%"]]
+        # Preserve actual percentage
+        final_df[f"{col}_1"] = final_df[col]
 
-    # Merge all stat dataframes
-    dfs = [cf, gf, xgf, hdcf, sh]
-    final_df = reduce(lambda left, right: pd.merge(left, right, on=['Team'], how='outer'), dfs)
+        # Replace original column with ranking (1 = best)
+        final_df[col] = (
+            final_df[col]
+            .rank(method="min", ascending=False)
+            .astype("Int64")
+        )
 
     # Get matchups and goalie ranks
     matchups = get_games()
     goalie_ranks = load_or_fetch_goalie_ranks()
-
-    # team_streaks = get_team_streaks()
-
-    # # Normalize streak dictionary
-    # normalized_streaks = {
-    #     normalize_team(team): streak
-    #     for team, streak in team_streaks.items()
-    # }
 
     # Build result dataframe with matchups and stats
     res = pd.DataFrame()
@@ -315,17 +303,11 @@ def main():
         away_df = away_df.assign(
             Goalie=away_goalie,
             Goalie_Rank=away_rank
-            # Streak=away_df["Team"].apply(
-            #     lambda t: normalized_streaks.get(normalize_team(t))
-            # )
         )
 
         home_df = home_df.assign(
             Goalie=home_goalie,
             Goalie_Rank=home_rank
-            # Streak=home_df["Team"].apply(
-            #     lambda t: normalized_streaks.get(normalize_team(t))
-            # )
         )
         
         matchup_df = pd.concat([away_df, home_df], ignore_index=True)

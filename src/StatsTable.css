@@ -1,58 +1,119 @@
-/* src/StatsTable.css */
 
+/* Main table */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px auto;
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+/* Group matchups - first row of pair */
+tbody tr.matchup-start {
+  background-color: #f9f9f9;
+}
+
+/* Group matchups - second row of pair */
+tbody tr.matchup-end {
+  background-color: #ffffff;
+  border-bottom: 3px solid #4CAF50;
+}
+
+/* Enhanced hover effect */
+tbody tr.matchup-start:hover,
+tbody tr.matchup-end:hover {
+  background-color: #e3f2fd;
+}
+
+/* Expandable details button */
+.details-button {
+  padding: 6px 10px;
+  border: 1px solid #4CAF50;
+  border-radius: 5px;
+  background-color: white;
+  color: #388E3C;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.details-button:hover {
+  background-color: #e8f5e9;
+}
+
+/* Expanded details section */
+.details-row td {
+  padding: 0;
+  background-color: #f1f8f2;
+}
+
+.details-content {
+  padding: 16px 20px;
+}
+
+.details-content h4 {
+  margin: 0 0 12px;
+  color: #333;
+}
+
+/* Advanced statistics grid */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.detail-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.detail-item strong {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
   }
-  
-  h2 {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 1.5em;
-    color: #333;
-  }
-  
-  th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #4CAF50;
-    color: white;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    font-weight: bold;
-  }
-  
-  tbody tr {
-    transition: background-color 0.2s ease;
-  }
-  
-  tbody tr:hover {
-    background-color: #e8f5e9;
-  }
-  
-  /* Group matchups - first row of pair */
-  tbody tr.matchup-start {
-    background-color: #f9f9f9;
-  }
-  
-  /* Group matchups - second row of pair */
-  tbody tr.matchup-end {
-    background-color: #ffffff;
-    border-bottom: 3px solid #4CAF50;
-  }
-  
-  /* Enhanced hover effect */
-  tbody tr.matchup-start:hover,
-  tbody tr.matchup-end:hover {
-    background-color: #e3f2fd;
-  }
-  
+}
