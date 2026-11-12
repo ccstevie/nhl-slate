@@ -1,119 +1,395 @@
 
-/* Main table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
-  color: #333;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* ---------- Global theme ---------- */
+
+:root {
+  color-scheme: dark;
+  --background: #111827;
+  --surface: #1f2937;
+  --surface-light: #273449;
+  --border: #374151;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --accent: #60a5fa;
+  --positive: #34d399;
+  --positive-bg: rgba(52, 211, 153, 0.12);
+  --negative: #f87171;
+  --negative-bg: rgba(248, 113, 113, 0.12);
+  --neutral: #9ca3af;
 }
 
-h2 {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 1.5em;
-  color: #333;
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-th, td {
-  padding: 12px 15px;
+/* ---------- Main dashboard ---------- */
+
+.stats-container {
+  width: min(1200px, 94%);
+  margin: 0 auto;
+  padding: 24px 0 60px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.brand-icon {
+  color: var(--accent);
+  font-size: 22px;
+}
+
+.season-label {
+  color: var(--text-secondary);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+}
+
+.page-heading {
+  margin: 32px 0 24px;
+}
+
+.page-heading h2 {
+  margin: 0 0 8px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  color: var(--text-primary);
+  font-size: 28px;
 }
 
-th {
-  background-color: #4CAF50;
-  color: white;
-  text-transform: uppercase;
-  font-size: 0.9em;
+.page-heading p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.loading-message {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 30px;
+}
+
+/* ---------- Matchup cards ---------- */
+
+.matchup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.matchup-card {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.matchup-card:hover {
+  border-color: #52647d;
+}
+
+.matchup-summary {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+}
+
+.team-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.home-team {
+  text-align: right;
+}
+
+.team-side {
+  color: var(--accent);
+  font-size: 10px;
   font-weight: bold;
+  letter-spacing: 1.3px;
 }
 
-tbody tr {
-  transition: background-color 0.2s ease;
+.team-summary h3 {
+  margin: 0;
+  font-size: 17px;
+  color: var(--text-primary);
 }
 
-/* Group matchups - first row of pair */
-tbody tr.matchup-start {
-  background-color: #f9f9f9;
+.goalie,
+.goalie-rank {
+  color: var(--text-secondary);
+  font-size: 12px;
 }
 
-/* Group matchups - second row of pair */
-tbody tr.matchup-end {
-  background-color: #ffffff;
-  border-bottom: 3px solid #4CAF50;
+.versus {
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
 }
 
-/* Enhanced hover effect */
-tbody tr.matchup-start:hover,
-tbody tr.matchup-end:hover {
-  background-color: #e3f2fd;
-}
+/* ---------- Expand button ---------- */
 
-/* Expandable details button */
 .details-button {
-  padding: 6px 10px;
-  border: 1px solid #4CAF50;
-  border-radius: 5px;
-  background-color: white;
-  color: #388E3C;
-  cursor: pointer;
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--surface-light);
+  color: var(--text-primary);
   font-size: 12px;
   font-weight: bold;
   white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .details-button:hover {
-  background-color: #e8f5e9;
+  background: #34445b;
+  border-color: var(--accent);
 }
 
-/* Expanded details section */
-.details-row td {
-  padding: 0;
-  background-color: #f1f8f2;
+/* ---------- Comparison panel ---------- */
+
+.comparison-panel {
+  padding: 22px;
+  background: #182231;
+  border-top: 1px solid var(--border);
 }
 
-.details-content {
-  padding: 16px 20px;
+.comparison-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.details-content h4 {
-  margin: 0 0 12px;
-  color: #333;
+.comparison-heading h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 15px;
 }
 
-/* Advanced statistics grid */
-.details-grid {
+.comparison-heading span {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.comparison-column-headings {
   display: grid;
-  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 12px;
+  padding: 0 12px 12px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.comparison-column-headings span:first-child {
+  text-align: left;
+}
+
+.comparison-column-headings span:nth-child(2) {
+  text-align: center;
+}
+
+.comparison-column-headings span:last-child {
+  text-align: right;
+}
+
+.comparison-table {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  align-items: stretch;
   gap: 12px;
 }
 
-.detail-item {
+.comparison-value {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  justify-content: center;
+  gap: 4px;
+  padding: 11px 14px;
+  border: 1px solid transparent;
+  border-radius: 7px;
 }
 
-.detail-label {
+.comparison-value strong {
+  font-size: 17px;
+}
+
+.comparison-value span {
+  color: var(--text-secondary);
   font-size: 12px;
-  color: #666;
 }
 
-.detail-item strong {
-  font-size: 16px;
-  color: #333;
+.comparison-value.better {
+  color: var(--positive);
+  background: var(--positive-bg);
+  border-color: rgba(52, 211, 153, 0.2);
 }
 
-/* Responsive layout */
-@media (max-width: 700px) {
-  .details-grid {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
+.comparison-value.worse {
+  color: var(--negative);
+  background: var(--negative-bg);
+  border-color: rgba(248, 113, 113, 0.2);
+}
+
+.comparison-value.neutral {
+  color: var(--neutral);
+  background: rgba(156, 163, 175, 0.08);
+}
+
+.comparison-row .comparison-value:last-child {
+  text-align: right;
+}
+
+.metric-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  color: #d1d5db;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* ---------- Legend ---------- */
+
+.comparison-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.comparison-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.better-dot {
+  background: var(--positive);
+}
+
+.worse-dot {
+  background: var(--negative);
+}
+
+.neutral-dot {
+  background: var(--neutral);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 750px) {
+  .matchup-summary {
+    grid-template-columns: 1fr 30px 1fr;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .details-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .team-summary h3 {
+    font-size: 14px;
+  }
+
+  .comparison-panel {
+    padding: 14px;
+  }
+
+  .comparison-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .comparison-column-headings,
+  .comparison-row {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+
+  .comparison-column-headings {
+    font-size: 9px;
+  }
+
+  .comparison-value {
+    padding: 9px 6px;
+  }
+
+  .comparison-value strong {
+    font-size: 15px;
+  }
+
+  .comparison-value span,
+  .metric-label {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .stats-container {
+    width: 96%;
+  }
+
+  .season-label {
+    font-size: 9px;
+  }
+
+  .comparison-value strong {
+    font-size: 13px;
+  }
+
+  .comparison-value span {
+    font-size: 10px;
+  }
+
+  .metric-label {
+    font-size: 9px;
+    padding: 4px;
   }
 }

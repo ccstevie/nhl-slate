@@ -273,17 +273,48 @@ def main():
 
     final_df = df[columns].copy()
 
-    # Create rankings for each percentage statistic
-    rank_columns = ["CF%", "GF%", "xGF%", "HDCF%", "SH%"]
+    # Prepare team statistics
+    # NST's rate=y response provides the per-60 statistics directly.
 
-    for col in rank_columns:
+    if "Team" not in df.columns:
+        df = df.reset_index()
 
-        # Preserve actual percentage
+    rate_stats = ["CF/60", "CA/60", "xGF/60", "xGA/60"]
+    percentage_stats = ["CF%", "GF%", "xGF%", "HDCF%", "SH%"]
+
+    required_columns = ["Team"] + rate_stats + percentage_stats
+    missing_columns = [
+        col for col in required_columns if col not in df.columns
+    ]
+
+    if missing_columns:
+        raise ValueError(f"Missing NST columns: {missing_columns}")
+
+    # Keep the original values
+    final_df = df[required_columns].copy()
+
+    # Rank per-60 metrics
+    # CA/60 and xGA/60: lower is better.
+    lower_is_better = ["CA/60", "xGA/60"]
+
+    for col in rate_stats:
+        ascending = col in lower_is_better
+
+        final_df[f"{col}_Rank"] = (
+            pd.to_numeric(final_df[col], errors="coerce")
+            .rank(method="min", ascending=ascending)
+            .astype("Int64")
+        )
+
+    # Rank percentage metrics (higher is better)
+    # Preserve the original naming convention:
+    # CF% = rank, CF%_1 = actual percentage.
+
+    for col in percentage_stats:
         final_df[f"{col}_1"] = final_df[col]
 
-        # Replace original column with ranking (1 = best)
         final_df[col] = (
-            final_df[col]
+            pd.to_numeric(final_df[col], errors="coerce")
             .rank(method="min", ascending=False)
             .astype("Int64")
         )
