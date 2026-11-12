@@ -42,13 +42,17 @@ jobs:
           export DISPLAY=:99
           python code/get_todays_games.py
 
-      - name: Commit and push updated CSV file
+      - name: Commit and push results
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
+      
           git add public/result.csv
+      
           if ! git diff --cached --quiet; then
             git commit -m "Update hockey stats"
+      
+            git pull --rebase origin main
             git push
           else
             echo "No changes to commit."
