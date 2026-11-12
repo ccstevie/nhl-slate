@@ -177,6 +177,9 @@ function StatsTable() {
         {matchups.map(({ away, home, id }) => {
           const isExpanded = !!expandedRows[id];
 
+          const [awayGoalieStatus, homeGoalieStatus] =
+            getAdvantage(away, home, 'Goalie_Rank');
+
           return (
             <section className="matchup-card" key={id}>
               <div className="matchup-summary">
@@ -186,8 +189,10 @@ function StatsTable() {
                   <span className="goalie">
                     Goalie: {away.Goalie || 'Unknown'}
                   </span>
-                  <span className="goalie-rank">
-                    Goalie rank: {away.Goalie_Rank || 'N/A'}
+                  <span className={`goalie-rank ${awayGoalieStatus}`}>
+                    Goalie rank: {getRank(away, 'Goalie_Rank') !== null
+                      ? `#${getRank(away, 'Goalie_Rank')}`
+                      : 'N/A'}
                   </span>
                 </div>
 
@@ -199,8 +204,10 @@ function StatsTable() {
                   <span className="goalie">
                     Goalie: {home.Goalie || 'Unknown'}
                   </span>
-                  <span className="goalie-rank">
-                    Goalie rank: {home.Goalie_Rank || 'N/A'}
+                  <span className={`goalie-rank ${homeGoalieStatus}`}>
+                    Goalie rank: {getRank(home, 'Goalie_Rank') !== null
+                      ? `#${getRank(home, 'Goalie_Rank')}`
+                      : 'N/A'}
                   </span>
                 </div>
 
