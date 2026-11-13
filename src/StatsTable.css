@@ -105,7 +105,7 @@ body {
 
 .matchup-summary {
   display: grid;
-  grid-template-columns: 1fr 50px 1fr auto;
+  grid-template-columns: 1fr 50px 1fr;
   align-items: center;
   gap: 16px;
   padding: 22px;
@@ -174,7 +174,9 @@ body {
 /* ---------- Expand button ---------- */
 
 .details-button {
-  padding: 9px 13px;
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 9px 20px;
   border: 1px solid var(--border);
   border-radius: 7px;
   background: var(--surface-light);
@@ -439,4 +441,25 @@ body {
   height: 48px;
   object-fit: contain;
   flex-shrink: 0;
+}
+
+.metric-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.metric-group + .metric-group {
+  margin-top: 20px;
+}
+
+.metric-group-heading {
+  padding: 12px 4px 8px;
+  margin-bottom: 3px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
 }

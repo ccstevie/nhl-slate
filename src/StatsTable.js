@@ -4,56 +4,71 @@ import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import './StatsTable.css';
 
-const metrics = [
+const metricGroups = [
   {
-    label: 'Corsi For / 60',
-    value: 'CF/60',
-    rank: 'CF/60_Rank',
+    title: 'Corsi',
+    metrics: [
+      {
+        label: 'Corsi For / 60',
+        value: 'CF/60',
+        rank: 'CF/60_Rank',
+      },
+      {
+        label: 'Corsi Against / 60',
+        value: 'CA/60',
+        rank: 'CA/60_Rank',
+      },
+      {
+        label: 'Corsi For %',
+        value: 'CF%_1',
+        rank: 'CF%',
+        percent: true,
+      },
+    ],
   },
   {
-    label: 'Corsi Against / 60',
-    value: 'CA/60',
-    rank: 'CA/60_Rank',
+    title: 'Expected Goals',
+    metrics: [
+      {
+        label: 'Expected Goals For / 60',
+        value: 'xGF/60',
+        rank: 'xGF/60_Rank',
+      },
+      {
+        label: 'Expected Goals Against / 60',
+        value: 'xGA/60',
+        rank: 'xGA/60_Rank',
+      },
+      {
+        label: 'Expected Goals For %',
+        value: 'xGF%_1',
+        rank: 'xGF%',
+        percent: true,
+      },
+    ],
   },
   {
-    label: 'Expected Goals For / 60',
-    value: 'xGF/60',
-    rank: 'xGF/60_Rank',
-  },
-  {
-    label: 'Expected Goals Against / 60',
-    value: 'xGA/60',
-    rank: 'xGA/60_Rank',
-  },
-  {
-    label: 'Corsi For %',
-    value: 'CF%_1',
-    rank: 'CF%',
-    percent: true,
-  },
-  {
-    label: 'Goals For %',
-    value: 'GF%_1',
-    rank: 'GF%',
-    percent: true,
-  },
-  {
-    label: 'Expected Goals For %',
-    value: 'xGF%_1',
-    rank: 'xGF%',
-    percent: true,
-  },
-  {
-    label: 'High Danger Chances For %',
-    value: 'HDCF%_1',
-    rank: 'HDCF%',
-    percent: true,
-  },
-  {
-    label: 'Shooting %',
-    value: 'SH%_1',
-    rank: 'SH%',
-    percent: true,
+    title: 'Scoring & Chances',
+    metrics: [
+      {
+        label: 'Goals For %',
+        value: 'GF%_1',
+        rank: 'GF%',
+        percent: true,
+      },
+      {
+        label: 'High Danger Chances For %',
+        value: 'HDCF%_1',
+        rank: 'HDCF%',
+        percent: true,
+      },
+      {
+        label: 'Shooting %',
+        value: 'SH%_1',
+        rank: 'SH%',
+        percent: true,
+      },
+    ],
   },
 ];
 
@@ -294,33 +309,41 @@ function StatsTable() {
                   </div>
 
                   <div className="comparison-table">
-                    {metrics.map((metric) => {
-                      const [awayStatus, homeStatus] =
-                        getAdvantage(away, home, metric.rank);
-
-                      return (
-                        <div
-                          className="comparison-row"
-                          key={metric.value}
-                        >
-                          <TeamStat
-                            team={away}
-                            metric={metric}
-                            status={awayStatus}
-                          />
-
-                          <div className="metric-label">
-                            {metric.label}
-                          </div>
-
-                          <TeamStat
-                            team={home}
-                            metric={metric}
-                            status={homeStatus}
-                          />
+                    {metricGroups.map((group) => (
+                      <div className="metric-group" key={group.title}>
+                        <div className="metric-group-heading">
+                          {group.title}
                         </div>
-                      );
-                    })}
+
+                        {group.metrics.map((metric) => {
+                          const [awayStatus, homeStatus] =
+                            getAdvantage(away, home, metric.rank);
+
+                          return (
+                            <div
+                              className="comparison-row"
+                              key={metric.value}
+                            >
+                              <TeamStat
+                                team={away}
+                                metric={metric}
+                                status={awayStatus}
+                              />
+
+                              <div className="metric-label">
+                                {metric.label}
+                              </div>
+
+                              <TeamStat
+                                team={home}
+                                metric={metric}
+                                status={homeStatus}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
                   </div>
 
                   <div className="comparison-legend">
