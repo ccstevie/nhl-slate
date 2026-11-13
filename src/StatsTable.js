@@ -75,6 +75,29 @@ const metricGroups = [
     ],
     detailMetrics: [],
   },
+  {
+    title: 'Special Teams & Discipline',
+    summaryMetrics: [],
+    detailMetrics: [
+      {
+        label: 'Power Play %',
+        value: 'PP%_1',
+        rank: 'PP%_Rank',
+        percent: true,
+      },
+      {
+        label: 'Penalty Kill %',
+        value: 'PK%_1',
+        rank: 'PK%_Rank',
+        percent: true,
+      },
+      {
+        label: 'Penalties Taken / 60',
+        value: 'Penalties_Taken_Per60',
+        rank: 'Penalties_Taken_Per60_Rank',
+      },
+    ],
+  },
 ];
 
 const teamAbbreviations = {
