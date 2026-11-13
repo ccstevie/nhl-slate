@@ -220,7 +220,8 @@ function StatsTable() {
       ...previous,
       [id]: !previous[id],
     }));
-    
+  };
+
   const toggleGroup = (rowId, groupTitle) => {
     const key = `${rowId}-${groupTitle}`;
 
