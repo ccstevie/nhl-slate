@@ -7,7 +7,15 @@ import './StatsTable.css';
 const metricGroups = [
   {
     title: 'Corsi',
-    metrics: [
+    summaryMetrics: [
+      {
+        label: 'Corsi For %',
+        value: 'CF%_1',
+        rank: 'CF%',
+        percent: true,
+      },
+    ],
+    detailMetrics: [
       {
         label: 'Corsi For / 60',
         value: 'CF/60',
@@ -18,17 +26,25 @@ const metricGroups = [
         value: 'CA/60',
         rank: 'CA/60_Rank',
       },
-      {
-        label: 'Corsi For %',
-        value: 'CF%_1',
-        rank: 'CF%',
-        percent: true,
-      },
     ],
   },
   {
-    title: 'Expected Goals',
-    metrics: [
+    title: 'Expected Goals & Results',
+    summaryMetrics: [
+      {
+        label: 'Expected Goals For %',
+        value: 'xGF%_1',
+        rank: 'xGF%',
+        percent: true,
+      },
+      {
+        label: 'Goals For %',
+        value: 'GF%_1',
+        rank: 'GF%',
+        percent: true,
+      },
+    ],
+    detailMetrics: [
       {
         label: 'Expected Goals For / 60',
         value: 'xGF/60',
@@ -39,23 +55,11 @@ const metricGroups = [
         value: 'xGA/60',
         rank: 'xGA/60_Rank',
       },
-      {
-        label: 'Expected Goals For %',
-        value: 'xGF%_1',
-        rank: 'xGF%',
-        percent: true,
-      },
     ],
   },
   {
-    title: 'Scoring & Chances',
-    metrics: [
-      {
-        label: 'Goals For %',
-        value: 'GF%_1',
-        rank: 'GF%',
-        percent: true,
-      },
+    title: 'Chance Quality & Finishing',
+    summaryMetrics: [
       {
         label: 'High Danger Chances For %',
         value: 'HDCF%_1',
@@ -69,6 +73,7 @@ const metricGroups = [
         percent: true,
       },
     ],
+    detailMetrics: [],
   },
 ];
 
@@ -176,6 +181,7 @@ function TeamStat({ team, metric, status }) {
 function StatsTable() {
   const [data, setData] = useState([]);
   const [expandedRows, setExpandedRows] = useState({});
+  const [expandedGroups, setExpandedGroups] = useState({});
 
   useEffect(() => {
     fetch('/result.csv')
@@ -213,6 +219,14 @@ function StatsTable() {
     setExpandedRows((previous) => ({
       ...previous,
       [id]: !previous[id],
+    }));
+    
+  const toggleGroup = (rowId, groupTitle) => {
+    const key = `${rowId}-${groupTitle}`;
+
+    setExpandedGroups((previous) => ({
+      ...previous,
+      [key]: !previous[key],
     }));
   };
 
@@ -266,7 +280,17 @@ function StatsTable() {
                   </span>
                 </div>
 
-                <div className="versus">VS</div>
+                <div className="matchup-middle">
+                  <div className="versus">VS</div>
+
+                  <button
+                    className="details-button"
+                    onClick={() => toggleRow(id)}
+                    aria-expanded={isExpanded}
+                  >
+                    {isExpanded ? 'Hide stats ▲' : 'Compare stats ▼'}
+                  </button>
+                </div>
 
                 <div className="team-summary home-team">
                   <span className="team-side">HOME</span>
@@ -284,13 +308,6 @@ function StatsTable() {
                   </span>
                 </div>
 
-                <button
-                  className="details-button"
-                  onClick={() => toggleRow(id)}
-                  aria-expanded={isExpanded}
-                >
-                  {isExpanded ? 'Hide stats ▲' : 'Compare stats ▼'}
-                </button>
               </div>
 
               {isExpanded && (
@@ -309,41 +326,79 @@ function StatsTable() {
                   </div>
 
                   <div className="comparison-table">
-                    {metricGroups.map((group) => (
-                      <div className="metric-group" key={group.title}>
-                        <div className="metric-group-heading">
-                          {group.title}
-                        </div>
+                    {metricGroups.map((group) => {
+                      const groupKey = `${id}-${group.title}`;
+                      const isGroupExpanded = !!expandedGroups[groupKey];
 
-                        {group.metrics.map((metric) => {
-                          const [awayStatus, homeStatus] =
-                            getAdvantage(away, home, metric.rank);
+                      const allMetrics = [
+                        ...group.summaryMetrics,
+                        ...(isGroupExpanded ? group.detailMetrics : []),
+                      ];
 
-                          return (
-                            <div
-                              className="comparison-row"
-                              key={metric.value}
-                            >
-                              <TeamStat
-                                team={away}
-                                metric={metric}
-                                status={awayStatus}
-                              />
+                      return (
+                        <div className="metric-group" key={group.title}>
 
-                              <div className="metric-label">
-                                {metric.label}
+                          <div
+                            className={`metric-group-heading ${
+                              group.detailMetrics.length > 0 ? 'clickable' : ''
+                            }`}
+                            onClick={() => {
+                              if (group.detailMetrics.length > 0) {
+                                toggleGroup(id, group.title);
+                              }
+                            }}
+                            role={group.detailMetrics.length > 0 ? 'button' : undefined}
+                            tabIndex={group.detailMetrics.length > 0 ? 0 : undefined}
+                            onKeyDown={(e) => {
+                              if (
+                                group.detailMetrics.length > 0 &&
+                                (e.key === 'Enter' || e.key === ' ')
+                              ) {
+                                e.preventDefault();
+                                toggleGroup(id, group.title);
+                              }
+                            }}
+                          >
+                            <span>{group.title}</span>
+
+                            {group.detailMetrics.length > 0 && (
+                              <span className="group-toggle">
+                                {isGroupExpanded ? '−' : '+'}
+                              </span>
+                            )}
+                          </div>
+
+                          {allMetrics.map((metric) => {
+                            const [awayStatus, homeStatus] =
+                              getAdvantage(away, home, metric.rank);
+
+                            return (
+                              <div
+                                className="comparison-row"
+                                key={metric.value}
+                              >
+                                <TeamStat
+                                  team={away}
+                                  metric={metric}
+                                  status={awayStatus}
+                                />
+
+                                <div className="metric-label">
+                                  {metric.label}
+                                </div>
+
+                                <TeamStat
+                                  team={home}
+                                  metric={metric}
+                                  status={homeStatus}
+                                />
                               </div>
+                            );
+                          })}
 
-                              <TeamStat
-                                team={home}
-                                metric={metric}
-                                status={homeStatus}
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
-                    ))}
+                        </div>
+                      );
+                    })}
                   </div>
 
                   <div className="comparison-legend">

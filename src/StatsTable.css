@@ -105,10 +105,18 @@ body {
 
 .matchup-summary {
   display: grid;
-  grid-template-columns: 1fr 50px 1fr;
+  grid-template-columns: 1fr 130px 1fr;
   align-items: center;
   gap: 16px;
   padding: 22px;
+}
+
+.matchup-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
 .team-summary {
@@ -174,9 +182,7 @@ body {
 /* ---------- Expand button ---------- */
 
 .details-button {
-  grid-column: 1 / -1;
-  justify-self: center;
-  padding: 9px 20px;
+  padding: 9px 13px;
   border: 1px solid var(--border);
   border-radius: 7px;
   background: var(--surface-light);
@@ -354,9 +360,11 @@ body {
     padding: 16px;
   }
 
-  .details-button {
+  .matchup-middle {
     grid-column: 1 / -1;
-    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
   }
 
   .team-summary h3 {
@@ -454,6 +462,9 @@ body {
 }
 
 .metric-group-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 12px 4px 8px;
   margin-bottom: 3px;
   color: var(--accent);
@@ -462,4 +473,19 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   border-bottom: 1px solid var(--border);
+}
+
+.metric-group-heading.clickable {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.metric-group-heading.clickable:hover {
+  color: #93c5fd;
+}
+
+.group-toggle {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
 }
