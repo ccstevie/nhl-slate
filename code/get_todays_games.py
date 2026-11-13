@@ -251,7 +251,7 @@ def get_nhl_special_teams(season_id="20262027"):
     metric_columns = [
         "PP%_1",
         "PK%_1",
-        "Penalties_Per_Game",
+        "Penalties_Taken_Per60",
     ]
 
     if len(result) != 32 or result[metric_columns].isna().any().any():
@@ -412,8 +412,8 @@ def main():
         "PP%_Rank",
         "PK%_1",
         "PK%_Rank",
-        "Penalties_Per_Game",
-        "Penalties_Per_Game_Rank",
+        "Penalties_Taken_Per60",
+        "Penalties_Taken_Per60_Rank",
     ]
 
     if final_df[special_teams_columns].isna().any().any():
