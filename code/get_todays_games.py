@@ -217,19 +217,19 @@ def get_nhl_special_teams(season_id="20262027"):
     pk_df = pk_df[["Team_Normalized", "PK%_1"]]
 
     penalties_df = penalties_df[
-        ["teamFullName", "penalties", "gamesPlayed"]
+        ["teamFullName", "penaltiesTakenPer60"]
     ].copy()
+
     penalties_df["Team_Normalized"] = (
         penalties_df["teamFullName"].apply(normalize_team)
     )
 
-    penalties_df["Penalties_Per_Game"] = (
-        pd.to_numeric(penalties_df["penalties"], errors="coerce")
-        / pd.to_numeric(penalties_df["gamesPlayed"], errors="coerce")
+    penalties_df["Penalties_Taken_Per60"] = pd.to_numeric(
+        penalties_df["penaltiesTakenPer60"], errors="coerce"
     )
 
     penalties_df = penalties_df[
-        ["Team_Normalized", "Penalties_Per_Game"]
+        ["Team_Normalized", "Penalties_Taken_Per60"]
     ]
 
     # Combine all three reports by team.
@@ -275,187 +275,8 @@ def get_nhl_special_teams(season_id="20262027"):
     )
 
     # Fewer penalties per game is better.
-    result["Penalties_Per_Game_Rank"] = (
-        result["Penalties_Per_Game"]
-        .rank(method="min", ascending=True)
-        .astype("Int64")
-    )
-
-    return result
-
-    """
-    Fetch NHL season-to-date team power-play, penalty-kill,
-    and penalties-taken statistics.
-
-    season_id example: 20262027
-    """
-
-    base_url = "https://api.nhle.com/stats/rest/en/team"
-
-    params = {
-        "cayenneExp": (
-            f"seasonId={season_id} and gameTypeId=2"
-        ),
-        "limit": -1,
-    }
-
-    def fetch_report(report):
-        response = requests.get(
-            f"{base_url}/{report}",
-            params=params,
-            timeout=30,
-        )
-        response.raise_for_status()
-
-        payload = response.json()
-        rows = payload.get("data", [])
-
-        if not rows:
-            raise RuntimeError(
-                f"NHL API returned no data for {report}. "
-                f"Response: {payload}"
-            )
-
-        print(f"NHL {report} report loaded: {len(rows)} teams")
-        return rows
-
-    # The summary report contains both PP% and PK%.
-    summary_rows = fetch_report("summary")
-
-    # The penalties report contains team penalty totals.
-    penalty_rows = fetch_report("penalties")
-
-    def get_team_name(row):
-        for field in [
-            "franchiseName",
-            "teamFullName",
-            "teamName",
-            "team",
-        ]:
-            if row.get(field):
-                return row[field]
-
-        raise KeyError(
-            f"Could not identify team name. Available fields: "
-            f"{list(row.keys())}"
-        )
-
-    def get_field(row, candidates):
-        for field in candidates:
-            value = row.get(field)
-            if value is not None:
-                return float(value)
-
-        raise KeyError(
-            f"Could not find any of {candidates}. "
-            f"Available fields: {list(row.keys())}"
-        )
-
-    # Build a lookup of power-play and penalty-kill statistics.
-    special_teams = {}
-
-    for row in summary_rows:
-        team = normalize_team(get_team_name(row))
-
-        pp_pct = get_field(
-            row,
-            ["powerPlayPct", "powerPlayPercentage", "ppPct"],
-        )
-
-        pk_pct = get_field(
-            row,
-            ["penaltyKillPct", "penaltyKillPercentage", "pkPct"],
-        )
-
-        # NHL API percentages are generally decimals (e.g. 0.23).
-        # Convert to the 0-100 scale used by our React frontend.
-        if pp_pct <= 1:
-            pp_pct *= 100
-
-        if pk_pct <= 1:
-            pk_pct *= 100
-
-        special_teams[team] = {
-            "PP%_1": pp_pct,
-            "PK%_1": pk_pct,
-        }
-
-    # Add penalties taken per game.
-    for row in penalty_rows:
-        team = normalize_team(get_team_name(row))
-
-        penalties_per_game = row.get("penaltiesPerGame")
-
-        if penalties_per_game is None:
-            total_penalties = get_field(
-                row,
-                ["penalties", "totalPenalties"],
-            )
-
-            games_played = get_field(
-                row,
-                ["gamesPlayed"],
-            )
-
-            penalties_per_game = (
-                total_penalties / games_played
-                if games_played > 0 else None
-            )
-
-        if team in special_teams:
-            special_teams[team]["Penalties_Per_Game"] = (
-                penalties_per_game
-            )
-
-    records = []
-
-    for team, stats in special_teams.items():
-        records.append({
-            "Team_Normalized": team,
-            **stats,
-        })
-
-    result = pd.DataFrame(records)
-
-    # Validate that we received all three metrics.
-    required = [
-        "PP%_1",
-        "PK%_1",
-        "Penalties_Per_Game",
-    ]
-
-    missing = [
-        col for col in required
-        if col not in result.columns or result[col].isna().any()
-    ]
-
-    if missing:
-        raise RuntimeError(
-            f"Missing special-teams statistics: {missing}. "
-            "Check the NHL API response fields."
-        )
-
-    if len(result) != 32:
-        raise RuntimeError(
-            f"Expected 32 NHL teams, received {len(result)}."
-        )
-
-    # Rank percentages: higher is better.
-    result["PP%_Rank"] = (
-        result["PP%_1"]
-        .rank(method="min", ascending=False)
-        .astype("Int64")
-    )
-
-    result["PK%_Rank"] = (
-        result["PK%_1"]
-        .rank(method="min", ascending=False)
-        .astype("Int64")
-    )
-
-    # Rank penalties: fewer penalties is better.
-    result["Penalties_Per_Game_Rank"] = (
-        result["Penalties_Per_Game"]
+    result["Penalties_Taken_Per60_Rank"] = (
+        result["Penalties_Taken_Per60"]
         .rank(method="min", ascending=True)
         .astype("Int64")
     )
