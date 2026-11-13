@@ -12,6 +12,7 @@ import os
 from shutil import which
 from bs4 import BeautifulSoup
 from io import StringIO
+import json
 
 chromedriver_autoinstaller.install()
 
@@ -162,6 +163,293 @@ def normalize_team(name):
         .replace(" ", "")
     )
 
+
+def get_nhl_team_abbreviations():
+    """
+    Build a mapping from full NHL team names to NHL abbreviations.
+    Example: 'New York Rangers' -> 'NYR'
+    """
+    url = "https://api-web.nhle.com/v1/standings/now"
+
+    response = requests.get(url, timeout=30)
+    response.raise_for_status()
+
+    standings = response.json().get("standings", [])
+
+    def get_default(value):
+        if isinstance(value, dict):
+            return value.get("default", "")
+        return value or ""
+
+    team_map = {}
+
+    for team in standings:
+        name = get_default(team.get("teamName"))
+        abbreviation = get_default(team.get("teamAbbrev"))
+
+        if name and abbreviation:
+            team_map[normalize_team(name)] = abbreviation
+
+    if len(team_map) != 32:
+        raise RuntimeError(
+            f"Expected 32 NHL teams, found {len(team_map)}."
+        )
+
+    return team_map
+
+
+def get_team_season_schedule(team_abbrev, season_id="20262027"):
+    """
+    Retrieve a team's full season schedule from the NHL API.
+    """
+    url = (
+        f"https://api-web.nhle.com/v1/"
+        f"club-schedule-season/{team_abbrev}/{season_id}"
+    )
+
+    response = requests.get(url, timeout=30)
+    response.raise_for_status()
+
+    data = response.json()
+    games = data.get("seasonSchedule", {}).get("games", [])
+
+    if not games:
+        raise RuntimeError(
+            f"No schedule returned for {team_abbrev}."
+        )
+
+    return games
+
+
+def get_team_game_results(
+    team_abbrev,
+    opponent_abbrev,
+    games,
+    target_date,
+):
+    """
+    Extract completed games before the upcoming matchup.
+    Most recent game appears first.
+    """
+    results = []
+
+    for game in games:
+        game_date = game.get("gameDate")
+        game_state = game.get("gameState")
+
+        # Ignore games on or after the upcoming matchup date.
+        if not game_date or game_date >= target_date:
+            continue
+
+        # Only use completed games.
+        if game_state not in ("OFF", "FINAL"):
+            continue
+
+        away = game.get("awayTeam", {})
+        home = game.get("homeTeam", {})
+
+        away_abbrev = away.get("abbrev")
+        home_abbrev = home.get("abbrev")
+
+        if team_abbrev == away_abbrev:
+            team_score = away.get("score")
+            opponent_score = home.get("score")
+            venue = "Away"
+            opponent = home_abbrev
+
+        elif team_abbrev == home_abbrev:
+            team_score = home.get("score")
+            opponent_score = away.get("score")
+            venue = "Home"
+            opponent = away_abbrev
+
+        else:
+            continue
+
+        if team_score is None or opponent_score is None:
+            continue
+
+        team_score = int(team_score)
+        opponent_score = int(opponent_score)
+
+        if team_score > opponent_score:
+            result = "W"
+        elif team_score < opponent_score:
+            result = "L"
+        else:
+            continue
+
+        last_period = (
+            game.get("gameOutcome", {}).get("lastPeriodType")
+        )
+
+        result_detail = result
+
+        if result == "L" and last_period in ("OT", "SO"):
+            result_detail = "OTL"
+
+        results.append({
+            "date": game_date,
+            "game_id": game.get("id"),
+            "opponent": opponent,
+            "venue": venue,
+            "result": result_detail,
+            "streak_result": result,
+            "goals_for": team_score,
+            "goals_against": opponent_score,
+        })
+
+    results.sort(
+        key=lambda game: game["date"],
+        reverse=True,
+    )
+
+    return results
+
+
+def get_current_streak(recent_results):
+    """
+    Calculate the current winning or losing streak.
+    Overtime/shootout losses count as losses for streak purposes.
+    """
+    if not recent_results:
+        return "N/A"
+
+    streak_type = recent_results[0]["streak_result"]
+    streak_count = 0
+
+    for game in recent_results:
+        if game["streak_result"] != streak_type:
+            break
+
+        streak_count += 1
+
+    return f"{streak_type}{streak_count}"
+
+
+def build_team_context(
+    team_name,
+    opponent_name,
+    target_date,
+    team_map,
+    schedule_cache,
+    season_id="20262027"
+):
+    """
+    Build recent-performance and scheduling context for one team.
+    """
+    normalized_name = normalize_team(team_name)
+    normalized_opponent = normalize_team(opponent_name)
+
+    team_abbrev = team_map.get(normalized_name)
+    opponent_abbrev = team_map.get(normalized_opponent)
+
+    if not team_abbrev or not opponent_abbrev:
+        raise RuntimeError(
+            f"Could not map NHL teams: {team_name} vs {opponent_name}"
+        )
+
+    # Fetch each team's schedule only once.
+    if team_abbrev not in schedule_cache:
+        schedule_cache[team_abbrev] = get_team_season_schedule(
+            team_abbrev,
+            season_id,
+        )
+
+    games = schedule_cache[team_abbrev]
+
+    recent_results = get_team_game_results(
+        team_abbrev,
+        opponent_abbrev,
+        games,
+        target_date,
+    )
+
+    target = date.fromisoformat(target_date)
+
+    last_4_days = [
+        game for game in recent_results
+        if (target - date.fromisoformat(game["date"])).days <= 4
+    ]
+
+    last_7_days = [
+        game for game in recent_results
+        if (target - date.fromisoformat(game["date"])).days <= 7
+    ]
+
+    if recent_results:
+        most_recent_date = date.fromisoformat(
+            recent_results[0]["date"]
+        )
+        rest_days = (target - most_recent_date).days
+    else:
+        rest_days = None
+
+    # Find the most recent completed head-to-head game.
+    head_to_head = [
+        game for game in recent_results
+        if game["opponent"] == opponent_abbrev
+    ]
+
+    previous_matchup = head_to_head[0] if head_to_head else None
+
+    return {
+        "team": team_name,
+        "team_abbrev": team_abbrev,
+        "current_streak": get_current_streak(recent_results),
+        "games_last_4_days": len(last_4_days),
+        "games_last_7_days": len(last_7_days),
+        "rest_days": rest_days,
+        "previous_head_to_head": previous_matchup,
+    }
+
+
+def build_game_contexts(
+    matchups,
+    target_date,
+    season_id="20262027",
+):
+    """
+    Build structured context for every upcoming matchup.
+    """
+    team_map = get_nhl_team_abbreviations()
+    schedule_cache = {}
+
+    previews = []
+
+    for away, home, away_goalie, home_goalie in matchups:
+        print(f"Building game context: {away} @ {home}")
+
+        away_context = build_team_context(
+            away,
+            home,
+            target_date,
+            team_map,
+            schedule_cache,
+        )
+
+        home_context = build_team_context(
+            home,
+            away,
+            target_date,
+            team_map,
+            schedule_cache,
+        )
+
+        previews.append({
+            "game_date": target_date,
+            "away_team": away_context,
+            "home_team": home_context,
+            "goalies": {
+                "away": away_goalie,
+                "home": home_goalie,
+            },
+        })
+
+    return {
+        "generated_at": date.today().isoformat(),
+        "games": previews,
+    }
 
 
 def get_nhl_special_teams(season_id="20262027"):
@@ -430,6 +718,29 @@ def main():
     # Get matchups and goalie ranks
     matchups = get_games()
     goalie_ranks = load_or_fetch_goalie_ranks()
+
+    # Build structured context for upcoming games.
+    game_contexts = build_game_contexts(
+        matchups,
+        today.isoformat(),
+        season_id="20262027",
+    )
+
+    # Save game context separately from result.csv.
+    output_dir = os.path.join(
+        os.path.dirname(__file__), "..", "public"
+    )
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    context_file = os.path.join(
+        output_dir, "game_previews.json"
+    )
+
+    with open(context_file, "w", encoding="utf-8") as file:
+        json.dump(game_contexts, file, indent=2)
+
+    print(f"Game context saved to {context_file}")
 
     # Build result dataframe with matchups and stats
     res = pd.DataFrame()
