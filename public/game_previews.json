@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-11-13",
+  "games": [
+    {
+      "game_date": "2026-11-13",
+      "away_team": {
+        "team": "Rangers",
+        "team_abbrev": "NYR",
+        "current_streak": "W1",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-11",
+          "game_id": 2026020085,
+          "opponent": "VAN",
+          "venue": "Home",
+          "result": "W",
+          "streak_result": "W",
+          "goals_for": 6,
+          "goals_against": 2
+        }
+      },
+      "home_team": {
+        "team": "Canucks",
+        "team_abbrev": "VAN",
+        "current_streak": "L6",
+        "games_last_4_days": 1,
+        "games_last_7_days": 2,
+        "rest_days": 3,
+        "previous_head_to_head": {
+          "date": "2026-10-11",
+          "game_id": 2026020085,
+          "opponent": "NYR",
+          "venue": "Away",
+          "result": "L",
+          "streak_result": "L",
+          "goals_for": 2,
+          "goals_against": 6
+        }
+      },
+      "goalies": {
+        "away": "Garand",
+        "home": "Merilainen"
+      }
+    },
+    {
+      "game_date": "2026-11-13",
+      "away_team": {
+        "team": "Predators",
+        "team_abbrev": "NSH",
+        "current_streak": "W6",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-13",
+          "game_id": 2026020101,
+          "opponent": "VGK",
+          "venue": "Home",
+          "result": "L",
+          "streak_result": "L",
+          "goals_for": 2,
+          "goals_against": 5
+        }
+      },
+      "home_team": {
+        "team": "Golden Knights",
+        "team_abbrev": "VGK",
+        "current_streak": "W4",
+        "games_last_4_days": 1,
+        "games_last_7_days": 2,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-13",
+          "game_id": 2026020101,
+          "opponent": "NSH",
+          "venue": "Away",
+          "result": "W",
+          "streak_result": "W",
+          "goals_for": 5,
+          "goals_against": 2
+        }
+      },
+      "goalies": {
+        "away": "Saros",
+        "home": "Hill"
+      }
+    }
+  ]
+}
