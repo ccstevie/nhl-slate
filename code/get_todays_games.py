@@ -180,23 +180,27 @@ def get_nhl_team_abbreviations():
         if isinstance(value, dict):
             return value.get("default", "")
         return value or ""
-
+    
     team_map = {}
 
     for team in standings:
-        name = get_default(team.get("teamName"))
-        abbreviation = get_default(team.get("teamAbbrev"))
+        full_name = team.get("teamName", {}).get("default", "")
+        common_name = team.get("teamCommonName", {}).get("default", "")
+        abbreviation = team.get("teamAbbrev", {}).get("default", "")
 
-        if name and abbreviation:
-            team_map[normalize_team(name)] = abbreviation
+        if abbreviation:
+            if full_name:
+                team_map[normalize_team(full_name)] = abbreviation
 
-    if len(team_map) != 32:
+            if common_name:
+                team_map[normalize_team(common_name)] = abbreviation
+
+    if len(team_map) < 32:
         raise RuntimeError(
-            f"Expected 32 NHL teams, found {len(team_map)}."
+            f"Expected at least 32 team names, found {len(team_map)}"
         )
 
     return team_map
-
 
 def get_team_season_schedule(team_abbrev, season_id="20262027"):
     """
@@ -211,7 +215,7 @@ def get_team_season_schedule(team_abbrev, season_id="20262027"):
     response.raise_for_status()
 
     data = response.json()
-    games = data.get("seasonSchedule", {}).get("games", [])
+    games = data.get("games", [])
 
     if not games:
         raise RuntimeError(
@@ -381,7 +385,7 @@ def build_team_context(
         most_recent_date = date.fromisoformat(
             recent_results[0]["date"]
         )
-        rest_days = (target - most_recent_date).days
+        rest_days = max(0, (target - most_recent_date).days - 1)
     else:
         rest_days = None
 
@@ -426,6 +430,7 @@ def build_game_contexts(
             target_date,
             team_map,
             schedule_cache,
+            season_id
         )
 
         home_context = build_team_context(
@@ -434,6 +439,7 @@ def build_game_contexts(
             target_date,
             team_map,
             schedule_cache,
+            season_id
         )
 
         previews.append({
