@@ -436,23 +436,29 @@ def generate_preview(client, game_input):
                 return json.loads(response.text)
 
             except ServerError as error:
-
-                if error.code != 503:
+                if error.code not in (503, 504):
                     raise
 
                 if attempt < 2:
-                    wait_seconds = 10 * (2 ** attempt)
+                    wait_seconds = 15 * (2 ** attempt)
+
+                    error_type = (
+                        "overloaded"
+                        if error.code == 503
+                        else "timed out"
+                    )
 
                     print(
-                        f"{model} is overloaded. "
-                        f"Retrying in {wait_seconds} seconds..."
+                        f"{model} {error_type} (HTTP {error.code}). "
+                        f"Retrying in {wait_seconds} seconds...",
+                        flush=True
                     )
 
                     time.sleep(wait_seconds)
-
                 else:
                     print(
-                        f"{model} failed after 3 attempts."
+                        f"{model} failed after 3 attempts.",
+                        flush=True
                     )
 
     raise RuntimeError(

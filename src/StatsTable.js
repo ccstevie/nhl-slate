@@ -186,6 +186,26 @@ function formatValue(value, isPercent) {
     : number.toFixed(2);
 }
 
+function normalizeTeamName(name) {
+  return (name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function findAiPreview(awayTeam, homeTeam, previews) {
+  const normalize = normalizeTeamName;
+
+  return previews.find((game) => {
+    const gameAway = normalize(game.away_team);
+    const gameHome = normalize(game.home_team);
+    const away = normalize(awayTeam);
+    const home = normalize(homeTeam);
+
+    return (
+      away.includes(gameAway) &&
+      home.includes(gameHome)
+    );
+  });
+}
+
 function TeamStat({ team, metric, status }) {
   const rank = getRank(team, metric.rank);
 
@@ -205,6 +225,8 @@ function StatsTable() {
   const [data, setData] = useState([]);
   const [expandedRows, setExpandedRows] = useState({});
   const [expandedGroups, setExpandedGroups] = useState({});
+  const [aiPreviews, setAiPreviews] = useState([]);
+  const [selectedPreview, setSelectedPreview] = useState(null);
 
   useEffect(() => {
     fetch('/result.csv')
@@ -224,6 +246,22 @@ function StatsTable() {
       })
       .catch((error) => {
         console.error('Error loading hockey stats:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch('/ai_previews.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Could not load ai_previews.json');
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setAiPreviews(json.games || []);
+      })
+      .catch((error) => {
+        console.error('Error loading AI previews:', error);
       });
   }, []);
 
@@ -282,11 +320,26 @@ function StatsTable() {
         {matchups.map(({ away, home, id }) => {
           const isExpanded = !!expandedRows[id];
 
+          const aiPreview = findAiPreview(
+            away.Team,
+            home.Team,
+            aiPreviews
+          );
+
           const [awayGoalieStatus, homeGoalieStatus] =
             getAdvantage(away, home, 'Goalie_Rank');
 
           return (
             <section className="matchup-card" key={id}>
+              <button
+                className="ai-icon-button"
+                onClick={() => setSelectedPreview(aiPreview)}
+                disabled={!aiPreview}
+                aria-label="AI Game Preview"
+                title="AI Game Preview"
+              >
+                ✦
+              </button>
               <div className="matchup-summary">
                 <div className="team-summary">
                   <span className="team-side">AWAY</span>
@@ -436,6 +489,107 @@ function StatsTable() {
           );
         })}
       </div>
+
+      {selectedPreview && (
+        <div
+          className="ai-modal-overlay"
+          onClick={() => setSelectedPreview(null)}
+        >
+          <div
+            className="ai-modal"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="ai-preview-title"
+          >
+            <div className="ai-modal-header">
+              <div>
+                <span className="ai-modal-label">
+                  ✦ AI GAME ANALYSIS
+                </span>
+                <h2 id="ai-preview-title">
+                  {selectedPreview.preview.headline}
+                </h2>
+                <p>
+                  {selectedPreview.away_team} @ {selectedPreview.home_team}
+                </p>
+              </div>
+
+              <button
+                className="ai-modal-close"
+                onClick={() => setSelectedPreview(null)}
+                aria-label="Close preview"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="ai-modal-body">
+              <section className="quick-takeaway">
+                <h3>
+                  <span>✦</span> THE QUICK TAKEAWAY
+                </h3>
+                <p>
+                  {selectedPreview.preview.quick_takeaway ||
+                    selectedPreview.preview.summary}
+                </p>
+              </section>
+
+              <section className="ai-preview-section">
+                <h3>Game Summary</h3>
+                <p>{selectedPreview.preview.summary}</p>
+              </section>
+
+              <div className="ai-team-analysis">
+                <section className="ai-preview-section">
+                  <h3>{selectedPreview.away_team}</h3>
+                  <p>{selectedPreview.preview.away_analysis}</p>
+                </section>
+
+                <section className="ai-preview-section">
+                  <h3>{selectedPreview.home_team}</h3>
+                  <p>{selectedPreview.preview.home_analysis}</p>
+                </section>
+              </div>
+
+              <section className="ai-preview-section">
+                <h3>Key Matchup Edges</h3>
+                <ul className="matchup-edges">
+                  {selectedPreview.preview.matchup_edges?.map(
+                    (edge, index) => (
+                      <li key={index}>{edge}</li>
+                    )
+                  )}
+                </ul>
+              </section>
+
+              <div className="ai-insight-grid">
+                <section className="ai-insight">
+                  <h3>X-Factor</h3>
+                  <p>{selectedPreview.preview.x_factor}</p>
+                </section>
+
+                <section className="ai-insight">
+                  <h3>Key Question</h3>
+                  <p>{selectedPreview.preview.key_question}</p>
+                </section>
+              </div>
+            </div>
+
+            <div className="ai-modal-footer">
+              <span>
+                AI-generated analysis based on available team statistics
+                and game context.
+              </span>
+              <button
+                onClick={() => setSelectedPreview(null)}
+              >
+                Close Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
