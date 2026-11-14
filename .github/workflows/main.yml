@@ -42,12 +42,17 @@ jobs:
           export DISPLAY=:99
           python code/get_todays_games.py
 
+      - name: Generate AI game previews
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python code/generate_ai_previews.py
+
       - name: Commit and push results
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
 
-          git add public/result.csv public/game_previews.json
+          git add public/result.csv public/game_previews.json public/ai_previews.json
 
           if ! git diff --cached --quiet; then
             git commit -m "Update hockey stats and game previews"
