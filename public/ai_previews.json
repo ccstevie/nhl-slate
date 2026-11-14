@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T00:58:31.803457+00:00",
+  "generated_at": "2026-11-14T01:33:49.632521+00:00",
   "model": "gemini-3.8-flash",
   "games": [
     {
@@ -8,21 +8,21 @@
       "home_team": "Canucks",
       "goalies": {
         "away": "Garand",
-        "home": "Merilainen"
+        "home": "Merilinen"
       },
       "preview": {
-        "headline": "Rangers Visit Struggling Canucks Seeking Bounce-Back on Coast",
-        "summary": "The New York Rangers travel to face the Vancouver Canucks on November 14, 2026, looking to capitalize on underlying play that far outpaces their current results. The Canucks enter this matchup mired in a six-game losing streak and searching for answers across nearly every major statistical category.",
-        "away_analysis": "The Rangers hold a 49.73 Corsi For % and a 52.0 Expected Goals % (12th in the league), showing they routinely control a strong share of play and create quality chances at a robust 2.86 Expected Goals For / 60. However, a major disconnect exists between their process and actual goal production, reflected by a low 40.82 Goals For % and an 8.03% shooting percentage. They feature an elite penalty kill operating at 88.33% (3rd in the league) while taking 3.89 penalties per 60 minutes. Goalie Garand projects to start with a 20th-ranked GSAx over his last 20 games.",
-        "home_analysis": "The Canucks are fighting through a difficult stretch marked by a six-game losing streak and an extensive four days of rest. Vancouver sits near the bottom of the league in foundational metrics, registering a 44.21 Corsi For % and a 40.37 Expected Goals % (32nd). Their defensive suppression has struggled with 3.06 Expected Goals Against / 60, and their penalty kill sits last in the NHL at 63.08%. Merilainen is projected in goal without a registered GSAx rank in the last 20 games.",
+        "headline": "Rangers Look to Sweep Season Series Against Struggling Canucks",
+        "summary": "The New York Rangers travel to Vancouver looking to build on their previous 6-2 victory against the Canucks on October 11. While the Rangers boast strong underlying metrics despite finishing frustrations, the Canucks enter on a six-game losing streak plagued by defensive zone struggles.",
+        "away_analysis": "The Rangers control play better than their actual results show, ranking 12th in expected goals percentage (52.0%) and 9th in expected goals for per 60. However, a bottom-tier 25th-ranked shooting percentage (8.03%) has suppressed their actual goals for percentage to 40.82%. Special teams remain a distinct weapon, anchored by an elite penalty kill operating at 88.33% which ranks 3rd in the league.",
+        "home_analysis": "The Canucks are mired in a severe L6 slump, severely hampered by poor possession metrics and defensive leakage. Vancouver ranks 32nd in both expected goals percentage (40.37%) and high-danger chances percentage (38.12%), while allowing 3.06 expected goals against per 60. Furthermore, their league-worst penalty kill at 63.08% leaves them extremely vulnerable against any disciplined attack.",
         "matchup_edges": [
-          "New York holds a massive advantage in expected goals share (52.0% vs. 40.37%) and high-danger chance generation.",
-          "The Rangers' elite 3rd-ranked penalty kill (88.33%) matches up favorably against Vancouver's league-worst 32nd-ranked penalty kill (63.08%).",
-          "Vancouver enjoys a rest advantage with 4 full calendar days between games compared to New York's 2 days."
+          "Rangers hold a massive advantage in expected goal share and overall possession control.",
+          "Vancouver's league-worst 32nd-ranked penalty kill faces a strong test against New York.",
+          "The Canucks' severe defensive suppression issues rank them near the bottom in expected goals against."
         ],
-        "x_factor": "Canucks discipline and special teams execution. Vancouver's 63.08% penalty kill will be severely tested if they take penalties at their usual rate against a Rangers team looking to unlock suppressed offensive finishing.",
-        "key_question": "Can the Rangers translate their strong expected goal generation into actual goals against a Canucks team struggling mightily in high-danger suppression?",
-        "quick_takeaway": "The Rangers hold a distinct advantage in overall possession and high-danger chance control, while the Canucks enter desperately trying to snap a six-game skid despite a substantial rest advantage."
+        "x_factor": "Canucks goaltending under Merilinen, who holds a 58th-ranked GSAx over his last 20 games, must steal high-danger moments to compensate for Vancouver's hemmed-in defensive zone play.",
+        "key_question": "Can the Rangers finally translate their strong underlying expected goal generation into another multi-goal breakout against a reeling Vancouver defense?",
+        "quick_takeaway": "The Rangers hold a distinct analytical advantage across the board against a sliding Canucks squad that is desperate to snap a six-game skid."
       }
     },
     {
@@ -34,18 +34,18 @@
         "home": "Hill"
       },
       "preview": {
-        "headline": "Hot Streaks Collide as Predators Visit Golden Knights",
-        "summary": "Both the Nashville Predators and Vegas Golden Knights enter this matchup carrying significant momentum, with Nashville riding a six-game winning streak and Vegas winning four straight. The two squads met previously on October 13, 2026, where the Golden Knights secured a 5-2 victory on the road. Both teams feature identical two days of rest heading into the contest.",
-        "away_analysis": "The Predators bring a red-hot six-game winning streak into Vegas, supported by special teams excellence. Nashville boasts the league's top penalty kill at 89.47% and a strong power play ranking 8th at 26.56%, while taking penalties at a disciplined 3.23 per 60 (ranking 5th). Underlying metrics show a team sitting at a 49.76% Expected Goals % (18th) and a 46.04% Corsi For % (29th), but they generate a healthy 51.56% High Danger Chances % (14th) and convert at a 50.98% Goals For %. Saros anchors the defense with a strong GSAx rank of 4 over his last 20 games.",
-        "home_analysis": "The Golden Knights are also on a roll with a four-game winning streak and look to repeat their earlier 5-2 head-to-head success against Nashville. Vegas holds a 47.6% Expected Goals % (24th) and a 46.45% Corsi For % (28th), with an expected goals against rate of 2.77 per 60. Their power play operates at an elite 27.87% (ranking 5th), though their penalty kill sits lower at 76.92% (18th). Hill projects in net with a GSAx rank of 18 over his last 20 games.",
+        "headline": "Streaking Predators and Golden Knights Clash in Battle of Special Teams and Form",
+        "summary": "Two of the league's hottest clubs collide as Nashville brings a six-game winning streak into Vegas, where the Golden Knights have won four straight. While both sides struggle to control shot attempts at five-on-five, elite special teams and sharp goaltending have kept both clubs surging.",
+        "away_analysis": "Riding a six-game winning streak, Nashville continues to get results despite ranking 29th in Corsi For percentage (46.04%) and 31st in shot attempts allowed per 60. The Predators compensate by winning the quality battle, posting a 51.56% high-danger chance share (14th) backed by Juuse Saros ranking fourth in recent GSAx. Their league-leading 89.47% penalty kill and low penalty count provide an ironclad defensive floor.",
+        "home_analysis": "Vegas enters on a four-game surge of their own, having already topped Nashville 5-2 in their initial meeting this season. Like the Predators, the Golden Knights surrender more than they generate at five-on-five, ranking 24th in expected goals share (47.60%) and 29th in shot generation. However, their lethal fifth-ranked power play (27.87%) consistently makes opponents pay when disciplined play wavers.",
         "matchup_edges": [
-          "Nashville holds a notable advantage on the penalty kill, ranking 1st in the league at 89.47% compared to Vegas at 18th (76.92%).",
-          "In net, Nashville's Saros holds a higher recent GSAx ranking (4th) than Vegas's Hill (18th).",
-          "Nashville generates a higher share of high-danger chances, ranking 14th in HDCF% (51.56%) compared to Vegas at 21st (49.03%)."
+          "Nashville holds a pronounced edge on the penalty kill, boasting the NHL's top-ranked unit (89.47%) against Vegas' 18th-ranked kill.",
+          "Goaltending recent form leans toward Nashville, where Saros ranks fourth in GSAx over his last 20 games compared to Hill's 18th ranking.",
+          "Vegas holds a slight advantage on the power play, converting at 27.87% (fifth) to Nashville's 26.56% (eighth)."
         ],
-        "x_factor": "Special teams execution, particularly how Nashville's top-ranked penalty kill handles Vegas's 5th-ranked power play.",
-        "key_question": "Can the Predators maintain their high danger chance conversion and special teams dominance to avenge their early-season loss against Vegas?",
-        "quick_takeaway": "An intriguing clash of surging teams where Nashville brings elite penalty killing and goaltending metrics against a potent Vegas power play, though both sides display remarkably similar overall shot-share numbers."
+        "x_factor": "Special teams collision: Vegas boasts a top-five power play, but Nashville's league-best penalty kill paired with strong discipline makes capitalizing on man advantages exceptionally difficult.",
+        "key_question": "Can Vegas break through Nashville's number-one penalty kill, or will Saros and the Predators' superior high-danger chance generation avenge their earlier defeat?",
+        "quick_takeaway": "With both teams surrendering shot volume at five-on-five, this matchup hinges on high-danger conversion and whether Vegas' fifth-ranked power play can solve Nashville's league-leading penalty kill."
       }
     }
   ]
