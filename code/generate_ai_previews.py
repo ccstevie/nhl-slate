@@ -8,7 +8,7 @@ import pandas as pd
 from google import genai
 from google.genai import types
 import time
-from google.genai.errors import ServerError
+from google.genai.errors import ServerError, ClientError
 
 # --------------------------------------------------
 # Configuration
@@ -21,11 +21,10 @@ CONTEXT_FILE = os.path.join(PUBLIC_DIR, "game_previews.json")
 STATS_FILE = os.path.join(PUBLIC_DIR, "result.csv")
 OUTPUT_FILE = os.path.join(PUBLIC_DIR, "ai_previews.json")
 
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
-FALLBACK_MODEL = os.environ.get(
-    "GEMINI_FALLBACK_MODEL",
-    "gemini-3.5-flash-lite"
-)
+MODEL = "gemini-3.5-flash-lite"
+
+# Stop generating if the API becomes unavailable or quota is exhausted.
+STOP_GENERATION = False
 
 # Actual metric column, rank column, display label, unit
 METRICS = {
@@ -362,7 +361,9 @@ WRITING STYLE:
 
 
 def generate_preview(client, game_input):
-    print("Sending request to Gemini...", flush=True)
+    global STOP_GENERATION
+
+    print(f"Sending request to {MODEL}...", flush=True)
 
     prompt = (
         "Write an NHL game preview using the following "
@@ -371,68 +372,97 @@ def generate_preview(client, game_input):
         + json.dumps(game_input, indent=2)
     )
 
-    models_to_try = [MODEL, FALLBACK_MODEL]
+    # Two attempts maximum: one initial request and one retry.
+    max_attempts = 2
 
-    for model in models_to_try:
+    for attempt in range(max_attempts):
 
-        for attempt in range(3):
+        try:
+            print(
+                f"Trying {MODEL} "
+                f"(attempt {attempt + 1}/{max_attempts})",
+                flush=True
+            )
 
-            try:
-                print(
-                    f"Trying {model} "
-                    f"(attempt {attempt + 1}/3)"
-                , flush=True)
+            response = client.models.generate_content(
+                model=MODEL,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_PROMPT,
+                    response_mime_type="application/json",
+                    response_json_schema=PREVIEW_SCHEMA,
+                    temperature=0.7,
+                    max_output_tokens=2000,
+                ),
+            )
 
-                response = client.models.generate_content(
-                    model=model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_PROMPT,
-                        response_mime_type="application/json",
-                        response_json_schema=PREVIEW_SCHEMA,
-                        temperature=0.7,
-                        max_output_tokens=2000,
-                    ),
+            if not response.text:
+                raise RuntimeError(
+                    "Gemini returned an empty response."
                 )
 
-                if not response.text:
-                    raise RuntimeError(
-                        "Gemini returned an empty response."
-                    )
+            print(
+                f"Successfully generated using {MODEL}",
+                flush=True
+            )
 
-                print(f"Successfully generated using {model}", flush=True)
+            return json.loads(response.text)
 
-                return json.loads(response.text)
+        except ServerError as error:
+            if error.code not in (503, 504):
+                raise
 
-            except ServerError as error:
-                if error.code not in (503, 504):
-                    raise
+            if attempt < max_attempts - 1:
+                wait_seconds = 20
 
-                if attempt < 2:
-                    wait_seconds = 15 * (2 ** attempt)
+                error_type = (
+                    "overloaded"
+                    if error.code == 503
+                    else "timed out"
+                )
 
-                    error_type = (
-                        "overloaded"
-                        if error.code == 503
-                        else "timed out"
-                    )
+                print(
+                    f"{MODEL} {error_type} (HTTP {error.code}). "
+                    f"Retrying once in {wait_seconds} seconds...",
+                    flush=True
+                )
 
-                    print(
-                        f"{model} {error_type} (HTTP {error.code}). "
-                        f"Retrying in {wait_seconds} seconds...",
-                        flush=True
-                    )
+                time.sleep(wait_seconds)
 
-                    time.sleep(wait_seconds)
-                else:
-                    print(
-                        f"{model} failed after 3 attempts.",
-                        flush=True
-                    )
+            else:
+                print(
+                    f"{MODEL} failed twice with HTTP {error.code}.",
+                    flush=True
+                )
 
-    raise RuntimeError(
-        "Both Gemini models failed after all retry attempts."
-    )
+                print(
+                    "Stopping generation to avoid repeatedly "
+                    "requesting an unavailable model.",
+                    flush=True
+                )
+
+                STOP_GENERATION = True
+                return None
+
+        except ClientError as error:
+            if error.code == 429:
+                print(
+                    f"{MODEL} quota/rate limit reached (HTTP 429).",
+                    flush=True
+                )
+
+                print(
+                    "Stopping generation. No further API requests "
+                    "will be made during this run.",
+                    flush=True
+                )
+
+                STOP_GENERATION = True
+                return None
+
+            raise
+
+    return None
 
 
 # --------------------------------------------------
@@ -470,6 +500,22 @@ def main():
 
         game_input = build_game_input(game, stats_df)
         ai_preview = generate_preview(client, game_input)
+
+        if ai_preview is None:
+            print(
+                f"Could not generate preview: {away} @ {home}",
+                flush=True
+            )
+
+            if STOP_GENERATION:
+                print(
+                    "Stopping the remaining games. Saving previews "
+                    "generated so far.",
+                    flush=True
+                )
+                break
+
+            continue
 
         previews.append({
             "game_date": game["game_date"],
