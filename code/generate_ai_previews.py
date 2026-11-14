@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 import pandas as pd
 from google import genai
 from google.genai import types
+import time
+from google.genai.errors import ServerError
 
 # --------------------------------------------------
 # Configuration
@@ -20,6 +22,10 @@ STATS_FILE = os.path.join(PUBLIC_DIR, "result.csv")
 OUTPUT_FILE = os.path.join(PUBLIC_DIR, "ai_previews.json")
 
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
+FALLBACK_MODEL = os.environ.get(
+    "GEMINI_FALLBACK_MODEL",
+    "gemini-3.5-flash-lite"
+)
 
 # Actual metric column, rank column, display label, unit
 METRICS = {
@@ -328,28 +334,72 @@ WRITING STYLE:
 """
 
 
+
 def generate_preview(client, game_input):
-    response = client.models.generate_content(
-        model=MODEL,
-        contents=(
-            "Write an NHL game preview using the following "
-            "data. Treat the supplied data as the source "
-            "of truth.\n\n"
-            + json.dumps(game_input, indent=2)
-        ),
-        config=types.GenerateContentConfig(
-            system_instruction=SYSTEM_PROMPT,
-            response_mime_type="application/json",
-            response_json_schema=PREVIEW_SCHEMA,
-            temperature=0.7,
-            max_output_tokens=2000,
-        ),
+
+    prompt = (
+        "Write an NHL game preview using the following "
+        "data. Treat the supplied data as the source "
+        "of truth.\n\n"
+        + json.dumps(game_input, indent=2)
     )
 
-    if not response.text:
-        raise RuntimeError("Gemini returned an empty response.")
+    models_to_try = [MODEL, FALLBACK_MODEL]
 
-    return json.loads(response.text)
+    for model in models_to_try:
+
+        for attempt in range(3):
+
+            try:
+                print(
+                    f"Trying {model} "
+                    f"(attempt {attempt + 1}/3)"
+                )
+
+                response = client.models.generate_content(
+                    model=model,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT,
+                        response_mime_type="application/json",
+                        response_json_schema=PREVIEW_SCHEMA,
+                        temperature=0.7,
+                        max_output_tokens=2000,
+                    ),
+                )
+
+                if not response.text:
+                    raise RuntimeError(
+                        "Gemini returned an empty response."
+                    )
+
+                print(f"Successfully generated using {model}")
+
+                return json.loads(response.text)
+
+            except ServerError as error:
+
+                if error.code != 503:
+                    raise
+
+                if attempt < 2:
+                    wait_seconds = 10 * (2 ** attempt)
+
+                    print(
+                        f"{model} is overloaded. "
+                        f"Retrying in {wait_seconds} seconds..."
+                    )
+
+                    time.sleep(wait_seconds)
+
+                else:
+                    print(
+                        f"{model} failed after 3 attempts."
+                    )
+
+    raise RuntimeError(
+        "Both Gemini models failed after all retry attempts."
+    )
 
 
 # --------------------------------------------------
