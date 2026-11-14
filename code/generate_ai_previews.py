@@ -239,7 +239,10 @@ PREVIEW_SCHEMA = {
         },
         "key_question": {
             "type": "string"
-        }
+        },
+        "quick_takeaway": {
+            "type": "string"
+        },
     },
     "required": [
         "headline",
@@ -248,7 +251,8 @@ PREVIEW_SCHEMA = {
         "home_analysis",
         "matchup_edges",
         "x_factor",
-        "key_question"
+        "key_question",
+        "quick_takeaway"
     ],
     "additionalProperties": False
 }
@@ -318,6 +322,59 @@ ANALYTICAL GUIDELINES:
     - Do not assume that a goalie is confirmed to start.
     - Do not treat a missing ranking as poor performance.
     - Do not overstate small differences in goalie rankings.
+
+13. Be technically precise when describing hockey metrics.
+    - HDCF% measures a team's share of high-danger chances.
+    - Do not describe HDCF% as a direct measurement of
+      defensive suppression.
+    - Use xGA/60 and CA/60 when discussing defensive
+      suppression and limiting opposing opportunities.
+    - Distinguish between shot attempts, shots on goal,
+      expected goals, and actual goals.
+
+14. Interpret shooting percentage in combination with
+    offensive chance generation.
+    - Low shooting percentage alongside strong xGF/60
+      and xGF% may indicate potential finishing
+      underperformance.
+    - Low shooting percentage alongside weak chance
+      generation is less encouraging.
+    - Never assume shooting percentage will regress
+      or automatically improve.
+
+15. Analyze schedule density when relevant.
+    - Identify back-to-back situations when supported
+      by the supplied data.
+    - Identify three games in four days when supported.
+    - Compare recent workloads and rest advantages.
+    - Do not invent road trips, travel distances,
+      or time-zone changes.
+
+16. Treat goalie rankings as recent performance indicators.
+    - Rankings represent GSAx over the last 20 games.
+    - Do not equate a ranking with overall goalie quality.
+    - Explain meaningful differences without overstating
+      small ranking gaps.
+
+17. Write a concise quick takeaway for every matchup.
+    - This should be the most useful immediate insight
+      for someone deciding what to know about the game.
+    - Identify the biggest advantage, matchup factor,
+      or interesting tension between the teams.
+    - Synthesize the statistics and recent context rather
+      than simply repeating the summary.
+    - Be specific and reference relevant metrics or context
+      when useful.
+    - Keep it to 1-2 sentences.
+    - Do not declare a guaranteed winner or make betting
+      recommendations.
+    - If the matchup is genuinely close, say so rather
+      than manufacturing a clear advantage.
+
+18. Interpret rest_days precisely.
+    - rest_days is already the number of full calendar
+      days between games.
+    - Report that number exactly. Do not add one.
 
 WRITING STYLE:
 
