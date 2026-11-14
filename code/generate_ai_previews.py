@@ -271,125 +271,94 @@ means for the upcoming matchup.
 
 ANALYTICAL GUIDELINES:
 
-1. Compare the two teams directly. Do not just list their stats.
+1. Compare the two teams directly. Identify their biggest
+   strengths, weaknesses, and statistical advantages rather
+   than simply listing their statistics.
 
-2. Use Corsi For % to discuss possession and shot-attempt control.
+2. Evaluate underlying team performance:
+   - Use Corsi For % to discuss possession and shot-attempt control.
+   - Use xGF% and GF% together to identify differences between
+     underlying expected-goal performance and actual results.
+   - Use xGF/60 and xGA/60 to discuss offensive chance generation
+     and defensive suppression.
+   - Use HDCF% to discuss each team's share of high-danger chances.
+   - Interpret shooting percentage alongside chance generation.
+     Low shooting percentage with strong expected-goal numbers
+     may indicate finishing underperformance, but never assume
+     automatic regression.
+   - Distinguish shot attempts, shots on goal, expected goals,
+     and actual goals. HDCF% measures chance share, not defensive
+     suppression directly.
 
-3. Compare Goals For % with Expected Goals %.
-   - A higher Goals For % than Expected Goals % can indicate
-     that results have exceeded underlying expected-goal share.
-   - A lower Goals For % can indicate that results have lagged
-     behind underlying expected-goal share.
-   - Do not automatically call this luck or assume regression
-     is guaranteed.
+3. Evaluate special teams and discipline together.
+   Consider power-play effectiveness, penalty-kill effectiveness,
+   and how frequently each team takes penalties.
 
-4. Use Expected Goals For / 60 and Expected Goals Against / 60
-   to discuss offensive and defensive chance generation.
+4. Consider recent form and scheduling.
+   - Include meaningful winning or losing streaks.
+   - Compare recent workload, rest, and schedule congestion.
+   - Identify back-to-backs or three games in four days when
+     supported by the supplied data.
+   - rest_days represents full calendar days between games.
+     Report it accurately without adding one.
+   - Never invent travel distances or time-zone changes.
 
-5. Use High Danger Chances % to discuss dangerous scoring chances.
-
-6. Consider Shooting % alongside expected-goal performance.
-   A high shooting percentage alone does not prove a team is
-   playing well or will continue scoring at that rate.
-
-7. Evaluate power play, penalty kill, and penalties taken together.
-
-8. Consider winning/losing streaks, recent workload, and rest.
-   Do not confuse full rest days with total days since the
-   previous game.
-
-9. League ranks use 1 as best. Interpret each metric in the
-   correct direction:
-   - Higher is generally better: CF%, GF%, xGF%, HDCF%,
-     CF/60, xGF/60, PP%, PK%.
-   - Lower is generally better: CA/60, xGA/60,
-     penalties taken per 60.
+5. Interpret league rankings correctly. Rank 1 is best.
+   - Higher is better: CF%, GF%, xGF%, HDCF%, CF/60, xGF/60,
+     PP%, and PK%.
+   - Lower is better: CA/60, xGA/60, and penalties taken per 60.
    - Shooting percentage is context-dependent.
+   - Prioritize rankings when comparing teams. Include exact
+     statistical values only when they add meaningful context.
 
-10. Acknowledge when the data does not support a strong
-    conclusion. Never invent injuries, news, goalie confirmation,
-    quotes, or facts not included in the supplied information.
+6. Evaluate goalie information when available.
+   - GSAx rankings represent performance over the last 20 games.
+   - Rank 1 is best; lower rankings indicate stronger recent
+     performance.
+   - Compare the goalies when both rankings are available.
+   - Do not equate recent rankings with overall goalie quality,
+     overstate small differences, or assume a goalie is confirmed.
+   - A missing ranking does not indicate poor performance.
 
-11. Do not make betting recommendations or claim certainty
-    about the winner.
+7. Acknowledge uncertainty. Never invent injuries, news, quotes,
+   confirmed starters, or other facts not included in the data.
+   Do not make betting recommendations or guarantee outcomes.
+   If the matchup is close, say so rather than manufacturing
+   a clear advantage.
 
-12. Evaluate the starting/projected goalies when goalie information
-    is available.
-    - Goalie GSAx rank is based on the last 20 games.
-    - Rank 1 is best.
-    - A lower rank indicates stronger recent GSAx performance.
-    - Compare the two goalies when both rankings are available.
-    - Do not assume that a goalie is confirmed to start.
-    - Do not treat a missing ranking as poor performance.
-    - Do not overstate small differences in goalie rankings.
+8. Write a useful quick takeaway for every matchup.
+   - Keep it to 1-2 sentences.
+   - Identify the biggest advantage, matchup factor, or interesting
+     tension between the teams.
+   - Synthesize the statistics and recent context rather than
+     repeating the game summary.
 
-13. Be technically precise when describing hockey metrics.
-    - HDCF% measures a team's share of high-danger chances.
-    - Do not describe HDCF% as a direct measurement of
-      defensive suppression.
-    - Use xGA/60 and CA/60 when discussing defensive
-      suppression and limiting opposing opportunities.
-    - Distinguish between shot attempts, shots on goal,
-      expected goals, and actual goals.
+9. Keep the analysis concise and avoid repetition.
+   - Aim for approximately 10-15% less text than a typical
+     detailed sports preview.
+   - Each team analysis should generally be 2-3 sentences.
+   - Include up to 3 meaningful matchup edges.
+   - Keep the X-factor and key question concise.
+   - Do not repeat the same observation across multiple sections.
+   - Prioritize the most interesting insights over covering
+     every available metric.
 
-14. Interpret shooting percentage in combination with
-    offensive chance generation.
-    - Low shooting percentage alongside strong xGF/60
-      and xGF% may indicate potential finishing
-      underperformance.
-    - Low shooting percentage alongside weak chance
-      generation is less encouraging.
-    - Never assume shooting percentage will regress
-      or automatically improve.
-
-15. Analyze schedule density when relevant.
-    - Identify back-to-back situations when supported
-      by the supplied data.
-    - Identify three games in four days when supported.
-    - Compare recent workloads and rest advantages.
-    - Do not invent road trips, travel distances,
-      or time-zone changes.
-
-16. Treat goalie rankings as recent performance indicators.
-    - Rankings represent GSAx over the last 20 games.
-    - Do not equate a ranking with overall goalie quality.
-    - Explain meaningful differences without overstating
-      small ranking gaps.
-
-17. Write a concise quick takeaway for every matchup.
-    - This should be the most useful immediate insight
-      for someone deciding what to know about the game.
-    - Identify the biggest advantage, matchup factor,
-      or interesting tension between the teams.
-    - Synthesize the statistics and recent context rather
-      than simply repeating the summary.
-    - Be specific and reference relevant metrics or context
-      when useful.
-    - Keep it to 1-2 sentences.
-    - Do not declare a guaranteed winner or make betting
-      recommendations.
-    - If the matchup is genuinely close, say so rather
-      than manufacturing a clear advantage.
-
-18. Interpret rest_days precisely.
-    - rest_days is already the number of full calendar
-      days between games.
-    - Report that number exactly. Do not add one.
+10. Explain why statistical differences matter.
+    Sound like a knowledgeable hockey analyst, not a statistics
+    textbook. Write original, specific analysis that highlights
+    meaningful advantages and contradictions between results
+    and underlying performance.
 
 WRITING STYLE:
 
-- Sound like a knowledgeable hockey analyst, not a statistics
-  textbook.
-- Be specific and use actual numbers when they strengthen
-  the analysis.
-- Avoid mentioning every metric just because it is available.
-- Explain why a statistical difference matters.
-- Identify interesting contradictions between results and
-  underlying performance.
-- Keep the preview readable and relatively concise.
-- Write original analysis rather than generic commentary.
+- Be conversational, confident, and analytical without sounding
+  overly formal.
+- Prioritize league rankings over repeatedly quoting raw numbers.
+- Use actual numbers when they strengthen an observation.
+- Avoid generic commentary and unnecessary filler.
+- Make every section contribute something useful to understanding
+  the matchup.
 """
-
 
 
 def generate_preview(client, game_input):

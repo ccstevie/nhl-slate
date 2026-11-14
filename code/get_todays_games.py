@@ -66,6 +66,8 @@ def get_games():
         goalies = lineup.find_elements(By.CLASS_NAME, "lineup__player-highlight-name")
         away_goalie = goalies[0].text.strip().split()[-1]
         home_goalie = goalies[1].text.strip().split()[-1]
+        away_goalie = "Merilinen" if away_goalie == "Merilainen" else away_goalie
+        home_goalie = "Merilinen" if home_goalie == "Merilainen" else home_goalie
         teams = lineup.find_element(By.CLASS_NAME, 'lineup__teams').find_elements(By.TAG_NAME, 'a')
         teams = lineup.find_element(By.CLASS_NAME, 'lineup__matchup').find_elements(By.TAG_NAME, 'a')
         if len(teams) >= 2:

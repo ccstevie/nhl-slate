@@ -200,6 +200,8 @@ function findAiPreview(awayTeam, homeTeam, previews) {
     const home = normalize(homeTeam);
 
     return (
+      gameAway &&
+      gameHome &&
       away.includes(gameAway) &&
       home.includes(gameHome)
     );
@@ -331,17 +333,8 @@ function StatsTable() {
 
           return (
             <section className="matchup-card" key={id}>
-              <button
-                className="ai-icon-button"
-                onClick={() => setSelectedPreview(aiPreview)}
-                disabled={!aiPreview}
-                aria-label="AI Game Preview"
-                title="AI Game Preview"
-              >
-                ✦
-              </button>
               <div className="matchup-summary">
-                <div className="team-summary">
+                <div className="team-summary away-team">
                   <span className="team-side">AWAY</span>
                   <div className="team-name-row">
                     <TeamLogo team={away.Team} />
@@ -360,13 +353,24 @@ function StatsTable() {
                 <div className="matchup-middle">
                   <div className="versus">VS</div>
 
-                  <button
-                    className="details-button"
-                    onClick={() => toggleRow(id)}
-                    aria-expanded={isExpanded}
-                  >
-                    {isExpanded ? 'Hide stats ▲' : 'Compare stats ▼'}
-                  </button>
+                  <div className="matchup-actions">
+                    <button
+                      className="details-button"
+                      onClick={() => toggleExpanded(id)}
+                    >
+                      {isExpanded ? 'Hide Stats' : 'Compare Stats'}
+                    </button>
+
+                    <button
+                      className="ai-icon-button"
+                      onClick={() => setSelectedPreview(aiPreview)}
+                      disabled={!aiPreview}
+                      aria-label="AI Game Preview"
+                      title="AI Game Preview"
+                    >
+                      ✦
+                    </button>
+                  </div>
                 </div>
 
                 <div className="team-summary home-team">
