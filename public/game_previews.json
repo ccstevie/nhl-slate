@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-11-13",
+  "generated_at": "2026-11-14",
   "games": [
     {
-      "game_date": "2026-11-13",
+      "game_date": "2026-11-14",
       "away_team": {
         "team": "Rangers",
         "team_abbrev": "NYR",
         "current_streak": "W1",
-        "games_last_4_days": 2,
+        "games_last_4_days": 1,
         "games_last_7_days": 3,
-        "rest_days": 1,
+        "rest_days": 2,
         "previous_head_to_head": {
           "date": "2026-10-11",
           "game_id": 2026020085,
@@ -25,9 +25,9 @@
         "team": "Canucks",
         "team_abbrev": "VAN",
         "current_streak": "L6",
-        "games_last_4_days": 1,
+        "games_last_4_days": 0,
         "games_last_7_days": 2,
-        "rest_days": 3,
+        "rest_days": 4,
         "previous_head_to_head": {
           "date": "2026-10-11",
           "game_id": 2026020085,
@@ -45,14 +45,14 @@
       }
     },
     {
-      "game_date": "2026-11-13",
+      "game_date": "2026-11-14",
       "away_team": {
         "team": "Predators",
         "team_abbrev": "NSH",
         "current_streak": "W6",
         "games_last_4_days": 2,
         "games_last_7_days": 3,
-        "rest_days": 1,
+        "rest_days": 2,
         "previous_head_to_head": {
           "date": "2026-10-13",
           "game_id": 2026020101,
@@ -70,7 +70,7 @@
         "current_streak": "W4",
         "games_last_4_days": 1,
         "games_last_7_days": 2,
-        "rest_days": 1,
+        "rest_days": 2,
         "previous_head_to_head": {
           "date": "2026-10-13",
           "game_id": 2026020101,
