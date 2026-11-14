@@ -1,14 +1,14 @@
-
 import json
 import os
 import re
+import time
 from datetime import datetime, timezone
 
 import pandas as pd
 from google import genai
 from google.genai import types
-import time
 from google.genai.errors import ServerError, ClientError
+from groq import Groq
 
 # --------------------------------------------------
 # Configuration
@@ -21,9 +21,9 @@ CONTEXT_FILE = os.path.join(PUBLIC_DIR, "game_previews.json")
 STATS_FILE = os.path.join(PUBLIC_DIR, "result.csv")
 OUTPUT_FILE = os.path.join(PUBLIC_DIR, "ai_previews.json")
 
-MODEL = "gemini-3.5-flash-lite"
+GEMINI_MODEL = "gemini-3.5-flash-lite"
+GROQ_MODEL = "openai/gpt-oss-20b"
 
-# Stop generating if the API becomes unavailable or quota is exhausted.
 STOP_GENERATION = False
 
 # Actual metric column, rank column, display label, unit
@@ -360,10 +360,8 @@ WRITING STYLE:
 """
 
 
-def generate_preview(client, game_input):
+def generate_preview(gemini_client, groq_client, game_input):
     global STOP_GENERATION
-
-    print(f"Sending request to {MODEL}...", flush=True)
 
     prompt = (
         "Write an NHL game preview using the following "
@@ -372,97 +370,135 @@ def generate_preview(client, game_input):
         + json.dumps(game_input, indent=2)
     )
 
-    # Two attempts maximum: one initial request and one retry.
-    max_attempts = 2
+    # --------------------------------------------------
+    # 1. Try Gemini first
+    # --------------------------------------------------
 
-    for attempt in range(max_attempts):
+    if gemini_client is not None:
+        for attempt in range(2):
+            try:
+                print(
+                    f"Trying Gemini {GEMINI_MODEL} "
+                    f"(attempt {attempt + 1}/2)",
+                    flush=True
+                )
 
+                response = gemini_client.models.generate_content(
+                    model=GEMINI_MODEL,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT,
+                        response_mime_type="application/json",
+                        response_json_schema=PREVIEW_SCHEMA,
+                        temperature=0.7,
+                        max_output_tokens=2000,
+                    ),
+                )
+
+                if not response.text:
+                    raise RuntimeError("Gemini returned an empty response.")
+
+                preview = json.loads(response.text)
+
+                print("Successfully generated using Gemini.", flush=True)
+                return preview, "gemini"
+
+            except ServerError as error:
+                if error.code in (503, 504) and attempt == 0:
+                    print(
+                        f"Gemini returned HTTP {error.code}. "
+                        "Retrying once in 20 seconds...",
+                        flush=True
+                    )
+                    time.sleep(20)
+                    continue
+
+                print(
+                    f"Gemini unavailable (HTTP {error.code}). "
+                    "Switching to Groq.",
+                    flush=True
+                )
+                break
+
+            except ClientError as error:
+                print(
+                    f"Gemini API error (HTTP {error.code}): {error}. "
+                    "Switching to Groq.",
+                    flush=True
+                )
+                break
+
+            except Exception as error:
+                print(
+                    f"Gemini failed: {error}. Switching to Groq.",
+                    flush=True
+                )
+                break
+
+    else:
+        print("Gemini API key unavailable. Skipping to Groq.", flush=True)
+
+    # --------------------------------------------------
+    # 2. Try Groq
+    # --------------------------------------------------
+
+    if groq_client is not None:
         try:
             print(
-                f"Trying {MODEL} "
-                f"(attempt {attempt + 1}/{max_attempts})",
+                f"Trying Groq {GROQ_MODEL}...",
                 flush=True
             )
 
-            response = client.models.generate_content(
-                model=MODEL,
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_PROMPT,
-                    response_mime_type="application/json",
-                    response_json_schema=PREVIEW_SCHEMA,
-                    temperature=0.7,
-                    max_output_tokens=2000,
-                ),
+            response = groq_client.chat.completions.create(
+                model=GROQ_MODEL,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": SYSTEM_PROMPT,
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    },
+                ],
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "nhl_game_preview",
+                        "strict": True,
+                        "schema": PREVIEW_SCHEMA,
+                    },
+                },
+                temperature=0.7,
+                max_completion_tokens=2000,
+                reasoning_effort="low",
             )
 
-            if not response.text:
-                raise RuntimeError(
-                    "Gemini returned an empty response."
-                )
+            content = response.choices[0].message.content
 
-            print(
-                f"Successfully generated using {MODEL}",
-                flush=True
-            )
+            if not content:
+                raise RuntimeError("Groq returned an empty response.")
 
-            return json.loads(response.text)
+            preview = json.loads(content)
 
-        except ServerError as error:
-            if error.code not in (503, 504):
-                raise
+            print("Successfully generated using Groq.", flush=True)
+            return preview, "groq"
 
-            if attempt < max_attempts - 1:
-                wait_seconds = 20
+        except Exception as error:
+            print(f"Groq failed: {error}", flush=True)
 
-                error_type = (
-                    "overloaded"
-                    if error.code == 503
-                    else "timed out"
-                )
+    # --------------------------------------------------
+    # 3. Both providers failed
+    # --------------------------------------------------
 
-                print(
-                    f"{MODEL} {error_type} (HTTP {error.code}). "
-                    f"Retrying once in {wait_seconds} seconds...",
-                    flush=True
-                )
+    print(
+        "Both AI providers are unavailable. "
+        "Skipping the remaining previews.",
+        flush=True
+    )
 
-                time.sleep(wait_seconds)
-
-            else:
-                print(
-                    f"{MODEL} failed twice with HTTP {error.code}.",
-                    flush=True
-                )
-
-                print(
-                    "Stopping generation to avoid repeatedly "
-                    "requesting an unavailable model.",
-                    flush=True
-                )
-
-                STOP_GENERATION = True
-                return None
-
-        except ClientError as error:
-            if error.code == 429:
-                print(
-                    f"{MODEL} quota/rate limit reached (HTTP 429).",
-                    flush=True
-                )
-
-                print(
-                    "Stopping generation. No further API requests "
-                    "will be made during this run.",
-                    flush=True
-                )
-
-                STOP_GENERATION = True
-                return None
-
-            raise
-
-    return None
+    STOP_GENERATION = True
+    return None, None
 
 
 # --------------------------------------------------
@@ -470,20 +506,41 @@ def generate_preview(client, game_input):
 # --------------------------------------------------
 
 def main():
-    api_key = os.environ.get("GEMINI_API_KEY")
+    global STOP_GENERATION
 
-    if not api_key:
-        raise ValueError("GEMINI_API_KEY is missing.")
+    gemini_key = os.environ.get("GEMINI_API_KEY")
+    groq_key = os.environ.get("GROQ_API_KEY")
 
-    client = genai.Client(
-        api_key=api_key,
-        http_options=types.HttpOptions(
-            timeout=120000,
-            retry_options=types.HttpRetryOptions(
-                attempts=1,
+    gemini_client = None
+    groq_client = None
+
+    if gemini_key:
+        gemini_client = genai.Client(
+            api_key=gemini_key,
+            http_options=types.HttpOptions(
+                timeout=120000,
+                retry_options=types.HttpRetryOptions(
+                    attempts=1,
+                ),
             ),
-        ),
-    )
+        )
+        print("Gemini client initialized.", flush=True)
+    else:
+        print("GEMINI_API_KEY missing.", flush=True)
+
+    if groq_key:
+        groq_client = Groq(api_key=groq_key)
+        print("Groq client initialized.", flush=True)
+    else:
+        print("GROQ_API_KEY missing.", flush=True)
+
+    if gemini_client is None and groq_client is None:
+        print(
+            "No AI API keys available. "
+            "Skipping all AI previews.",
+            flush=True
+        )
+        STOP_GENERATION = True
 
     with open(CONTEXT_FILE, "r", encoding="utf-8") as file:
         game_contexts = json.load(file)
@@ -493,51 +550,60 @@ def main():
     previews = []
 
     for game in game_contexts["games"]:
+        if STOP_GENERATION:
+            break
+
         away = game["away_team"]["team"]
         home = game["home_team"]["team"]
 
-        print(f"Generating AI preview: {away} @ {home}", flush=True)
+        print(
+            f"\nGenerating AI preview: {away} @ {home}",
+            flush=True
+        )
 
         game_input = build_game_input(game, stats_df)
-        ai_preview = generate_preview(client, game_input)
+
+        ai_preview, provider = generate_preview(
+            gemini_client,
+            groq_client,
+            game_input
+        )
 
         if ai_preview is None:
             print(
-                f"Could not generate preview: {away} @ {home}",
+                f"Skipping preview: {away} @ {home}",
                 flush=True
             )
-
-            if STOP_GENERATION:
-                print(
-                    "Stopping the remaining games. Saving previews "
-                    "generated so far.",
-                    flush=True
-                )
-                break
-
-            continue
+            break
 
         previews.append({
             "game_date": game["game_date"],
             "away_team": away,
             "home_team": home,
             "goalies": game.get("goalies", {}),
+            "provider": provider,
             "preview": ai_preview,
         })
 
-        print(f"Preview generated: {away} @ {home}", flush=True)
+        print(
+            f"Preview generated: {away} @ {home} using {provider}",
+            flush=True
+        )
 
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "model": MODEL,
+        "model": "multi-provider",
         "games": previews,
     }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
         json.dump(output, file, indent=2, ensure_ascii=False)
 
-    print(f"AI previews saved to {OUTPUT_FILE}")
-
+    print(
+        f"AI previews saved to {OUTPUT_FILE} "
+        f"({len(previews)} previews generated).",
+        flush=True
+    )
 
 if __name__ == "__main__":
     main()
