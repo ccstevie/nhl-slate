@@ -278,10 +278,10 @@ function StatsTable() {
     });
   }
 
-  const toggleRow = (id) => {
-    setExpandedRows((previous) => ({
-      ...previous,
-      [id]: !previous[id],
+  const toggleExpanded = (index) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [index]: !prev[index],
     }));
   };
 
