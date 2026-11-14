@@ -336,6 +336,7 @@ WRITING STYLE:
 
 
 def generate_preview(client, game_input):
+    print("Sending request to Gemini...", flush=True)
 
     prompt = (
         "Write an NHL game preview using the following "
@@ -354,7 +355,7 @@ def generate_preview(client, game_input):
                 print(
                     f"Trying {model} "
                     f"(attempt {attempt + 1}/3)"
-                )
+                , flush=True)
 
                 response = client.models.generate_content(
                     model=model,
@@ -412,7 +413,17 @@ def main():
     if not api_key:
         raise ValueError("GEMINI_API_KEY is missing.")
 
-    client = genai.Client(api_key=api_key)
+    client = genai.Client(
+        api_key=api_key,
+        http_options=types.HttpOptions(
+            timeout=120000,
+            retry_options=types.HttpRetryOptions(
+                attempts=3,
+                initial_delay=2,
+                max_delay=10,
+            ),
+        ),
+    )
 
     with open(CONTEXT_FILE, "r", encoding="utf-8") as file:
         game_contexts = json.load(file)
@@ -425,7 +436,7 @@ def main():
         away = game["away_team"]["team"]
         home = game["home_team"]["team"]
 
-        print(f"Generating AI preview: {away} @ {home}")
+        print(f"Generating AI preview: {away} @ {home}", flush=True)
 
         game_input = build_game_input(game, stats_df)
         ai_preview = generate_preview(client, game_input)
@@ -438,7 +449,7 @@ def main():
             "preview": ai_preview,
         })
 
-        print(f"Preview generated: {away} @ {home}")
+        print(f"Preview generated: {away} @ {home}", flush=True)
 
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
