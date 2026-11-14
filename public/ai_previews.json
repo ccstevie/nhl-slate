@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-11-14T00:31:00.085380+00:00",
+  "model": "gemini-3.8-flash",
+  "games": [
+    {
+      "game_date": "2026-11-14",
+      "away_team": "Rangers",
+      "home_team": "Canucks",
+      "goalies": {
+        "away": "Garand",
+        "home": "Merilainen"
+      },
+      "preview": {
+        "headline": "Rangers Look to Capitalize on Underlying Edge Against Slumping Canucks",
+        "summary": "The Vancouver Canucks host the New York Rangers looking to halt a six-game losing skid after four full days of rest. While New York has struggled to convert chances into actual goals this season, their underlying process heavily favors them over a Vancouver squad that ranks near the bottom of the league in shot attempt share, expected goals, and penalty killing.",
+        "away_analysis": "The Rangers enter Vancouver showing a striking contrast between process and results. New York controls 52.00% of expected goals (12th) and generates 2.86 xGF/60 (9th), yet their actual Goals For percentage sits at an underwhelming 40.82% (27th). That lag is largely reflected in their 8.03% shooting percentage, which ranks 25th across the NHL. At five-on-five, New York does a solid job suppressing quality, conceding 2.64 xGA/60 (15th) and winning the high-danger chance share at 51.41%. Coupled with a penalty kill operating at an elite 88.33% clip (3rd), the Rangers present a disciplined, sound structure. In net, projected starter Garand brings a solid baseline with a 20th-ranked GSAx over the last 20 games.",
+        "home_analysis": "Vancouver returns to the ice after a four-day break hoping time away can right the ship amidst a six-game losing streak. The underlying numbers, however, show systemic issues at both ends of the rink. The Canucks sit 32nd in expected goals share (40.37%) and high-danger chance percentage (38.12%), generating an anemic 2.07 xGF/60 (31st) while bleeding 3.06 xGA/60 (29th). Their possession metrics are equally bleak, generating just 45.82 CF/60 (32nd). Special teams compound their defensive deficiencies: while the power play is serviceable at 20.63% (18th), their penalty kill ranks dead last in the NHL at 63.08%. Goaltender Merilainen lacks a recent 20-game GSAx ranking and will need a sturdy team effort in front of him to withstand New York's offensive pressure.",
+        "matchup_edges": [
+          "Even-Strength Control: New York holds a massive advantage in expected goal share (52.00% vs. Vancouver's league-worst 40.37%) and high-danger generation (51.41% vs. 38.12%).",
+          "Special Teams Disparity: New York's 3rd-ranked penalty kill (88.33%) offers a stout defense against Vancouver's middle-of-the-pack power play, while Vancouver's league-worst kill (63.08%) gives the Rangers' power play a favorable setup.",
+          "Form and Head-to-Head: New York dominated the prior meeting 6-2 in October, and Vancouver enters riding a six-game losing streak."
+        ],
+        "x_factor": "Vancouver's 63.08% penalty kill against New York's conversion drought. If the Rangers can capitalize on Vancouver's historically weak penalty kill to jumpstart an offense that has suffered from an 8.03% shooting percentage, they could dictate the terms of this game early.",
+        "key_question": "Can the Canucks leverage four full days of rest to tighten up their league-worst high-danger chance suppression, or will New York's superior five-on-five chance generation overwhelm them again?"
+      }
+    },
+    {
+      "game_date": "2026-11-14",
+      "away_team": "Predators",
+      "home_team": "Golden Knights",
+      "goalies": {
+        "away": "Saros",
+        "home": "Hill"
+      },
+      "preview": {
+        "headline": "Streaking Predators and Golden Knights Clash in Clash of Low-Possession Powers",
+        "summary": "Both Nashville and Vegas enter this matchup riding extended winning streaks—six games for the Predators and four for the Golden Knights—with both clubs benefiting from two full days of rest. Despite their recent success, neither team controls 5-on-5 shot volume, ranking 29th and 28th respectively in Corsi For percentage. The edge may hinge on goaltending and special teams, where Nashville's league-leading 89.47% penalty kill meets Vegas's fifth-ranked power play, and Juuse Saros brings elite recent form to the crease.",
+        "away_analysis": "The Predators have strung together six consecutive victories despite surrendering heavy shot-attempt volume, ranking 31st in Corsi Against per 60 (64.22) and 29th in Corsi For percentage (46.04%). However, Nashville compensates by insulating dangerous ice: their Expected Goals Against per 60 is a respectable 2.74 (18th), and they maintain a positive High Danger Chances percentage of 51.56% (14th). With an Expected Goals percentage of 49.76% mirroring their 50.98% Goals For rate, their results are well-supported by scoring-chance quality. Juuse Saros has provided elite stability in net, ranking fourth in Goals Saved Above Expected over his last 20 games, while a dominant penalty kill (89.47%, 1st) has closed games out.",
+        "home_analysis": "Vegas rides a four-game winning streak of their own, but their underlying five-on-five metrics indicate potential vulnerability. The Golden Knights control just 47.60% of expected goals (24th), lagging well behind their flat 50.0% Goals For mark. Their offense ranks 29th in Corsi For per 60 (50.06) and 23rd in Expected Goals For per 60 (2.52), struggling to generate sustained pressure. Vegas balances those low-event numbers with clinical finishing and an elite power play operating at 27.87% (5th). In net, Adin Hill ranks 18th in GSAx over his past 20 games, giving Vegas reliable if not game-stealing goaltending.",
+        "matchup_edges": [
+          "Goaltending: Juuse Saros holds a notable edge in recent form, ranking 4th in GSAx over his last 20 appearances compared to Adin Hill at 18th.",
+          "Dangerous Chance Creation: Nashville controls high-danger chances far more effectively, owning a 51.56% HDCF share (14th) against Vegas's 49.03% (21st).",
+          "Special Teams Battle: Nashville's power play (26.56%, 8th) has a clear statistical advantage against a vulnerable Vegas penalty kill allowing goals at a 76.92% clip (18th)."
+        ],
+        "x_factor": "Special teams execution when whistles are blown. Both clubs are exceptionally disciplined, ranking fourth (Vegas) and fifth (Nashville) in fewest penalties taken per 60 minutes. Because opportunities with the man advantage will be rare, whether Vegas's 5th-ranked power play can solve Nashville's league-best 89.47% penalty kill on just one or two chances could dictate the final outcome.",
+        "key_question": "Can Vegas establish high-danger offense against Nashville's bend-but-don't-break structure and an in-form Juuse Saros, or will the Predators avenge their 5-2 October loss by winning the battle of scoring quality?"
+      }
+    }
+  ]
+}
