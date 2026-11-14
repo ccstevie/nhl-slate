@@ -374,7 +374,7 @@ def generate_preview(client, game_input):
                         "Gemini returned an empty response."
                     )
 
-                print(f"Successfully generated using {model}")
+                print(f"Successfully generated using {model}", flush=True)
 
                 return json.loads(response.text)
 
@@ -418,9 +418,7 @@ def main():
         http_options=types.HttpOptions(
             timeout=120000,
             retry_options=types.HttpRetryOptions(
-                attempts=3,
-                initial_delay=2,
-                max_delay=10,
+                attempts=1,
             ),
         ),
     )
