@@ -44,7 +44,7 @@ jobs:
 
       - name: Generate AI game previews
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python code/generate_ai_previews.py
 
       - name: Commit and push results

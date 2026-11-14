@@ -5,8 +5,8 @@ import re
 from datetime import datetime, timezone
 
 import pandas as pd
-from openai import OpenAI
-
+from google import genai
+from google.genai import types
 
 # --------------------------------------------------
 # Configuration
@@ -19,8 +19,7 @@ CONTEXT_FILE = os.path.join(PUBLIC_DIR, "game_previews.json")
 STATS_FILE = os.path.join(PUBLIC_DIR, "result.csv")
 OUTPUT_FILE = os.path.join(PUBLIC_DIR, "ai_previews.json")
 
-MODEL = os.environ.get("OPENAI_MODEL", "gpt-5.5")
-
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 
 # Actual metric column, rank column, display label, unit
 METRICS = {
@@ -330,37 +329,27 @@ WRITING STYLE:
 
 
 def generate_preview(client, game_input):
-    response = client.responses.create(
+    response = client.models.generate_content(
         model=MODEL,
-        input=[
-            {
-                "role": "system",
-                "content": SYSTEM_PROMPT,
-            },
-            {
-                "role": "user",
-                "content": (
-                    "Write an NHL game preview using the following "
-                    "data. Treat the supplied data as the source "
-                    "of truth.\n\n"
-                    + json.dumps(game_input, indent=2)
-                ),
-            },
-        ],
-        text={
-            "format": {
-                "type": "json_schema",
-                "name": "nhl_game_preview",
-                "strict": True,
-                "schema": PREVIEW_SCHEMA,
-            }
-        },
+        contents=(
+            "Write an NHL game preview using the following "
+            "data. Treat the supplied data as the source "
+            "of truth.\n\n"
+            + json.dumps(game_input, indent=2)
+        ),
+        config=types.GenerateContentConfig(
+            system_instruction=SYSTEM_PROMPT,
+            response_mime_type="application/json",
+            response_json_schema=PREVIEW_SCHEMA,
+            temperature=0.7,
+            max_output_tokens=2000,
+        ),
     )
 
-    if not response.output_text:
-        raise RuntimeError("The AI returned an empty response.")
+    if not response.text:
+        raise RuntimeError("Gemini returned an empty response.")
 
-    return json.loads(response.output_text)
+    return json.loads(response.text)
 
 
 # --------------------------------------------------
@@ -368,12 +357,12 @@ def generate_preview(client, game_input):
 # --------------------------------------------------
 
 def main():
-    api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = os.environ.get("GEMINI_API_KEY")
 
     if not api_key:
-        raise ValueError("OPENAI_API_KEY is missing.")
+        raise ValueError("GEMINI_API_KEY is missing.")
 
-    client = OpenAI(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
     with open(CONTEXT_FILE, "r", encoding="utf-8") as file:
         game_contexts = json.load(file)

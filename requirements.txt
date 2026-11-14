@@ -4,4 +4,4 @@ selenium==4.7.2
 lxml==5.3.0
 beautifulsoup4==4.12.2
 html5lib
-openai
+google-genai
