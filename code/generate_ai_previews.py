@@ -421,6 +421,15 @@ def generate_preview(gemini_client, groq_client, game_input):
                 break
 
             except ClientError as error:
+                if error.code == 429 and attempt == 0:
+                    print(
+                        "Gemini rate limit reached (HTTP 429). "
+                        "Retrying in 20 seconds...",
+                        flush=True
+                    )
+                    time.sleep(20)
+                    continue
+
                 print(
                     f"Gemini API error (HTTP {error.code}): {error}. "
                     "Switching to Groq.",
@@ -589,6 +598,8 @@ def main():
             f"Preview generated: {away} @ {home} using {provider}",
             flush=True
         )
+        
+        time.sleep(4)
 
     output = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
