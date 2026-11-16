@@ -1,201 +1,54 @@
 {
-  "generated_at": "2026-11-15",
+  "generated_at": "2026-11-16",
   "games": [
     {
-      "game_date": "2026-11-15",
+      "game_date": "2026-11-16",
       "away_team": {
-        "team": "Oilers",
-        "team_abbrev": "EDM",
-        "current_streak": "W4",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 0,
-        "previous_head_to_head": {
-          "date": "2026-11-11",
-          "game_id": 2026020295,
-          "opponent": "PHI",
-          "venue": "Home",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 3,
-          "goals_against": 2
-        }
-      },
-      "home_team": {
-        "team": "Flyers",
-        "team_abbrev": "PHI",
-        "current_streak": "W1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 4,
-        "rest_days": 0,
-        "previous_head_to_head": {
-          "date": "2026-11-11",
-          "game_id": 2026020295,
-          "opponent": "EDM",
-          "venue": "Away",
-          "result": "OTL",
-          "streak_result": "L",
-          "goals_for": 2,
-          "goals_against": 3
-        }
-      },
-      "goalies": {
-        "away": "Jarry",
-        "home": "Vladar"
-      }
-    },
-    {
-      "game_date": "2026-11-15",
-      "away_team": {
-        "team": "Flames",
-        "team_abbrev": "CGY",
-        "current_streak": "W1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 0,
-        "previous_head_to_head": {
-          "date": "2026-11-06",
-          "game_id": 2026020264,
-          "opponent": "ANA",
-          "venue": "Home",
-          "result": "L",
-          "streak_result": "L",
-          "goals_for": 3,
-          "goals_against": 5
-        }
-      },
-      "home_team": {
-        "team": "Ducks",
-        "team_abbrev": "ANA",
-        "current_streak": "L2",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 0,
-        "previous_head_to_head": {
-          "date": "2026-11-06",
-          "game_id": 2026020264,
-          "opponent": "CGY",
-          "venue": "Away",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 5,
-          "goals_against": 3
-        }
-      },
-      "goalies": {
-        "away": "Cooley",
-        "home": "Husso"
-      }
-    },
-    {
-      "game_date": "2026-11-15",
-      "away_team": {
-        "team": "Panthers",
-        "team_abbrev": "FLA",
-        "current_streak": "W3",
-        "games_last_4_days": 2,
-        "games_last_7_days": 4,
-        "rest_days": 0,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Stars",
-        "team_abbrev": "DAL",
-        "current_streak": "W1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 2,
-        "rest_days": 0,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Schmid",
-        "home": "DeSmith"
-      }
-    },
-    {
-      "game_date": "2026-11-15",
-      "away_team": {
-        "team": "Canucks",
-        "team_abbrev": "VAN",
-        "current_streak": "L7",
-        "games_last_4_days": 1,
-        "games_last_7_days": 2,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-10-04",
-          "game_id": 2026020039,
-          "opponent": "VGK",
-          "venue": "Home",
-          "result": "L",
-          "streak_result": "L",
-          "goals_for": 2,
-          "goals_against": 3
-        }
-      },
-      "home_team": {
-        "team": "Golden Knights",
-        "team_abbrev": "VGK",
+        "team": "Canadiens",
+        "team_abbrev": "MTL",
         "current_streak": "L1",
         "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-10-04",
-          "game_id": 2026020039,
-          "opponent": "VAN",
-          "venue": "Away",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 3,
-          "goals_against": 2
-        }
+        "previous_head_to_head": null
+      },
+      "home_team": {
+        "team": "Rangers",
+        "team_abbrev": "NYR",
+        "current_streak": "W2",
+        "games_last_4_days": 1,
+        "games_last_7_days": 3,
+        "rest_days": 2,
+        "previous_head_to_head": null
       },
       "goalies": {
-        "away": "Merilinen",
-        "home": "Hart"
+        "away": "Fowler",
+        "home": "Korpisalo"
       }
     },
     {
-      "game_date": "2026-11-15",
+      "game_date": "2026-11-16",
       "away_team": {
-        "team": "Predators",
-        "team_abbrev": "NSH",
-        "current_streak": "W7",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-10-15",
-          "game_id": 2026020115,
-          "opponent": "SJS",
-          "venue": "Home",
-          "result": "OTL",
-          "streak_result": "L",
-          "goals_for": 2,
-          "goals_against": 3
-        }
-      },
-      "home_team": {
-        "team": "Sharks",
-        "team_abbrev": "SJS",
+        "team": "Canucks",
+        "team_abbrev": "VAN",
         "current_streak": "W1",
         "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 0,
-        "previous_head_to_head": {
-          "date": "2026-10-15",
-          "game_id": 2026020115,
-          "opponent": "NSH",
-          "venue": "Away",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 3,
-          "goals_against": 2
-        }
+        "previous_head_to_head": null
+      },
+      "home_team": {
+        "team": "Mammoth",
+        "team_abbrev": "UTA",
+        "current_streak": "L5",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": null
       },
       "goalies": {
-        "away": "Saros",
-        "home": "Nedeljkovic"
+        "away": "Lankinen",
+        "home": "Vejmelka"
       }
     }
   ]
