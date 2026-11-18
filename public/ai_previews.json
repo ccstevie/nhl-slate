@@ -1,269 +1,77 @@
 {
-  "generated_at": "2026-11-17T16:41:32.496018+00:00",
+  "generated_at": "2026-11-18T16:04:51.778496+00:00",
   "model": "multi-provider",
   "games": [
     {
-      "game_date": "2026-11-17",
-      "away_team": "Senators",
-      "home_team": "Jets",
+      "game_date": "2026-11-18",
+      "away_team": "Canadiens",
+      "home_team": "Devils",
       "goalies": {
-        "away": "Ullmark",
-        "home": "Skinner"
-      },
-      "provider": "gemini",
-      "preview": {
-        "headline": "Senators Visit Jets in Clash of Contrasting Styles and Streaks",
-        "summary": "The Ottawa Senators bring elite shot generation and Ullmark into Winnipeg to face a surging Jets team riding a six-game winning streak.",
-        "away_analysis": "The Senators dominate possession and shot attempts, ranking 3rd in Corsi For % and 4th in shot generation per 60. Combined with a lethal 11.63% shooting percentage and Ullmark anchoring the net with a stellar 5th-ranked GSAx over his last 20 games, Ottawa controls play effectively. However, their 32nd-ranked power play remains a glaring weakness that fails to capitalize on their territorial dominance.",
-        "home_analysis": "The Jets enter this matchup on a six-game winning streak despite middling underlying metrics, sitting 22nd in Corsi For % and 21st in expected goals share. They rely on disciplined play, taking fewer penalties than most, and a potent 24.24% power play to punch above their weight. Skinner will need to navigate a tough defensive assignment against Ottawa's high-volume attack, especially with a recent GSAx ranking sitting down at 50th.",
-        "matchup_edges": [
-          "Ottawa holds a massive advantage in five-on-five shot-attempt suppression and volume, ranking 3rd in Corsi For % compared to Winnipeg's 22nd.",
-          "The Senators boast a top-tier goaltending edge with Ullmark ranking 5th in recent GSAx over Skinner's 50th.",
-          "Winnipeg counters with a dangerous power play ranking 12th in the league, facing an Ottawa penalty kill that sits below average at 19th."
-        ],
-        "x_factor": "Special teams execution, as Ottawa's league-worst power play matches up against a vulnerable Winnipeg penalty kill that ranks 24th.",
-        "key_question": "Can the Jets sustain their six-game winning streak while getting heavily out-corsied by an aggressive Senators attack?",
-        "quick_takeaway": "Ottawa's dominant territorial control and elite goaltending clash with a red-hot Winnipeg team relying on opportunism and special teams."
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Kings",
-      "home_team": "Bruins",
-      "goalies": {
-        "away": "Kuemper",
-        "home": "DiPietro"
-      },
-      "provider": "gemini",
-      "preview": {
-        "headline": "Bruins Host Struggling Kings Looking to Snap Two-Game Skid",
-        "summary": "The Los Angeles Kings travel to Boston to take on the Bruins on November 17, 2026, looking to break out of a four-game losing streak. Both teams enter with two days of full rest, but Boston holds distinct advantages in underlying metrics and special teams as they aim to sweep the season series.",
-        "away_analysis": "The Kings are trying to reverse a four-game losing skid despite generating decent shot volume at 58.11 Corsi For per 60, ranking 9th in the league. However, defensive suppression remains a major concern with an expected goals against rate of 2.97 per 60, sitting 27th overall. Compounding these issues is a struggling penalty kill operating at just 67.24 percent, ranking 29th.",
-        "home_analysis": "The Bruins boast strong underlying chance generation, ranking 3rd in high-danger chances percentage at 57.55 and 5th in expected goals percentage at 54.54. Boston converts these opportunities efficiently behind a top-tier shooting percentage of 11.67 percent, good for 4th in the league. DiPietro anchors the crease with a strong 14th-ranked GSAx over his last 20 games.",
-        "matchup_edges": [
-          "Boston holds a massive advantage in high-danger chance share, ranking 3rd compared to Los Angeles at 12th.",
-          "The Bruins possess a significant edge on the penalty kill, ranking 11th while the Kings sit 29th.",
-          "Boston generates elite offensive quality, ranking 3rd in expected goals for per 60."
-        ],
-        "x_factor": "Special teams execution, particularly how well the Bruins can exploit the Kings' 29th-ranked penalty kill.",
-        "key_question": "Can the Kings tighten up their defensive zone coverage to support Kuemper and snap their four-game slide?",
-        "quick_takeaway": "Boston's superior high-danger chance generation and special teams give them the upper hand against a defensively vulnerable Kings squad."
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Blue Jackets",
-      "home_team": "Islanders",
-      "goalies": {
-        "away": "Talbot",
-        "home": "Sorokin"
+        "away": "Fowler",
+        "home": "Hellebuyck"
       },
       "provider": "groq",
       "preview": {
-        "headline": "Islanders Edge Blue Jackets on Power‑Play and Penalty‑Kill Edge",
-        "summary": "The Islanders’ superior penalty‑kill and high‑danger chance generation give them a slight advantage over a struggling Blue Jackets crew that has been out‑performed in shooting and recent form.",
-        "away_analysis": "The Blue Jackets are in a four‑game losing streak and have struggled to convert on the ice, with a 6.85% shooting percentage among the league’s lowest. Their Corsi For % sits at 50.78, only marginally above .500, and their expected goals per 60 (2.4) are lower than the Islanders’. While they rank 5th in penalties taken per 60, their penalty‑kill at 73.47% is sub‑average, leaving them vulnerable on the penalty kill.",
-        "home_analysis": "The Islanders boast a strong 49.02% goals‑for ranking and a 10.46% shooting percentage, reflecting efficient finishing. Their expected goals per 60 (2.91) and high‑danger chance share (48.78%) are among the league’s best, and their penalty‑kill is elite at 85.94%. Even with a higher penalties‑taken per 60, their defensive play keeps opponents’ expected goals against high.",
+        "headline": "Canadiens vs. Devils: A Power‑Play Duel with a Discipline Twist",
+        "summary": "The Devils’ superior power‑play and disciplined play will test the Canadiens’ high‑shooting output, while the Canadiens’ strong goal‑scoring numbers and elite goalie will keep the game close.",
+        "away_analysis": "Montreal’s 66% goals‑for rank 3 shows they’re a potent offense, but their 49% Corsi indicates they’re struggling to dominate possession. Their 12.55% shooting is among the league best, yet their 46% expected‑goals rank 26th, suggesting they’re converting more than expected—perhaps a sign of finishing under pressure. With only one rest day and a two‑game stretch in four days, Fowler’s 2nd‑ranked GSAx could be a key factor in holding the Devils’ 20.6% power‑play up.",
+        "home_analysis": "New Jersey’s 60.3% goals‑for and 51% expected‑goals rank 6th and 13th, respectively, while their 51% high‑danger chances show they’re generating quality shots. Their 20.6% power‑play is the best in the league, but a 65.96% penalty‑kill rank 30th and a penalty‑take rate of 2.69 per 60 (rank 1) mean they’ll be vulnerable to Montreal’s high shooting. Hellebuyck’s 26th‑ranked GSAx over 20 games is a caution, but the Devils’ balanced 51% Corsi keeps the matchup tight.",
         "matchup_edges": [
-          "Islanders’ elite penalty‑kill (85.94%) vs. Blue Jackets’ weaker kill (73.47%)",
-          "Islanders’ higher expected goals per 60 (2.91) vs. Blue Jackets’ 2.4",
-          "Blue Jackets’ high penalty rate (5.34/60) gives Islanders more power‑play opportunities"
+          "Devils’ elite power‑play vs. Canadiens’ high‑shooting output",
+          "Montreal’s low possession but high finishing vs. New Jersey’s disciplined play and penalty‑kill weakness",
+          "Fowler’s recent GSAx advantage could offset Devils’ penalty‑kill struggles"
         ],
-        "x_factor": "The game hinges on the Blue Jackets’ ability to improve their shooting efficiency; if they can lift their shooting percentage above league average, the matchup could become a true contest.",
-        "key_question": "Will the Blue Jackets’ offensive struggles and penalty‑kill weakness be enough to offset the Islanders’ superior finishing and defensive play?",
-        "quick_takeaway": "Islanders’ better power‑play and penalty‑kill give them the edge, but a surge in Blue Jackets’ shooting could tilt the balance."
+        "x_factor": "The Devils’ penalty‑take dominance (rank 1) could create more opportunities for Montreal’s shooters, but New Jersey’s top‑tier power‑play may offset that advantage.",
+        "key_question": "Will the Devils’ power‑play and disciplined play overcome Montreal’s high‑shooting, low‑possession style, or will Fowler’s recent form and the Canadiens’ finishing edge keep the game close?",
+        "quick_takeaway": "A close game hinges on whether New Jersey’s power‑play can outshine Montreal’s high shooting, with Fowler’s recent form a potential game‑changer."
       }
     },
     {
-      "game_date": "2026-11-17",
-      "away_team": "Oilers",
-      "home_team": "Panthers",
+      "game_date": "2026-11-18",
+      "away_team": "Bruins",
+      "home_team": "Red Wings",
       "goalies": {
-        "away": "Levi",
-        "home": "Markstrom"
-      },
-      "provider": "gemini",
-      "preview": {
-        "headline": "Oilers Bring Hot Streak to Face Disciplined Panthers Squad",
-        "summary": "The Edmonton Oilers travel to face the Florida Panthers on November 17, 2026, riding a five-game winning streak despite underlying metrics that suggest vulnerability. Meanwhile, the Panthers look to bounce back from a loss while relying on a stingy defensive structure and a strong penalty kill.",
-        "away_analysis": "The Oilers enter this matchup on a five-game win streak, defying sub-par underlying metrics that place them 28th in expected goals percentage and 26th in Corsi share. They struggle to generate high-danger chances at even strength, ranking 28th in HDCF%, but remain dangerous thanks to an elite power play operating at 34.25% (2nd in the league). Goalie Levi holds a 24th-ranked GSAx over his last 20 games as Edmonton looks to sustain its winning run against a tough territorial opponent.",
-        "home_analysis": "The Panthers possess a solid possession foundation, ranking 12th in Corsi For % and 3rd in limiting opponent shot attempts with 50.26 Corsi Against per 60. However, their actual results lag behind due to a low shooting percentage of 7.81% and an anemic expected goals-for rate that ranks 30th in the NHL. Florida checks in with a stellar 85.88% penalty kill (6th) but takes penalties at a high frequency, ranking 32nd in penalties taken per 60.",
-        "matchup_edges": [
-          "Edmonton owns a massive special teams advantage with a 2nd-ranked power play facing a Florida team that takes penalties at the 32nd-highest rate in the league.",
-          "Florida boasts a superior defensive suppression profile, ranking 3rd in Corsi Against per 60 and 7th in expected goals against per 60 compared to Edmonton's 25th-ranked expected goals against rate.",
-          "The Panthers control play better at even strength, sitting 12th in Corsi For % while the Oilers languish down at 26th."
-        ],
-        "x_factor": "Special teams discipline will likely decide this contest, as Florida's tendency to take penalties could give Edmonton's lethal power play all the opening it needs.",
-        "key_question": "Can the Oilers keep riding their hot streak and special teams execution, or will the Panthers' superior even-strength shot suppression finally break Edmonton's run?",
-        "quick_takeaway": "Edmonton brings a red-hot five-game winning streak and an elite power play into Florida, but they must solve a Panthers team that suppresses shots brilliantly even if they struggle to finish their own chances."
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Sabres",
-      "home_team": "Flyers",
-      "goalies": {
-        "away": "Lyon",
-        "home": "Woll"
-      },
-      "provider": "gemini",
-      "preview": {
-        "headline": "Flyers Host Slumping Sabres in Search of Bounce-Back",
-        "summary": "The Buffalo Sabres travel to Philadelphia looking to snap a four-game losing streak against a Flyers squad that holds a distinct edge in underlying chance suppression and high-danger control.",
-        "away_analysis": "The Sabres control play well at 5-on-5, ranking 7th in Corsi For% (53.0%) and 8th in shot generation, but they struggle to finish with an 8.12% shooting percentage ranking 23rd. Despite generating strong expected offensive output, their defense and goaltending have lagged, as reflected by Lyon sitting 30th in GSAx over his last 20 games and a penalty kill ranked 27th.",
-        "home_analysis": "Philadelphia drives play exceptionally well, boasting top-5 marks in Expected Goals% (56.16%) and High-Danger Chances% (50.44% Corsi For rank 14th). They suppress chances effectively with the league's 3rd-best expected goals against rate, though their special teams remain an area for improvement with a 27th-ranked power play.",
-        "matchup_edges": [
-          "Philadelphia holds a commanding advantage in high-danger chance share, ranking 5th compared to Buffalo's 19th.",
-          "The Flyers boast elite defensive suppression, ranking 3rd in expected goals against per 60.",
-          "Buffalo generates plenty of shot attempts (8th in CF/60) but struggles to convert, ranking 23rd in shooting percentage."
-        ],
-        "x_factor": "Goaltending performance, as Woll brings a 16th-ranked recent GSAx into the matchup against Lyon, who sits 30th.",
-        "key_question": "Can the Sabres turn their strong shot-generation metrics into actual goals against a stingy Flyers defense?",
-        "quick_takeaway": "Buffalo generates volume but struggles to finish, while Philadelphia leans on elite chance suppression and high-danger control to dictate play."
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Maple Leafs",
-      "home_team": "Blackhawks",
-      "goalies": {
-        "away": "Bobrovsky",
-        "home": "Knight"
-      },
-      "provider": "gemini",
-      "preview": {
-        "headline": "Maple Leafs Visit Blackhawks Looking to Snap Six-Game Skid",
-        "summary": "The Toronto Maple Leafs hit the road to take on the Chicago Blackhawks, with both teams eager to reverse recent struggles. Toronto enters on a six-game losing streak, while Chicago is desperate to spark an offense that ranks near the bottom of the league.",
-        "away_analysis": "The Maple Leafs are enduring a tough stretch with six straight losses, though their underlying numbers suggest a team closer to average than their streak implies. Toronto sits mid-pack in Corsi For% (49.2%) and Expected Goals% (49.2%), while boasting a lethal special teams combination that ranks 6th on the power play and 7th on the penalty kill. However, goaltending has been a glaring concern recently with Bobrovsky ranking 55th in GSAx over his last 20 appearances.",
-        "home_analysis": "The Blackhawks have struggled mightily to control play, ranking 31st in both Corsi For% (45.78%) and Corsi For per 60 while owning the league's 32nd-ranked Goals For% (35.47%). Their offensive generation sits near the basement with an expected goals rate of just 2.06 per 60, compounded by a weak 30th-ranked power play. Knight will look to stabilize the crease against a Toronto squad similarly searching for answers.",
-        "matchup_edges": [
-          "Toronto holds a massive special teams advantage, particularly through a power play operating at 26.67% compared to Chicago's 14.29% efficiency.",
-          "The Maple Leafs control the neutral zone and shot share much more effectively, ranking 21st in Corsi For% compared to the Blackhawks at 31st.",
-          "Toronto suppresses scoring chances better at 5-on-5, sitting 13th in expected goals against per 60 against Chicago's 21st-ranked defense."
-        ],
-        "x_factor": "Special teams execution; if Toronto can draw penalties against a vulnerable Chicago side, their top-tier power play could easily dictate the game.",
-        "key_question": "Can the Maple Leafs leverage their superior possession metrics and special teams to break their six-game slide against a struggling Blackhawks team?",
-        "quick_takeaway": "Toronto possesses a clear upper hand in overall possession and special teams efficiency, giving them a strong opportunity to snap their lengthy losing streak against a punchless Chicago offense."
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Capitals",
-      "home_team": "Lightning",
-      "goalies": {
-        "away": "Thompson",
-        "home": "Vasilevskiy"
+        "away": "Swayman",
+        "home": "Tarasov"
       },
       "provider": "groq",
       "preview": {
-        "headline": "Lightning’s High‑Danger Firepower vs. Capitals’ Possession Battle",
-        "summary": "Both teams are evenly matched in overall possession, but the Lightning’s superior shooting percentage and high‑danger chance generation give them a subtle edge. The Capitals’ recent two‑game losing streak and the Lightning’s slightly better goal‑scoring record could tip the balance in favor of the home club.",
-        "away_analysis": "The Capitals lead the league with a 53.95% Corsi For %, ranking 2nd, and generate 2.98 expected goals per 60, ranking 4th. Their high‑danger chance share (53.55%) and solid shooting (10.3%) suggest they’re turning possession into real chances, though their actual goals per 60 lag (48.98% GF). Their recent L2 streak and two days’ rest may leave them a touch tired, but their strong possession numbers keep them competitive.",
-        "home_analysis": "Lightning’s 53.6% Corsi For places them 4th, and they outscore opponents with 62.07% GF, the 5th best in the league. Their 13.48% shooting—top in the NHL—combined with 55.5% high‑danger chances shows they’re finishing the shots they create. With a 71.7% PK (25th) they’re less stingy on the penalty kill, but their 3.37 penalties per 60 keeps them disciplined enough to stay in games.",
+        "headline": "Bruins’ possession edge meets Red Wings’ disciplined defense",
+        "summary": "Boston’s 51.4% Corsi and 56% GF% show a strong offensive push, but their recent three‑game slide and 0‑day rest raise doubts. Detroit’s solid 80.8% PK% and 71.4% PK% despite a modest 49.8% xGF% suggest a resilient back‑up. The matchup hinges on whether the Bruins can translate possession into goals against a defense that has been stingy on the penalty kill.",
+        "away_analysis": "The Bruins hold the league’s 11th‑ranked Corsi For % and 7th‑ranked GF%, indicating solid possession and finishing. Their 54.3% expected‑goals % and 56.3% high‑danger chances % rank 6th, showing they generate quality chances. However, a 3‑game losing streak, 0‑day rest, and 31st‑ranked penalties taken per 60 raise fatigue and discipline concerns. Goalie Swayman’s 11th‑ranked GSAx over the last 20 games suggests a middling recent performance.\n",
+        "home_analysis": "Detroit’s 20th‑ranked Corsi For % and 20th‑ranked GF% reflect a middling offensive output, but their 11th‑ranked expected‑goals against per 60 and 27th‑ranked penalty‑kill % demonstrate a tight defense. Their 17th‑ranked power‑play % is respectable, though their 25th‑ranked shooting % indicates low conversion. With 3 days of rest and a 1‑game win streak, the Red Wings’ goalie Tarasov, 6th‑ranked GSAx, is a bright spot. The team’s 14th‑ranked penalties taken per 60 suggests better discipline than Boston.\n",
         "matchup_edges": [
-          "Lightning’s league‑leading shooting percentage gives them a higher probability of converting high‑danger chances into goals.",
-          "Capitals’ superior possession (Corsi For %) and high‑danger share keep the game tight; a slight drop in their recent form could swing the outcome.",
-          "Both teams’ goalies rank in the low 30s over 20 games, indicating similar recent performance; the game will hinge more on the teams’ offensive execution than on netminders."
+          "Boston’s possession advantage (Corsi 51.4% vs Detroit 49.3%)",
+          "Detroit’s penalty‑kill edge (80.8% vs 80.8% actually equal? wait both 80.8%? Boston 80.8, Detroit 71.4; so Boston better)",
+          "Boston’s high‑danger chance generation (56.3% vs 51.6%)"
         ],
-        "x_factor": "Lightning’s 13.48% shooting—unmatched in the league—will be the key differentiator if the Capitals can’t sustain their possession advantage.",
-        "key_question": "Will the Lightning’s high‑efficiency shooting overcome the Capitals’ possession‑based grind, or will the Capitals’ strong Corsi and high‑danger output keep the game close?",
-        "quick_takeaway": "Lightning’s elite shooting efficiency edges the Capitals’ possession battle, but the Capitals’ high‑danger chance generation keeps the matchup tight."
+        "x_factor": "Boston’s 0‑day rest combined with a three‑game slide could blunt their possession advantage, while Detroit’s disciplined penalty killing and solid goaltending offer a counterbalance.",
+        "key_question": "Will the Bruins’ high‑danger chance generation and possession edge overcome their fatigue and recent slump, or will Detroit’s defensive stoutness and goaltending keep the score tight?",
+        "quick_takeaway": "Boston’s possession and high‑danger chances are the key advantage, but Detroit’s defensive discipline and rested goalie could keep the game close."
       }
     },
     {
-      "game_date": "2026-11-17",
-      "away_team": "Predators",
-      "home_team": "Wild",
+      "game_date": "2026-11-18",
+      "away_team": "Avalanche",
+      "home_team": "Mammoth",
       "goalies": {
-        "away": "Saros",
-        "home": "Wallstedt"
-      },
-      "provider": "groq",
-      "preview": {
-        "headline": "Predators’ Power‑Play Fireworks vs. Wild’s High‑Scoring Surge",
-        "summary": "The Nashville Predators, with a potent power play and a league‑best penalty kill, will test Minnesota’s offensive firepower and the Wild’s top‑tier goalie. Both teams generate a similar volume of high‑danger chances, but the Wild’s superior goals‑for percentage and shooting efficiency could tilt the balance, especially if Nashville’s goaltender Saros can stay sharp after a recent loss.",
-        "away_analysis": "Nashville’s 26.09% power play ranks 7th, and their 90.0% penalty kill is the league’s best. Their Corsi For % of 47.4% and expected‑goals % of 50.26% place them in the lower half, indicating they’re often out‑shot. However, their high‑danger chances (52.75%) and 9.15% shooting suggest they’re capitalizing well when the puck is in front of them. Saros, ranked 4th in GSAx over the last 20 games, has been a solid stay‑away, but the team’s recent L1 and tight schedule (two games in four days) could test his consistency.",
-        "home_analysis": "Minnesota’s 71.11% goals‑for and 10.7% shooting rank 2nd and 8th, respectively, underscoring an efficient offense. Their Corsi For % of 49.76% and expected‑goals % of 52.15% show they’re slightly better at generating chances than Nashville. While their penalty kill (79.41%) is decent, it trails Nashville’s elite 90.0%. Wallstedt’s top GSAx ranking indicates a hot goalie who can keep the Wild’s offense in check. Minnesota’s 3‑game winning streak and 2‑day rest give them a slight rhythm advantage.",
-        "matchup_edges": [
-          "Nashville’s league‑best penalty kill vs. Minnesota’s weaker kill",
-          "Minnesota’s superior shooting percentage and goals‑for rank",
-          "Nashville’s power‑play efficiency could exploit any lapses in Minnesota’s defense"
-        ],
-        "x_factor": "The Wild’s goaltender Wallstedt, ranked #1 in recent GSAx, could be the deciding factor if Nashville’s power‑play and high‑danger chances convert at a high rate.",
-        "key_question": "Will Nashville’s elite penalty kill and power‑play prowess offset Minnesota’s top‑tier offense and goaltending, or will the Wild’s efficient shooting and recent momentum give them the edge?",
-        "quick_takeaway": "Nashville’s power‑play and penalty‑kill strengths face off against Minnesota’s high‑scoring efficiency—who will capitalize on the high‑danger chances?"
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Ducks",
-      "home_team": "Blues",
-      "goalies": {
-        "away": "Dostal",
-        "home": "Hofer"
-      },
-      "provider": "groq",
-      "preview": {
-        "headline": "Blues’ Defensive Resilience vs Ducks’ Power‑Play Dominance",
-        "summary": "The St. Louis Blues, sitting near the top of the league in expected‑goals generation and penalty‑kill efficiency, will test the Anaheim Ducks’ elite power‑play unit and high‑shooting‑percentage offense. With both teams on a single‑game streak, the game hinges on which side can convert its chances and maintain possession control.",
-        "away_analysis": "Anaheim’s 50.29% Corsi For and 35.21% power‑play rate rank first in the league, but their 45.87% expected‑goals percentage and 41.83% high‑danger chance share leave them 27th and 29th, respectively. The Ducks’ shooting at 11.52% is a league‑best 6th, suggesting strong finishing, yet their 74.07% penalty‑kill is only 22nd, indicating vulnerability when shorthanded.",
-        "home_analysis": "St. Louis’ 48.46% Corsi For is 23rd, but their expected‑goals for per 60 at 2.98 ranks 4th, and their high‑danger chance share of 54.2% is 7th—proof that they generate quality chances. Their penalty‑kill at 84.61% ranks 8th, while their power‑play at 20.69% is 17th, showing a more balanced but less explosive special‑teams profile.",
-        "matchup_edges": [
-          "Blues’ 84.61% PK% vs Ducks’ 74.07% PK% gives St. Louis a defensive edge in the penalty kill.",
-          "Ducks’ 35.21% PP% vs Blues’ 20.69% PP% makes Anaheim a threat on the man‑advantage.",
-          "Blues’ 54.2% HDCF% vs Ducks’ 41.83% HDCF% means St. Louis produces more high‑danger chances per possession."
-        ],
-        "x_factor": "The key will be whether the Ducks can convert their 11.52% shooting into goals against a Blues goalie ranked 8th in GSAx over the last 20 games, while the Blues will rely on their top‑tier penalty kill to neutralize Anaheim’s power‑play.",
-        "key_question": "Can the Ducks’ elite power‑play and high shooting percentage overcome the Blues’ superior penalty kill and high‑danger chance generation?",
-        "quick_takeaway": "Blues’ defensive strength and high‑danger chance production give them a slight edge, but Anaheim’s power‑play potency could tilt the balance."
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Stars",
-      "home_team": "Golden Knights",
-      "goalies": {
-        "away": "Oettinger",
-        "home": "Hill"
+        "away": "Blackwood",
+        "home": "Vejmelka"
       },
       "provider": "gemini",
       "preview": {
-        "headline": "Stars Look to Translate Dominant Underlying Metrics Against Struggling Golden Knights",
-        "summary": "The Dallas Stars visit the Vegas Golden Knights on November 17, 2026, bringing elite underlying metrics that vastly outpace their actual goal conversion. Meanwhile, Vegas enters on a two-game skid seeking to jumpstart a cold offense that ranks dead last in shooting percentage.",
-        "away_analysis": "The Stars boast stellar possession and defensive suppression, ranking second in the league in expected goals percentage at 59.53 percent and first in expected goals against per 60. However, a low 8.33 shooting percentage has suppressed their actual goal output, leaving them at 42.86 percent in goals for. Backed by Oettinger and a top-tier penalty kill, Dallas drives play effectively and suppresses high-danger looks at an elite rate.",
-        "home_analysis": "The Golden Knights are fighting through a finishing slump, sitting dead last in the league with a 6.59 shooting percentage that has dragged their goal share down to 40 percent. While their expected metrics sit near even at 51.67 percent, they struggle to suppress shots against, ranking 23rd in Corsi against per 60. Special teams present a glimmer of hope, as a strong power play operating at nearly 29 percent will look to exploit any undisciplined stretches from Dallas.",
+        "headline": "Avalanche Visit Fatigued Mammoth Squad Seeking Traction",
+        "summary": "The Colorado Avalanche travel to face the Utah Mammoth, who enter this matchup mired in a six-game losing streak and playing their fourth game in seven days. While the Mammoth boast elite underlying metrics, stark finishing and special teams disparities set up a fascinating clash of styles.",
+        "away_analysis": "The Avalanche arrive well-rested with three days off, boasting strong shot-generation numbers that rank second in the league at over 62 Corsi For per 60. Though their expected goal share sits outside the top twenty, a healthy 10.2 shooting percentage helps prop up their top-ten goals-for rate. Blackwood projects to get the nod in net, looking to stabilize behind a possession-heavy Avalanche attack.",
+        "home_analysis": "Utah's underlying numbers paint the picture of an elite team suffering from brutal puck luck, ranking third in expected goals percentage and second in high-danger chance share. However, an anemic 7.7 percent shooting clip and a leaky 28th-ranked penalty kill have fueled their six-game skid. Vejmelka will need a bounce-back performance to help the Mammoth translate their territorial dominance into actual wins.",
         "matchup_edges": [
-          "Dallas elite defensive suppression, leading the league in expected goals against per 60 against a Vegas offense struggling to finish.",
-          "A massive high-danger chance share advantage for the Stars, ranking fourth in HDCF% compared to the Golden Knights at 15th.",
-          "Special teams disparity on the penalty kill, where the Stars rank third overall against a Vegas unit struggling at 76.78 percent."
+          "Utah holds a massive advantage in expected goal generation and high-danger chance share, ranking inside the league's top three.",
+          "Colorado enjoys a significant rest advantage, playing on three days of rest while Utah plays its fourth game in seven days.",
+          "The Mammoth possess a lethal top-three power play that could exploit Colorado's discipline if the Avalanche take penalties."
         ],
-        "x_factor": "Finishing talent will dictate this game, as both squads heavily underperform their expected goal shares due to poor shooting percentages.",
-        "key_question": "Can the Golden Knights generate enough offensive pressure to crack a suffocating Dallas defensive structure?",
-        "quick_takeaway": "Dallas controls play and suppresses chances at an elite level, but their finishing woes create an opening for a Vegas team desperate to snap a two-game skid."
-      }
-    },
-    {
-      "game_date": "2026-11-17",
-      "away_team": "Flames",
-      "home_team": "Sharks",
-      "goalies": {
-        "away": "Wolf",
-        "home": "Askarov"
-      },
-      "provider": "gemini",
-      "preview": {
-        "headline": "Flames and Sharks Meet for Second Time in November Clash",
-        "summary": "The Calgary Flames travel to face the San Jose Sharks on November 17, 2026, with both teams looking to secure a crucial win amidst heavy early-season schedules. Both squads played three games over the last seven days and enter this matchup with one day of rest.",
-        "away_analysis": "The Flames struggle to generate offense at 5-on-5, ranking 24th in expected goals for per 60 and 29th in shooting percentage at 7.46%. However, they possess a dangerous power play operating at 27.08% which ranks 5th in the league, alongside a reliable penalty kill sitting 9th overall. Wolf projects to get the nod in net, looking to rebound from a tougher stretch in recent outings.",
-        "home_analysis": "The Sharks carry a two-game winning streak into this matchup despite facing significant defensive metrics pressure, ranking 31st in Corsi against per 60 and 32nd in expected goals against per 60. Their offense relies heavily on execution given a 31st-ranked expected goals percentage of 39.88%. Askarov anchors the backend with a solid 21st-ranked GSAx over his last 20 games, giving San Jose a stabilizing presence against heavy pressure.",
-        "matchup_edges": [
-          "Calgary holds a massive special teams advantage, especially on the power play where they rank 5th compared to San Jose's 24th-ranked penalty kill.",
-          "The Flames display stronger underlying shot-share metrics, sitting higher in both Corsi For % and expected goals percentage.",
-          "San Jose features a notable edge in recent goaltending performance based on Askarov's GSAx rank compared to the visitor's crease."
-        ],
-        "x_factor": "Special teams efficiency against San Jose's high penalty frequency.",
-        "key_question": "Can the Sharks mitigate their defensive zone struggles against a Flames team desperate to solve their finishing woes?",
-        "quick_takeaway": "Calgary's elite power play and superior possession metrics clash with San Jose's recent winning form and stability in goal."
+        "x_factor": "Special teams execution, specifically whether Utah's dangerous power play can compensate for their struggling penalty kill against Colorado's disciplined units.",
+        "key_question": "Can the Mammoth finally turn their dominant underlying chance generation into goals, or will fatigue and poor finishing sink them once again?",
+        "quick_takeaway": "Utah dominates the shot and chance metrics but can't buy a goal, while Colorado arrives fresh and dangerous on the counter."
       }
     }
   ]
