@@ -1,56 +1,210 @@
 {
-  "generated_at": "2026-11-19",
+  "generated_at": "2026-11-21",
   "games": [
     {
-      "game_date": "2026-11-19",
+      "game_date": "2026-11-21",
       "away_team": {
-        "team": "Flyers",
-        "team_abbrev": "PHI",
+        "team": "Oilers",
+        "team_abbrev": "EDM",
+        "current_streak": "L1",
+        "games_last_4_days": 2,
+        "games_last_7_days": 4,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-22",
+          "game_id": 2026020163,
+          "opponent": "CAR",
+          "venue": "Home",
+          "result": "W",
+          "streak_result": "W",
+          "goals_for": 6,
+          "goals_against": 5
+        }
+      },
+      "home_team": {
+        "team": "Hurricanes",
+        "team_abbrev": "CAR",
+        "current_streak": "L1",
+        "games_last_4_days": 1,
+        "games_last_7_days": 2,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-22",
+          "game_id": 2026020163,
+          "opponent": "EDM",
+          "venue": "Away",
+          "result": "OTL",
+          "streak_result": "L",
+          "goals_for": 5,
+          "goals_against": 6
+        }
+      },
+      "goalies": {
+        "away": "Levi",
+        "home": "Kochetkov"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
+        "team": "Blackhawks",
+        "team_abbrev": "CHI",
+        "current_streak": "L1",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": null
+      },
+      "home_team": {
+        "team": "Flames",
+        "team_abbrev": "CGY",
+        "current_streak": "L1",
+        "games_last_4_days": 2,
+        "games_last_7_days": 4,
+        "rest_days": 1,
+        "previous_head_to_head": null
+      },
+      "goalies": {
+        "away": "Knight",
+        "home": "Wolf"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
+        "team": "Penguins",
+        "team_abbrev": "PIT",
+        "current_streak": "L2",
+        "games_last_4_days": 1,
+        "games_last_7_days": 2,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-24",
+          "game_id": 2026020172,
+          "opponent": "NSH",
+          "venue": "Home",
+          "result": "W",
+          "streak_result": "W",
+          "goals_for": 3,
+          "goals_against": 2
+        }
+      },
+      "home_team": {
+        "team": "Predators",
+        "team_abbrev": "NSH",
+        "current_streak": "L2",
+        "games_last_4_days": 1,
+        "games_last_7_days": 2,
+        "rest_days": 3,
+        "previous_head_to_head": {
+          "date": "2026-10-24",
+          "game_id": 2026020172,
+          "opponent": "PIT",
+          "venue": "Away",
+          "result": "OTL",
+          "streak_result": "L",
+          "goals_for": 2,
+          "goals_against": 3
+        }
+      },
+      "goalies": {
+        "away": "Silovs",
+        "home": "Saros"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
+        "team": "Sabres",
+        "team_abbrev": "BUF",
         "current_streak": "W1",
         "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
         "previous_head_to_head": {
-          "date": "2026-10-17",
-          "game_id": 2026020128,
+          "date": "2026-10-12",
+          "game_id": 2026020087,
+          "opponent": "FLA",
+          "venue": "Home",
+          "result": "W",
+          "streak_result": "W",
+          "goals_for": 5,
+          "goals_against": 3
+        }
+      },
+      "home_team": {
+        "team": "Panthers",
+        "team_abbrev": "FLA",
+        "current_streak": "L2",
+        "games_last_4_days": 1,
+        "games_last_7_days": 3,
+        "rest_days": 3,
+        "previous_head_to_head": {
+          "date": "2026-10-12",
+          "game_id": 2026020087,
+          "opponent": "BUF",
+          "venue": "Away",
+          "result": "L",
+          "streak_result": "L",
+          "goals_for": 3,
+          "goals_against": 5
+        }
+      },
+      "goalies": {
+        "away": "Lyon",
+        "home": "Markstrom"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
+        "team": "Kings",
+        "team_abbrev": "LAK",
+        "current_streak": "W2",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-29",
+          "game_id": 2026020212,
           "opponent": "OTT",
           "venue": "Home",
           "result": "W",
           "streak_result": "W",
-          "goals_for": 3,
-          "goals_against": 1
+          "goals_for": 6,
+          "goals_against": 5
         }
       },
       "home_team": {
         "team": "Senators",
         "team_abbrev": "OTT",
-        "current_streak": "W3",
-        "games_last_4_days": 1,
+        "current_streak": "L1",
+        "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
         "previous_head_to_head": {
-          "date": "2026-10-17",
-          "game_id": 2026020128,
-          "opponent": "PHI",
+          "date": "2026-10-29",
+          "game_id": 2026020212,
+          "opponent": "LAK",
           "venue": "Away",
-          "result": "L",
+          "result": "OTL",
           "streak_result": "L",
-          "goals_for": 1,
-          "goals_against": 3
+          "goals_for": 5,
+          "goals_against": 6
         }
       },
       "goalies": {
-        "away": "Vladar",
-        "home": "Ersson"
+        "away": "Kuemper",
+        "home": "Ullmark"
       }
     },
     {
-      "game_date": "2026-11-19",
+      "game_date": "2026-11-21",
       "away_team": {
-        "team": "Islanders",
-        "team_abbrev": "NYI",
-        "current_streak": "W3",
-        "games_last_4_days": 1,
+        "team": "Golden Knights",
+        "team_abbrev": "VGK",
+        "current_streak": "L4",
+        "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
         "previous_head_to_head": null
@@ -58,355 +212,287 @@
       "home_team": {
         "team": "Jets",
         "team_abbrev": "WPG",
-        "current_streak": "L1",
-        "games_last_4_days": 1,
+        "current_streak": "W1",
+        "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
         "previous_head_to_head": null
       },
       "goalies": {
-        "away": "Sorokin",
-        "home": "Daws"
+        "away": "Hill",
+        "home": "Skinner"
       }
     },
     {
-      "game_date": "2026-11-19",
+      "game_date": "2026-11-21",
       "away_team": {
-        "team": "Canadiens",
-        "team_abbrev": "MTL",
-        "current_streak": "W1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 4,
-        "rest_days": 0,
-        "previous_head_to_head": {
-          "date": "2026-10-06",
-          "game_id": 2026020045,
-          "opponent": "CAR",
-          "venue": "Home",
-          "result": "L",
-          "streak_result": "L",
-          "goals_for": 4,
-          "goals_against": 6
-        }
-      },
-      "home_team": {
-        "team": "Hurricanes",
-        "team_abbrev": "CAR",
-        "current_streak": "W4",
-        "games_last_4_days": 0,
+        "team": "Devils",
+        "team_abbrev": "NJD",
+        "current_streak": "L1",
+        "games_last_4_days": 1,
         "games_last_7_days": 2,
-        "rest_days": 4,
+        "rest_days": 2,
         "previous_head_to_head": {
-          "date": "2026-10-06",
-          "game_id": 2026020045,
-          "opponent": "MTL",
-          "venue": "Away",
+          "date": "2026-11-05",
+          "game_id": 2026020254,
+          "opponent": "STL",
+          "venue": "Home",
           "result": "W",
           "streak_result": "W",
-          "goals_for": 6,
+          "goals_for": 5,
           "goals_against": 4
         }
       },
-      "goalies": {
-        "away": "Dobes",
-        "home": "Kochetkov"
-      }
-    },
-    {
-      "game_date": "2026-11-19",
-      "away_team": {
-        "team": "Sabres",
-        "team_abbrev": "BUF",
-        "current_streak": "L5",
-        "games_last_4_days": 1,
+      "home_team": {
+        "team": "Blues",
+        "team_abbrev": "STL",
+        "current_streak": "W2",
+        "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
         "previous_head_to_head": {
-          "date": "2026-10-24",
-          "game_id": 2026020173,
-          "opponent": "WSH",
+          "date": "2026-11-05",
+          "game_id": 2026020254,
+          "opponent": "NJD",
           "venue": "Away",
           "result": "OTL",
           "streak_result": "L",
-          "goals_for": 3,
-          "goals_against": 4
+          "goals_for": 4,
+          "goals_against": 5
         }
       },
-      "home_team": {
+      "goalies": {
+        "away": "Hellebuyck",
+        "home": "Hofer"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
         "team": "Capitals",
         "team_abbrev": "WSH",
-        "current_streak": "L3",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-10-24",
-          "game_id": 2026020173,
-          "opponent": "BUF",
-          "venue": "Home",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 4,
-          "goals_against": 3
-        }
-      },
-      "goalies": {
-        "away": "Luukkonen",
-        "home": "Thompson"
-      }
-    },
-    {
-      "game_date": "2026-11-19",
-      "away_team": {
-        "team": "Kings",
-        "team_abbrev": "LAK",
-        "current_streak": "W1",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Maple Leafs",
-        "team_abbrev": "TOR",
-        "current_streak": "L7",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Kuemper",
-        "home": "Stolarz"
-      }
-    },
-    {
-      "game_date": "2026-11-19",
-      "away_team": {
-        "team": "Blues",
-        "team_abbrev": "STL",
-        "current_streak": "W1",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Penguins",
-        "team_abbrev": "PIT",
-        "current_streak": "L1",
-        "games_last_4_days": 0,
-        "games_last_7_days": 1,
-        "rest_days": 4,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Hofer",
-        "home": "Silovs"
-      }
-    },
-    {
-      "game_date": "2026-11-19",
-      "away_team": {
-        "team": "Oilers",
-        "team_abbrev": "EDM",
-        "current_streak": "W6",
+        "current_streak": "L4",
         "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Lightning",
-        "team_abbrev": "TBL",
-        "current_streak": "W1",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Levi",
-        "home": "Vasilevskiy"
-      }
-    },
-    {
-      "game_date": "2026-11-19",
-      "away_team": {
-        "team": "Blue Jackets",
-        "team_abbrev": "CBJ",
-        "current_streak": "L5",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Blackhawks",
-        "team_abbrev": "CHI",
-        "current_streak": "W1",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Greaves",
-        "home": "Knight"
-      }
-    },
-    {
-      "game_date": "2026-11-19",
-      "away_team": {
-        "team": "Wild",
-        "team_abbrev": "MIN",
-        "current_streak": "W4",
-        "games_last_4_days": 1,
-        "games_last_7_days": 3,
-        "rest_days": 1,
         "previous_head_to_head": {
-          "date": "2026-10-22",
-          "game_id": 2026020162,
-          "opponent": "CGY",
-          "venue": "Away",
-          "result": "L",
-          "streak_result": "L",
-          "goals_for": 1,
+          "date": "2026-09-25",
+          "game_id": 2026010049,
+          "opponent": "BOS",
+          "venue": "Home",
+          "result": "W",
+          "streak_result": "W",
+          "goals_for": 3,
           "goals_against": 2
         }
       },
       "home_team": {
-        "team": "Flames",
-        "team_abbrev": "CGY",
+        "team": "Bruins",
+        "team_abbrev": "BOS",
+        "current_streak": "W1",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 2,
+        "previous_head_to_head": {
+          "date": "2026-09-25",
+          "game_id": 2026010049,
+          "opponent": "WSH",
+          "venue": "Away",
+          "result": "OTL",
+          "streak_result": "L",
+          "goals_for": 2,
+          "goals_against": 3
+        }
+      },
+      "goalies": {
+        "away": "Thompson",
+        "home": "Swayman"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
+        "team": "Islanders",
+        "team_abbrev": "NYI",
+        "current_streak": "L1",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": null
+      },
+      "home_team": {
+        "team": "Red Wings",
+        "team_abbrev": "DET",
+        "current_streak": "L1",
+        "games_last_4_days": 1,
+        "games_last_7_days": 2,
+        "rest_days": 2,
+        "previous_head_to_head": null
+      },
+      "goalies": {
+        "away": "Sorokin",
+        "home": "Gibson"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
+        "team": "Blue Jackets",
+        "team_abbrev": "CBJ",
         "current_streak": "W1",
         "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
         "previous_head_to_head": {
-          "date": "2026-10-22",
-          "game_id": 2026020162,
-          "opponent": "MIN",
+          "date": "2026-10-20",
+          "game_id": 2026020145,
+          "opponent": "TOR",
           "venue": "Home",
+          "result": "L",
+          "streak_result": "L",
+          "goals_for": 2,
+          "goals_against": 6
+        }
+      },
+      "home_team": {
+        "team": "Maple Leafs",
+        "team_abbrev": "TOR",
+        "current_streak": "L8",
+        "games_last_4_days": 2,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-20",
+          "game_id": 2026020145,
+          "opponent": "CBJ",
+          "venue": "Away",
           "result": "W",
           "streak_result": "W",
-          "goals_for": 2,
-          "goals_against": 1
+          "goals_for": 6,
+          "goals_against": 2
         }
       },
       "goalies": {
-        "away": "Wallstedt",
-        "home": "Wolf"
+        "away": "Greaves",
+        "home": "Bobrovsky"
       }
     },
     {
-      "game_date": "2026-11-19",
+      "game_date": "2026-11-21",
       "away_team": {
-        "team": "Ducks",
-        "team_abbrev": "ANA",
-        "current_streak": "L1",
+        "team": "Flyers",
+        "team_abbrev": "PHI",
+        "current_streak": "W2",
         "games_last_4_days": 2,
-        "games_last_7_days": 3,
+        "games_last_7_days": 4,
         "rest_days": 1,
         "previous_head_to_head": null
       },
       "home_team": {
-        "team": "Avalanche",
-        "team_abbrev": "COL",
-        "current_streak": "L1",
+        "team": "Canadiens",
+        "team_abbrev": "MTL",
+        "current_streak": "W2",
+        "games_last_4_days": 2,
+        "games_last_7_days": 4,
+        "rest_days": 1,
+        "previous_head_to_head": null
+      },
+      "goalies": {
+        "away": "Vladar",
+        "home": "Fowler"
+      }
+    },
+    {
+      "game_date": "2026-11-21",
+      "away_team": {
+        "team": "Ducks",
+        "team_abbrev": "ANA",
+        "current_streak": "L2",
+        "games_last_4_days": 2,
+        "games_last_7_days": 4,
+        "rest_days": 1,
+        "previous_head_to_head": null
+      },
+      "home_team": {
+        "team": "Mammoth",
+        "team_abbrev": "UTA",
+        "current_streak": "W1",
         "games_last_4_days": 1,
         "games_last_7_days": 3,
-        "rest_days": 0,
+        "rest_days": 2,
         "previous_head_to_head": null
       },
       "goalies": {
         "away": "Dostal",
-        "home": "Wedgewood"
+        "home": "Vejmelka"
       }
     },
     {
-      "game_date": "2026-11-19",
+      "game_date": "2026-11-21",
       "away_team": {
-        "team": "Canucks",
-        "team_abbrev": "VAN",
-        "current_streak": "W2",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 2,
-        "previous_head_to_head": {
-          "date": "2026-09-26",
-          "game_id": 2026010056,
-          "opponent": "SEA",
-          "venue": "Home",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 4,
-          "goals_against": 3
-        }
-      },
-      "home_team": {
         "team": "Kraken",
         "team_abbrev": "SEA",
-        "current_streak": "L3",
-        "games_last_4_days": 0,
+        "current_streak": "W1",
+        "games_last_4_days": 1,
         "games_last_7_days": 2,
-        "rest_days": 4,
-        "previous_head_to_head": {
-          "date": "2026-09-26",
-          "game_id": 2026010056,
-          "opponent": "VAN",
-          "venue": "Away",
-          "result": "L",
-          "streak_result": "L",
-          "goals_for": 3,
-          "goals_against": 4
-        }
+        "rest_days": 1,
+        "previous_head_to_head": null
+      },
+      "home_team": {
+        "team": "Sharks",
+        "team_abbrev": "SJS",
+        "current_streak": "L1",
+        "games_last_4_days": 1,
+        "games_last_7_days": 3,
+        "rest_days": 3,
+        "previous_head_to_head": null
       },
       "goalies": {
-        "away": "Merilinen",
-        "home": "Grubauer"
+        "away": "Grubauer",
+        "home": "Askarov"
       }
     },
     {
-      "game_date": "2026-11-19",
+      "game_date": "2026-11-21",
       "away_team": {
-        "team": "Stars",
-        "team_abbrev": "DAL",
-        "current_streak": "W3",
-        "games_last_4_days": 2,
-        "games_last_7_days": 4,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-11-17",
-          "game_id": 2026020342,
-          "opponent": "VGK",
-          "venue": "Away",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 4,
-          "goals_against": 3
-        }
-      },
-      "home_team": {
-        "team": "Golden Knights",
-        "team_abbrev": "VGK",
-        "current_streak": "L3",
+        "team": "Wild",
+        "team_abbrev": "MIN",
+        "current_streak": "W5",
         "games_last_4_days": 2,
         "games_last_7_days": 3,
         "rest_days": 1,
         "previous_head_to_head": {
-          "date": "2026-11-17",
-          "game_id": 2026020342,
-          "opponent": "DAL",
+          "date": "2026-10-25",
+          "game_id": 2026020184,
+          "opponent": "VAN",
+          "venue": "Away",
+          "result": "W",
+          "streak_result": "W",
+          "goals_for": 4,
+          "goals_against": 2
+        }
+      },
+      "home_team": {
+        "team": "Canucks",
+        "team_abbrev": "VAN",
+        "current_streak": "L1",
+        "games_last_4_days": 1,
+        "games_last_7_days": 3,
+        "rest_days": 1,
+        "previous_head_to_head": {
+          "date": "2026-10-25",
+          "game_id": 2026020184,
+          "opponent": "MIN",
           "venue": "Home",
-          "result": "OTL",
+          "result": "L",
           "streak_result": "L",
-          "goals_for": 3,
+          "goals_for": 2,
           "goals_against": 4
         }
       },
       "goalies": {
-        "away": "Oettinger",
-        "home": "Hart"
+        "away": "Wallstedt",
+        "home": "Merilinen"
       }
     }
   ]
