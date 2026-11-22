@@ -1,29 +1,125 @@
 {
-  "generated_at": "2026-11-21T15:01:19.746510+00:00",
+  "generated_at": "2026-11-22T15:00:19.752612+00:00",
   "model": "multi-provider",
   "games": [
     {
-      "game_date": "2026-11-21",
-      "away_team": "Oilers",
-      "home_team": "Hurricanes",
+      "game_date": "2026-11-22",
+      "away_team": "Hurricanes",
+      "home_team": "Rangers",
       "goalies": {
-        "away": "Levi",
-        "home": "Kochetkov"
+        "away": "Bussi",
+        "home": "Garand"
+      },
+      "provider": "gemini",
+      "preview": {
+        "headline": "Statistical Juggernaut Hurricanes Visit Well-Rested Rangers",
+        "summary": "The Carolina Hurricanes put their league-leading possession and territorial dominance on the line against a New York Rangers squad riding a three-game winning streak and enjoying a massive rest advantage.",
+        "away_analysis": "The Hurricanes are putting on a clinic across the board, capturing the league's top spot in Corsi For %, Expected Goals %, and High Danger Chances %. They suffocate opponents by allowing a league-low 44.75 Corsi Against per 60 while driving a relentless 69.89 Corsi For per 60. Backed by an efficient shooting percentage and top-tier special teams, Carolina dominates play nightly, though they play on zero days of rest.",
+        "home_analysis": "The Rangers enter this matchup with a healthy five days of rest and a three-game winning streak behind them. While their raw Corsi sits in the middle of the pack at 13th, their underlying expected goals share ranks a strong fifth, suggesting they generate quality looks even if possession is balanced. New York also boasts an elite penalty kill operating at number one in the league, paired with solid defensive suppression that ranks sixth in expected goals against.",
+        "matchup_edges": [
+          "Carolina holds an overwhelming territorial advantage, ranking 1st in Corsi For %, Expected Goals %, and High Danger Chances %.",
+          "New York boasts a stellar penalty kill that ranks 1st in the league, which will be tested by Carolina's 6th-ranked power play.",
+          "The Rangers enjoy a massive rest advantage with five full days off, while the Hurricanes play the second leg of a back-to-back with zero days of rest."
+        ],
+        "x_factor": "Rest versus rust and fatigue: Can the well-rested Rangers legs weather Carolina's relentless pace on zero rest?",
+        "key_question": "Will Carolina's overwhelming possession metrics translate to goals against New York's top-ranked penalty kill and well-rested defense?",
+        "quick_takeaway": "Carolina brings a statistical juggernaut of possession into Madison Square Garden, but a heavily rested Rangers team with an elite penalty kill provides a formidable counter."
+      }
+    },
+    {
+      "game_date": "2026-11-22",
+      "away_team": "Sabres",
+      "home_team": "Lightning",
+      "goalies": {
+        "away": "Luukkonen",
+        "home": "Vasilevskiy"
+      },
+      "provider": "gemini",
+      "preview": {
+        "headline": "Lightning Host Fatigued Sabres in Atlantic Division Rematch",
+        "summary": "The Buffalo Sabres conclude a heavy stretch of three games in four days and play on zero days of rest as they visit the Tampa Bay Lightning. Tampa Bay enters well-rested with two full days off and a dominant two-game win streak, looking to repeat their previous 8-3 victory over Buffalo earlier this month.",
+        "away_analysis": "The Sabres face a steep uphill battle operating on the second half of a back-to-back with zero days of rest, having already played three games in the last four days. Statistically, Buffalo hovers around the league average in possession with a 50.18 Corsi For % and a 16th-ranked expected goals share, but their defensive suppression struggles with an expected goals against rate ranking 23rd. Special teams also present a major vulnerability, as a 30th-ranked power play and 26th-ranked penalty kill leave them exposed against elite competition.",
+        "home_analysis": "The Lightning boast exceptional underlying metrics, ranking second in the league in expected goals percentage and high-danger chance share while driving play at a 53.46 Corsi For %. Tampa Bay combines this elite possession engine with lethal finishing, holding the league's second-best shooting percentage and a top-five goals-for rate. Furthermore, they suppress chances efficiently, allowing the second-fewest expected goals against per 60 minutes.",
+        "matchup_edges": [
+          "Tampa Bay holds a massive advantage in expected goal share and high-danger chance generation.",
+          "The Sabres are severely fatigued, playing their third game in four days with zero rest.",
+          "Tampa Bay's lethal finishing power-rates contrast sharply with Buffalo's struggling bottom-tier special teams."
+        ],
+        "x_factor": "Schedule fatigue and special teams efficiency, with the rested Lightning catching a tired Sabres squad.",
+        "key_question": "Can the exhausted Sabres summon enough energy to slow down Tampa Bay's high-powered attack after an 8-3 blowout earlier this month?",
+        "quick_takeaway": "A rested and statistically dominant Lightning squad holds all the cards against a fatigued Sabres team playing its third game in four days."
+      }
+    },
+    {
+      "game_date": "2026-11-22",
+      "away_team": "Penguins",
+      "home_team": "Stars",
+      "goalies": {
+        "away": "Silovs",
+        "home": "Oettinger"
+      },
+      "provider": "gemini",
+      "preview": {
+        "headline": "Penguins Seek Bounce-Back Against Rested Stars",
+        "summary": "The Pittsburgh Penguins wrap up a busy stretch visiting the red-hot Dallas Stars, who enter on a four-game winning streak. This matchup pairs Pittsburgh's heavy shot generation against Dallas's elite defensive suppression and goaltending.",
+        "away_analysis": "The Penguins control play well, ranking 5th in Corsi For% and 4th in Corsi For per 60, but suffer from an extreme finishing slump with a league-worst 32nd-ranked Goals For% of 36.73% and a 31st-ranked shooting percentage. Despite generating plenty of offense with the 5th-ranked expected goals rate, they are mired in a three-game losing streak and playing on zero days of rest.",
+        "home_analysis": "Dallas boasts elite defensive structure, holding the league's top ranking in expected goals against per 60 and 3rd in penalty killing at 88.46%. While their possession metrics sit in the middle of the pack, they excel at high-danger chance share, ranking 5th in HDCF%. Backed by Jake Oettinger's strong 8th-ranked GSAx over his last 20 games, the Stars are rolling on a four-game winning streak with two days of rest.",
+        "matchup_edges": [
+          "Dallas holds a clear goaltending advantage with Jake Oettinger ranking 8th in GSAx compared to Pittsburgh's recent struggles.",
+          "The Stars own an elite defensive suppression system, ranking 1st in expected goals against per 60.",
+          "The Penguins possess a distinct rest disadvantage, playing on zero days of rest while Dallas enjoys two full days off."
+        ],
+        "x_factor": "Silovs in net for Pittsburgh facing a rested Dallas team that suppresses high-danger chances exceptionally well.",
+        "key_question": "Can the Penguins finally break their dreadful shooting slump against one of the league's stingiest defensive units?",
+        "quick_takeaway": "Pittsburgh's strong shot volume crashes into Dallas's stifling defensive suppression and rested legs, making goal-scoring at a premium."
+      }
+    },
+    {
+      "game_date": "2026-11-22",
+      "away_team": "Oilers",
+      "home_team": "Blues",
+      "goalies": {
+        "away": "Jarry",
+        "home": "Hofer"
       },
       "provider": "groq",
       "preview": {
-        "headline": "Hurricanes Dominate Possession, Oilers’ Power Play a Threat",
-        "summary": "The Carolina Hurricanes’ possession‑based offense and stellar penalty‑kill will test Edmonton’s power‑play prowess and a struggling defense. While the Oilers’ 33.75% power‑play rate ranks second, the Hurricanes’ 59.81% Corsi For % and 74.47% Goals For % put them in a clear advantage, especially given Edmonton’s recent 46.82% Corsi For %. Both teams are equally rested with one day off, but Edmonton’s recent 4‑game stretch in 7 days could weigh on their defense.",
-        "away_analysis": "Edmonton’s offense is high‑scoring on paper, but their 46.82% Corsi For % and 28th‑ranked expected‑goals percentage suggest they’re over‑relying on a 33.75% power play to win games. Their defense struggles, with a 53.46 CF/60 and 2.57 xGA/60, and a 79.49% penalty‑kill that ranks 15th. Levi’s 19th‑ranked GSAx indicates a solid but not elite stay‑behind.",
-        "home_analysis": "Carolina’s numbers are league‑leading: 59.81% Corsi For % and 74.47% Goals For % show dominance in possession and finishing, while a 3.3 xGF/60 and 86.15% penalty‑kill make them a tough matchup. Their 11.99% shooting is among the best, and Kochetkov’s 6th‑ranked GSAx gives them a reliable netminder. The Hurricanes’ 57.58% high‑danger chances further amplify their offensive threat.",
+        "headline": "Blues’ High‑Danger Offense Meets Oilers’ Power‑Play Mastery",
+        "summary": "St. Louis’s explosive, high‑danger offense and solid penalty kill will test Edmonton’s top power‑play unit and disciplined defense. The Oilers’ recent slump and lack of rest add uncertainty to a matchup where both teams have similar possession but divergent finishing ability.",
+        "away_analysis": "The Oilers’ 45.78% Corsi For and 43.18% Expected Goals % place them near the bottom of the league, yet they top the standings in Power‑Play efficiency (34.12%). Edmonton’s low shooting percentage (8.66%) hints at finishing struggles, but the team’s strong PP shows they can convert when they get the chance. The 4.18 penalties per 60 keep the Blues’ penalty kill busy, but the Oilers’ 77.38% kill still leaves room for the Blues to capitalize on Oilers’ penalties.",
+        "home_analysis": "St. Louis sits at 48.93% Corsi For and 53.17% Expected Goals %, both among the best in the league, and their 10.58% shooting is a league‑ranked 11th best. Their high‑danger chance share (53.74%) and 3.22 expected goals per 60 underline an offensive edge. With an 81.97% penalty kill, the Blues can absorb the Oilers’ power‑play fire while exploiting their own high‑quality chances.",
         "matchup_edges": [
-          "Carolina’s possession advantage and high‑danger chances outpace Edmonton’s weaker Corsi and defensive lapses",
-          "Edmonton’s power‑play rate (33.75%) is a potential equalizer against Carolina’s 86.15% penalty kill",
-          "Both teams have only one day of rest, keeping fatigue levels low but keeping Edmonton’s recent dense schedule in mind"
+          "Blues’ high‑danger chance generation (53.74%) gives them an edge in creating quality scoring opportunities",
+          "Oilers’ elite power‑play (34.12%) can offset the Blues’ strong penalty kill and high shooting percentage",
+          "Both teams have similar rest (0 days) and schedule congestion, keeping fatigue a neutral factor"
         ],
-        "x_factor": "Carolina’s 74.47% Goals For % versus Edmonton’s 51.16% shows a clear offensive gap; Edmonton’s power play could close that if the Hurricanes’ defense falters.",
-        "key_question": "Will Edmonton’s elite power play overturn Carolina’s possession dominance and defensive superiority?",
-        "quick_takeaway": "Carolina’s possession and finishing edge are the biggest advantage, but Edmonton’s high‑scoring power play could swing the game if the Hurricanes’ defense cracks."
+        "x_factor": "The Oilers’ power‑play efficiency versus the Blues’ high‑danger offense will be the key tactical battle. If Edmonton can convert on the PP and limit the Blues’ top‑tier chances, they can neutralize St. Louis’ offensive surge.",
+        "key_question": "Can Edmonton’s power‑play mastery and disciplined defense contain the Blues’ high‑danger, high‑shooting offense, or will St. Louis’ offensive firepower overwhelm the Oilers’ goaltending and penalty kill?",
+        "quick_takeaway": "Blues’ high‑danger offense versus Oilers’ power‑play dominance – the matchup hinges on who can create and capitalize on the quality chances."
+      }
+    },
+    {
+      "game_date": "2026-11-22",
+      "away_team": "Blackhawks",
+      "home_team": "Canucks",
+      "goalies": {
+        "away": "Commesso",
+        "home": "Tolopilo"
+      },
+      "provider": "gemini",
+      "preview": {
+        "headline": "Blackhawks and Canucks Meet on Zero Days Rest in Fatigue Battle",
+        "summary": "Both the Chicago Blackhawks and Vancouver Canucks hit the ice on zero days of rest following heavy recent schedules, setting up a gritty matchup between two teams struggling to control play at five-on-five.",
+        "away_analysis": "The Blackhawks rank 31st in both Corsi For % and Goals For %, struggling to generate consistent possession and offense at five-on-five. Their expected goals for rate sits near the bottom of the league at 2.12 per 60, though they hold a slight relative edge over Vancouver in shot-attempt share and high-danger chance generation.",
+        "home_analysis": "The Canucks sit near the bottom of the league in underlying possession metrics, ranking 31st in expected goals percentage and high-danger chance share. However, Vancouver boasts a respectable power play clicking at 23.38 percent, offering a major weapon against Chicago's penalty kill if they can draw infractions.",
+        "matchup_edges": [
+          "Vancouver holds a clear advantage on the power play, ranking 13th in the league compared to Chicago's 27th-ranked unit.",
+          "Chicago holds a minor edge in territorial control, sitting 28th in expected goals percentage compared to Vancouver's 31st-ranked mark.",
+          "Vancouver's penalty kill ranks 31st in the league, presenting a potential opening for Chicago's struggling offense."
+        ],
+        "x_factor": "Special teams efficiency, specifically whether Vancouver can leverage its superior power play against Chicago's bottom-tier penalty kill.",
+        "key_question": "How will both tired teams manage puck fatigue and leg wear on zero days of rest?",
+        "quick_takeaway": "With both teams playing on the second half of back-to-backs and ranking near the bottom in underlying metrics, special teams execution and goaltending resilience will likely break the deadlock."
       }
     }
   ]
