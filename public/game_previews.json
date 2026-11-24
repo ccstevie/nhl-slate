@@ -1,215 +1,29 @@
 {
-  "generated_at": "2026-11-23",
+  "generated_at": "2026-11-24",
   "games": [
     {
-      "game_date": "2026-11-23",
+      "game_date": "2026-11-24",
       "away_team": {
-        "team": "Blue Jackets",
-        "team_abbrev": "CBJ",
-        "current_streak": "W2",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Devils",
-        "team_abbrev": "NJD",
-        "current_streak": "L2",
-        "games_last_4_days": 1,
-        "games_last_7_days": 2,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Talbot",
-        "home": "Hellebuyck"
-      }
-    },
-    {
-      "game_date": "2026-11-23",
-      "away_team": {
-        "team": "Flames",
-        "team_abbrev": "CGY",
-        "current_streak": "L2",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Senators",
-        "team_abbrev": "OTT",
+        "team": "Golden Knights",
+        "team_abbrev": "VGK",
         "current_streak": "W1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Cooley",
-        "home": "Ullmark"
-      }
-    },
-    {
-      "game_date": "2026-11-23",
-      "away_team": {
-        "team": "Mammoth",
-        "team_abbrev": "UTA",
-        "current_streak": "W2",
         "games_last_4_days": 1,
         "games_last_7_days": 3,
-        "rest_days": 1,
+        "rest_days": 2,
         "previous_head_to_head": null
       },
       "home_team": {
-        "team": "Jets",
-        "team_abbrev": "WPG",
-        "current_streak": "L1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Cossa",
-        "home": "Skinner"
-      }
-    },
-    {
-      "game_date": "2026-11-23",
-      "away_team": {
-        "team": "Maple Leafs",
-        "team_abbrev": "TOR",
-        "current_streak": "L9",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-10-17",
-          "game_id": 2026020125,
-          "opponent": "NYI",
-          "venue": "Home",
-          "result": "L",
-          "streak_result": "L",
-          "goals_for": 1,
-          "goals_against": 4
-        }
-      },
-      "home_team": {
-        "team": "Islanders",
-        "team_abbrev": "NYI",
-        "current_streak": "W1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-10-17",
-          "game_id": 2026020125,
-          "opponent": "TOR",
-          "venue": "Away",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 4,
-          "goals_against": 1
-        }
-      },
-      "goalies": {
-        "away": "Stolarz",
-        "home": "Sorokin"
-      }
-    },
-    {
-      "game_date": "2026-11-23",
-      "away_team": {
-        "team": "Kings",
-        "team_abbrev": "LAK",
-        "current_streak": "L1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Canadiens",
-        "team_abbrev": "MTL",
-        "current_streak": "L1",
+        "team": "Oilers",
+        "team_abbrev": "EDM",
+        "current_streak": "L3",
         "games_last_4_days": 2,
         "games_last_7_days": 4,
         "rest_days": 1,
         "previous_head_to_head": null
       },
       "goalies": {
-        "away": "Kuemper",
-        "home": "Dobes"
-      }
-    },
-    {
-      "game_date": "2026-11-23",
-      "away_team": {
-        "team": "Ducks",
-        "team_abbrev": "ANA",
-        "current_streak": "L3",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "home_team": {
-        "team": "Kraken",
-        "team_abbrev": "SEA",
-        "current_streak": "L1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 2,
-        "rest_days": 1,
-        "previous_head_to_head": null
-      },
-      "goalies": {
-        "away": "Dostal",
-        "home": "Daccord"
-      }
-    },
-    {
-      "game_date": "2026-11-23",
-      "away_team": {
-        "team": "Wild",
-        "team_abbrev": "MIN",
-        "current_streak": "L1",
-        "games_last_4_days": 2,
-        "games_last_7_days": 3,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-11-06",
-          "game_id": 2026020263,
-          "opponent": "SJS",
-          "venue": "Home",
-          "result": "W",
-          "streak_result": "W",
-          "goals_for": 4,
-          "goals_against": 1
-        }
-      },
-      "home_team": {
-        "team": "Sharks",
-        "team_abbrev": "SJS",
-        "current_streak": "W1",
-        "games_last_4_days": 1,
-        "games_last_7_days": 2,
-        "rest_days": 1,
-        "previous_head_to_head": {
-          "date": "2026-11-06",
-          "game_id": 2026020263,
-          "opponent": "MIN",
-          "venue": "Away",
-          "result": "L",
-          "streak_result": "L",
-          "goals_for": 1,
-          "goals_against": 4
-        }
-      },
-      "goalies": {
-        "away": "Wallstedt",
-        "home": "Askarov"
+        "away": "Hart",
+        "home": "Levi"
       }
     }
   ]
