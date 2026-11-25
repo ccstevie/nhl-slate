@@ -1,29 +1,101 @@
 {
-  "generated_at": "2026-11-24T18:29:16.161524+00:00",
+  "generated_at": "2026-11-25T17:44:31.936281+00:00",
   "model": "multi-provider",
   "games": [
     {
-      "game_date": "2026-11-24",
-      "away_team": "Golden Knights",
-      "home_team": "Oilers",
+      "game_date": "2026-11-25",
+      "away_team": "Flyers",
+      "home_team": "Capitals",
       "goalies": {
-        "away": "Hart",
-        "home": "Levi"
+        "away": "Woll",
+        "home": "Thompson"
+      },
+      "provider": "gemini",
+      "preview": {
+        "headline": "Flyers Carry Momentum Into Washington to Face Struggling Capitals",
+        "summary": "The Philadelphia Flyers arrive with a three-game winning streak and elite underlying chance suppression, while the Washington Capitals look to snap a five-game slide despite dominant possession metrics. Both teams enter well-rested with three days off, setting up an intriguing clash between the Flyers' defensive structure and the Capitals' volume-heavy attack.",
+        "away_analysis": "The Flyers boast top-tier underlying numbers, ranking 5th in expected goals percentage (54.11%) and 5th in expected goals against per 60 (2.26). Their chance generation is equally sharp, sitting 6th in high-danger chances percentage. Joseph Woll enters with a GSAx rank of 23 over his last 20 games, looking to backstop a team that is finding ways to convert its strong play into wins during a three-game streak.",
+        "home_analysis": "The Capitals are generating volume in bunches, ranking 3rd in both Corsi For % (54.4%) and Corsi For per 60 (62.54), alongside a solid 6th-place ranking in expected goals percentage. However, a five-game losing streak highlights a stark contrast between their strong play-driving metrics and a sub-par 46.43% actual goals rate. Logan Thompson anchors the crease with a GSAx rank of 59 over his last 20 games, needing his group to break through a stingy Philadelphia defense.",
+        "matchup_edges": [
+          "Flyers hold a major advantage in defensive suppression, ranking 5th in expected goals against per 60 compared to the Capitals at 10th.",
+          "Capitals dominate possession and shot generation, ranking 3rd in both Corsi For % and Corsi For per 60.",
+          "Special teams lean toward Washington, which ranks 14th on the power play compared to Philadelphia's 28th-ranked unit."
+        ],
+        "x_factor": "Logan Thompson's ability to stabilize Washington's net during a five-game skid against a lethal Philadelphia high-danger attack.",
+        "key_question": "Can the Capitals finally translate their heavy shot generation and elite possession metrics into actual goals against a disciplined Flyers team?",
+        "quick_takeaway": "The Flyers lean on elite defensive metrics and a three-game win streak to challenge a Capitals squad desperate to break a five-game slide despite dominant possession numbers."
+      }
+    },
+    {
+      "game_date": "2026-11-25",
+      "away_team": "Jets",
+      "home_team": "Bruins",
+      "goalies": {
+        "away": "Daws",
+        "home": "Swayman"
       },
       "provider": "groq",
       "preview": {
-        "headline": "Golden Knights vs Oilers: Power‑Play Battle on a Tired Oilers Staff",
-        "summary": "The Vegas squad’s top‑tier power play will be the focal point against Edmonton’s defensive struggles, but the Oilers’ high‑quality offense and better shooting efficiency give them a slight edge in a matchup that hinges on special‑teams execution and recent fatigue.",
-        "away_analysis": "Vegas’ 27.27% PP ranks fourth, and they’re only 0.26% below the league’s best, but their 3.21 penalties per 60 rank fifth, meaning they’ll have to keep discipline. Their 48.42% CF and 46.81% GF are near the middle of the pack, while their 51.57% expected‑goals rank twelfth—an indicator they’re creating quality chances but finishing below average shooting at 8.3%.",
-        "home_analysis": "Edmonton’s 32.58% PP is second in the league, and they’re firing on all cylinders offensively with a 59.09% GF rank six and a solid 10.08% shooting rate. Their defensive numbers are weak: a 46.19% CF and a 45.2% expected‑goals rank 29th, and their 54.24 Corsi/60 puts them in the top‑11 for turnovers. The Oilers are also more fatigued, having played two games in the last four days and four in the last seven, versus Vegas’ single game.",
+        "headline": "Bruins’ possession edge vs. Jets’ high‑shooting power play",
+        "summary": "The Boston Bruins, riding a two‑game winning streak and a 50.74% Corsi, will test the Winnipeg Jets’ 12.5% shooting attack. While the Jets have the league’s 12th‑best power‑play conversion, the Bruins’ superior possession and defensive shutdown—evidenced by a 15th‑ranked CF/60 and an 8th‑ranked expected‑goals‑for/60—will likely keep the game close.\n",
+        "away_analysis": "Winnipeg’s 46.37% Corsi and 46.44% high‑danger chances show they generate a lot of offense, but their 54.51 CA/60 and 73.24% PK% reveal defensive fragility. Their power‑play is strong (23.29%), yet they’ve taken 3.31 penalties per 60, the 8th‑most in the league, which could hand Bruins extra PP opportunities.\n",
+        "home_analysis": "Boston’s 50.74% CF and 51.06% GF% place them in the top 12 for both possession and scoring. Their 53.23% high‑danger chances and 2.86 xGF/60 underline a potent offense, while their 79.49% PK% and 4.69 penalties per 60 show disciplined play and a solid shutdown.\n",
         "matchup_edges": [
-          "Vegas’ power‑play potency vs Edmonton’s defensive lapses",
-          "Edmonton’s shooting efficiency and higher expected‑goals per 60",
-          "Vegas’ higher penalty rate could give the Oilers more PP opportunities"
+          "Bruins’ top‑tier possession gives them a sustained shot‑attempt advantage.",
+          "Jets’ high‑shooting PP (12th league) could swing a tight game if Bruins’ defense falters.",
+          "Boston’s better penalty kill and lower penalty rate reduce Jets’ PP opportunities.\n"
         ],
-        "x_factor": "Edmonton’s higher expected‑goals per 60 (2.1) versus Vegas’ 2.68 shows the Oilers are generating more quality chances despite a lower GF%",
-        "key_question": "Will Vegas’ disciplined defense and special‑teams edge keep the Oilers’ high‑output offense in check, or will Edmonton’s superior shooting efficiency tilt the game in their favor?",
-        "quick_takeaway": "The Oilers’ better shooting and offensive depth give them a slight advantage, but Vegas’ elite power play could swing the outcome if they stay disciplined."
+        "x_factor": "Jets’ 12.5% shooting percentage is elite, but the Bruins’ 15th‑ranked CF/60 and 79.49% PK% suggest they’ll limit the impact of those shots.\n",
+        "key_question": "Will Boston’s possession and defensive discipline neutralize Winnipeg’s high‑shooting power‑play threat?",
+        "quick_takeaway": "Boston’s superior possession and penalty kill give them a small edge, but the Jets’ elite shooting and power‑play could keep the game tight."
+      }
+    },
+    {
+      "game_date": "2026-11-25",
+      "away_team": "Blues",
+      "home_team": "Islanders",
+      "goalies": {
+        "away": "Hofer",
+        "home": "Sorokin"
+      },
+      "provider": "groq",
+      "preview": {
+        "headline": "Blues’ Surge Meets Islanders’ Defensive Prowess",
+        "summary": "The Blues are riding a four‑game win streak and have dominated the ice in terms of expected goals per 60, while the Islanders boast the league’s best penalty kill and a solid power‑play foundation. The matchup hinges on whether the Blues’ high‑danger production can overcome the Islanders’ disciplined defense and whether the Islanders’ PK edge will stifle the Blues’ offensive upside.",
+        "away_analysis": "St. Louis has been on a hot streak, winning four straight and generating 3.14 expected goals per 60 – the second‑best in the league – while also producing a high‑danger share of 52.35%. Their possession, though only 48.99% on Corsi, is supported by a 21.54% power‑play and a 83.08% penalty‑kill, the sixth best. Hofer’s GSAx rank of 8 indicates recent solid goaltending.",
+        "home_analysis": "New York’s defense is a league‑best at killing penalties (85.29%) and has a respectable power‑play at 16.92%. Their expected goals per 60 of 2.64 sits in the middle of the pack, but their 46.3% high‑danger share shows they generate quality chances. Sorokin’s GSAx 5 signals a strong recent performance, and the Islanders’ 3.85 penalties per 60 keeps the Blues on their toes.",
+        "matchup_edges": [
+          "Blues’ top‑tier expected goals per 60 give them a chance to outscore the Islanders’ solid defense",
+          "Islanders’ penalty‑kill edge could neutralize the Blues’ high‑danger production",
+          "The Blues’ better shooting percentage (11.56% vs. 11.19%) may translate to more goals if the ice is in their favor"
+        ],
+        "x_factor": "The key will be whether the Islanders’ elite penalty kill can suppress the Blues’ 3.14 expected goals per 60, or if the Blues’ high‑danger chances will find the net despite the Islanders’ defensive discipline.",
+        "key_question": "Can the Blues’ high‑danger, high‑expected‑goals output overcome the Islanders’ top‑tier penalty kill and disciplined defense?",
+        "quick_takeaway": "Blues’ high‑danger offense faces a tough test against the Islanders’ elite penalty kill; the game could hinge on a single power‑play goal or a defensive lapse."
+      }
+    },
+    {
+      "game_date": "2026-11-25",
+      "away_team": "Rangers",
+      "home_team": "Sabres",
+      "goalies": {
+        "away": "Korpisalo",
+        "home": "Luukkonen"
+      },
+      "provider": "groq",
+      "preview": {
+        "headline": "Rangers’ disciplined defense vs. Sabres’ high‑scoring offense",
+        "summary": "The Rangers have a league‑best 90% penalty‑kill and a strong expected‑goals advantage, but their 47.9% Corsi and low shooting percentage hint at finishing woes. The Sabres, meanwhile, sit near the top in goals and shooting, yet their 72% kill and 16.7% power‑play leave them vulnerable on the man‑advantage. With both teams resting two days and the Rangers on a one‑game losing streak, the game hinges on who can convert their chances and keep the other’s offense in check.",
+        "away_analysis": "Rangers’ 47.9% Corsi and 52% expected‑goals percentage put them ahead of the league in generating quality chances, yet their 7.7% shooting shows a finishing gap. Their 90% penalty kill, the best in the NHL, is a key asset, especially against a Sabres team that struggles to kill. The low 21.2% power‑play efficiency, however, means the Rangers will need to rely on even‑strength play to win.",
+        "home_analysis": "Sabres’ 49.2% Corsi and 52.8% goals for rank them in the top tier of offensive control, while their 10.5% shooting is among the league’s best, turning chances into points. Their 72% kill is respectable but not elite, and their 16.7% power‑play is the lowest in the league, exposing a weakness on the man‑advantage. The Sabres’ higher expected‑goals for per 60 (2.74) suggests they’ll generate more opportunities than the Rangers’ 2.66.",
+        "matchup_edges": [
+          "Rangers’ 90% kill vs. Sabres’ 72% kill",
+          "Rangers’ 52% expected‑goals vs. Sabres’ 49.9%",
+          "Sabres’ 10.5% shooting vs. Rangers’ 7.7%"
+        ],
+        "x_factor": "Both teams have similar rest and recent workloads, so the game will likely be decided by who can better convert high‑danger chances and maintain disciplined defense on the penalty kill.",
+        "key_question": "Will the Rangers’ elite penalty kill offset the Sabres’ superior shooting and high‑scoring offense, or will the Sabres’ offensive firepower break through the Rangers’ defensive play?",
+        "quick_takeaway": "Rangers’ penalty‑kill edge could neutralize the Sabres’ high‑scoring offense, but the Sabres’ superior shooting may tip the scales if the Rangers can’t finish."
       }
     }
   ]
